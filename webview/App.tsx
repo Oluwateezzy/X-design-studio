@@ -139,6 +139,19 @@ export function App() {
     setActiveTheme(JSON.parse(JSON.stringify(PRESET_THEMES[randomIndex])));
   };
 
+  const [showLeftPanel, setShowLeftPanel] = useState<boolean>(() => {
+    if (typeof window !== "undefined") {
+      return window.innerWidth >= 1280;
+    }
+    return false;
+  });
+  const [showRightPanel, setShowRightPanel] = useState<boolean>(() => {
+    if (typeof window !== "undefined") {
+      return window.innerWidth >= 1280;
+    }
+    return false;
+  });
+
   const handleOpenExport = (tab: "html" | "markdown") => {
     setExportTab(tab);
     setIsExportOpen(true);
@@ -168,29 +181,37 @@ export function App() {
       {/* Top Navbar */}
       <Navbar
         activeTheme={activeTheme}
+        showLeftPanel={showLeftPanel}
+        showRightPanel={showRightPanel}
+        onToggleLeftPanel={() => setShowLeftPanel((prev) => !prev)}
+        onToggleRightPanel={() => setShowRightPanel((prev) => !prev)}
         onOpenExport={handleOpenExport}
         onRandomTheme={handleRandomTheme}
       />
 
       {/* Main Studio Body */}
-      <div className="flex-1 flex flex-col lg:flex-row overflow-hidden relative">
+      <div className="flex-1 flex flex-row overflow-hidden relative w-full h-full">
         {/* Left: 100 Themes Filter & List Panel */}
-        <ThemeSelectorPanel
-          activeThemeId={activeTheme.id}
-          onSelectTheme={handleSelectTheme}
-        />
+        {showLeftPanel && (
+          <ThemeSelectorPanel
+            activeThemeId={activeTheme.id}
+            onSelectTheme={handleSelectTheme}
+          />
+        )}
 
-        {/* Center: Live Interactive Canvas Preview */}
+        {/* Center: Live Interactive Canvas Preview (ALWAYS VISIBLE & FLEX-1) */}
         <LivePreviewCanvas theme={activeTheme} />
 
         {/* Right: Live Color Overrides & Contrast Tuner */}
-        <ColorEditorPanel
-          activeTheme={activeTheme}
-          onColorChange={handleColorChange}
-          onFontChange={handleFontSelect}
-          onOpenFontModal={() => setIsFontModalOpen(true)}
-          onResetTheme={handleResetTheme}
-        />
+        {showRightPanel && (
+          <ColorEditorPanel
+            activeTheme={activeTheme}
+            onColorChange={handleColorChange}
+            onFontChange={handleFontSelect}
+            onOpenFontModal={() => setIsFontModalOpen(true)}
+            onResetTheme={handleResetTheme}
+          />
+        )}
       </div>
 
       {/* Export Modal */}

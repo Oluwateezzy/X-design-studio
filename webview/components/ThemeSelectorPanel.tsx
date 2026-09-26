@@ -29,7 +29,7 @@ export const ThemeSelectorPanel: React.FC<ThemeSelectorPanelProps> = ({
   }, [selectedCategory, searchQuery]);
 
   return (
-    <div className="flex flex-col h-full bg-slate-900/90 border-r border-slate-800/80 w-full lg:w-80 shrink-0">
+    <div className="flex flex-col h-full bg-[var(--vscode-sidebar-bg)] border-r border-[var(--vscode-border)] w-72 sm:w-80 shrink-0 z-20">
       {/* Search Header */}
       <div className="p-3.5 border-b border-slate-800/80 space-y-3">
         <div className="relative">
