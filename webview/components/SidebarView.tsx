@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from "react";
-import { Search, Check, Shuffle, ExternalLink, Sparkles, RefreshCw, SlidersHorizontal } from "lucide-react";
+import { Search, Check, Shuffle, ExternalLink, Sparkles, RefreshCw, SlidersHorizontal, Code, Download } from "lucide-react";
 import { PRESET_THEMES, THEME_CATEGORIES, type ThemeConfig } from "../lib/themes-dataset";
 
 interface SidebarViewProps {
@@ -8,6 +8,7 @@ interface SidebarViewProps {
   onRandomTheme: () => void;
   onColorChange: (key: keyof ThemeConfig["colors"], value: string) => void;
   onResetTheme: () => void;
+  onOpenExport: (tab: "html" | "markdown") => void;
   onOpenFullStudio: () => void;
 }
 
@@ -17,6 +18,7 @@ export const SidebarView: React.FC<SidebarViewProps> = ({
   onRandomTheme,
   onColorChange,
   onResetTheme,
+  onOpenExport,
   onOpenFullStudio,
 }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
@@ -51,11 +53,31 @@ export const SidebarView: React.FC<SidebarViewProps> = ({
 
           <button
             onClick={onOpenFullStudio}
-            className="flex items-center gap-1 text-[11px] px-2 py-1 rounded bg-[var(--vscode-button-bg)] text-[var(--vscode-button-fg)] hover:opacity-90 transition font-medium cursor-pointer"
+            className="flex items-center gap-1 text-[11px] px-2.5 py-1 rounded bg-[var(--vscode-button-bg)] text-[var(--vscode-button-fg)] hover:opacity-90 transition font-semibold cursor-pointer shadow-xs"
             title="Open Full Canvas Editor (Cmd+Shift+T)"
           >
             <span>Canvas</span>
             <ExternalLink className="w-3 h-3" />
+          </button>
+        </div>
+
+        {/* Export Actions Bar in Sidebar */}
+        <div className="grid grid-cols-2 gap-1.5 mb-2.5">
+          <button
+            onClick={() => onOpenExport("html")}
+            className="flex items-center justify-center gap-1 py-1.5 px-2 rounded bg-indigo-600 hover:bg-indigo-500 text-white text-[11px] font-semibold transition cursor-pointer shadow-xs"
+            title="Export full single-file HTML landing page"
+          >
+            <Code className="w-3.5 h-3.5" />
+            <span>Export HTML</span>
+          </button>
+          <button
+            onClick={() => onOpenExport("markdown")}
+            className="flex items-center justify-center gap-1 py-1.5 px-2 rounded bg-emerald-600 hover:bg-emerald-500 text-white text-[11px] font-semibold transition cursor-pointer shadow-xs"
+            title="Export AI Prompt spec (.md)"
+          >
+            <Download className="w-3.5 h-3.5" />
+            <span>Export Prompt (.md)</span>
           </button>
         </div>
 

@@ -1,8 +1,5 @@
 import { useState, useEffect } from "react";
 import { PRESET_THEMES, type ThemeConfig } from "./lib/themes-dataset";
-import { Navbar } from "./components/Navbar";
-import { ThemeSelectorPanel } from "./components/ThemeSelectorPanel";
-import { ColorEditorPanel } from "./components/ColorEditorPanel";
 import { LivePreviewCanvas } from "./components/LivePreviewCanvas";
 import { ExportModal } from "./components/ExportModal";
 import { FontSelectorModal } from "./components/FontSelectorModal";
@@ -139,19 +136,6 @@ export function App() {
     setActiveTheme(JSON.parse(JSON.stringify(PRESET_THEMES[randomIndex])));
   };
 
-  const [showLeftPanel, setShowLeftPanel] = useState<boolean>(() => {
-    if (typeof window !== "undefined") {
-      return window.innerWidth >= 1280;
-    }
-    return false;
-  });
-  const [showRightPanel, setShowRightPanel] = useState<boolean>(() => {
-    if (typeof window !== "undefined") {
-      return window.innerWidth >= 1280;
-    }
-    return false;
-  });
-
   const handleOpenExport = (tab: "html" | "markdown") => {
     setExportTab(tab);
     setIsExportOpen(true);
@@ -165,53 +149,33 @@ export function App() {
 
   if (isSidebarMode) {
     return (
-      <SidebarView
-        activeTheme={activeTheme}
-        onSelectTheme={handleSelectTheme}
-        onRandomTheme={handleRandomTheme}
-        onColorChange={handleColorChange}
-        onResetTheme={handleResetTheme}
-        onOpenFullStudio={handleOpenFullStudio}
-      />
+      <>
+        <SidebarView
+          activeTheme={activeTheme}
+          onSelectTheme={handleSelectTheme}
+          onRandomTheme={handleRandomTheme}
+          onColorChange={handleColorChange}
+          onResetTheme={handleResetTheme}
+          onOpenExport={handleOpenExport}
+          onOpenFullStudio={handleOpenFullStudio}
+        />
+
+        {/* Export Modal */}
+        <ExportModal
+          isOpen={isExportOpen}
+          initialTab={exportTab}
+          activeTheme={activeTheme}
+          onClose={() => setIsExportOpen(false)}
+        />
+      </>
     );
   }
 
   return (
     <div className="flex flex-col h-screen w-screen bg-[var(--vscode-app-bg)] text-[var(--vscode-app-fg)] overflow-hidden font-sans">
-      {/* Top Navbar */}
-      <Navbar
-        activeTheme={activeTheme}
-        showLeftPanel={showLeftPanel}
-        showRightPanel={showRightPanel}
-        onToggleLeftPanel={() => setShowLeftPanel((prev) => !prev)}
-        onToggleRightPanel={() => setShowRightPanel((prev) => !prev)}
-        onOpenExport={handleOpenExport}
-        onRandomTheme={handleRandomTheme}
-      />
-
-      {/* Main Studio Body */}
-      <div className="flex-1 flex flex-row overflow-hidden relative w-full h-full">
-        {/* Left: 100 Themes Filter & List Panel */}
-        {showLeftPanel && (
-          <ThemeSelectorPanel
-            activeThemeId={activeTheme.id}
-            onSelectTheme={handleSelectTheme}
-          />
-        )}
-
-        {/* Center: Live Interactive Canvas Preview (ALWAYS VISIBLE & FLEX-1) */}
+      {/* 100% Full-Screen Live Interactive Canvas */}
+      <div className="flex-1 w-full h-full overflow-hidden">
         <LivePreviewCanvas theme={activeTheme} />
-
-        {/* Right: Live Color Overrides & Contrast Tuner */}
-        {showRightPanel && (
-          <ColorEditorPanel
-            activeTheme={activeTheme}
-            onColorChange={handleColorChange}
-            onFontChange={handleFontSelect}
-            onOpenFontModal={() => setIsFontModalOpen(true)}
-            onResetTheme={handleResetTheme}
-          />
-        )}
       </div>
 
       {/* Export Modal */}
