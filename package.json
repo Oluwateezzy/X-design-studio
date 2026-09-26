@@ -1,13 +1,68 @@
 {
-  "name": "theme-studio",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "name": "vibe-theme-studio",
+  "displayName": "Vibe Theme Studio",
+  "description": "Visual theme studio for VS Code with live preview and theme spec generator",
+  "version": "0.1.0",
+  "publisher": "vibe",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vibe/theme-studio"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Themes",
+    "Other"
+  ],
+  "main": "./dist/extension.js",
+  "activationEvents": [],
+  "contributes": {
+    "commands": [
+      {
+        "command": "vibeThemeStudio.open",
+        "title": "Open Vibe Theme Studio",
+        "category": "Vibe Theme Studio"
+      }
+    ],
+    "configuration": {
+      "title": "Vibe Theme Studio",
+      "properties": {
+        "vibeThemeStudio.googleFontsApiKey": {
+          "type": "string",
+          "default": "",
+          "description": "Google Fonts API key for custom font preview"
+        },
+        "vibeThemeStudio.defaultExportFormat": {
+          "type": "string",
+          "enum": [
+            "vsCodeTheme",
+            "tailwindConfig",
+            "cssVariables",
+            "jsonTheme"
+          ],
+          "default": "vsCodeTheme",
+          "description": "Default theme export format"
+        }
+      }
+    },
+    "keybindings": [
+      {
+        "command": "vibeThemeStudio.open",
+        "key": "cmd+shift+t",
+        "mac": "cmd+shift+t",
+        "win": "ctrl+shift+t"
+      }
+    ]
+  },
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
-    "lint": "oxlint",
-    "preview": "vite preview"
+    "vscode:prepublish": "npm run build",
+    "build:extension": "node esbuild.config.mjs",
+    "build:webview": "vite build --config vite.config.webview.mjs",
+    "build": "npm run build:extension && npm run build:webview",
+    "watch:extension": "node esbuild.config.mjs --watch",
+    "watch:webview": "vite build --watch --config vite.config.webview.mjs",
+    "typecheck": "tsc --noEmit && tsc -p tsconfig.webview.json"
   },
   "dependencies": {
     "lucide-react": "^1.47.0",
@@ -19,7 +74,11 @@
     "@types/node": "^24.13.3",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.7",
+    "@types/vscode": "^1.85.0",
     "@vitejs/plugin-react": "^6.1.1",
+    "@vscode/vsce": "^3.7.0",
+    "concurrently": "^9.2.1",
+    "esbuild": "^0.25.10",
     "oxlint": "^1.81.0",
     "tailwindcss": "^4.3.3",
     "typescript": "~6.0.2",
