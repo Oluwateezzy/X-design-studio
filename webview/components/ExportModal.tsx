@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { X, Copy, Download, Check, Code, FileText } from "lucide-react";
 import type { ThemeConfig } from "../lib/themes-dataset";
 import { generateThemeHtml } from "../lib/html-generator";
 import { generateThemeMarkdown } from "../lib/markdown-generator";
+import { postMessage, onMessage } from "../vscode-bridge";
 
 interface ExportModalProps {
   isOpen: boolean;
@@ -19,6 +20,20 @@ export const ExportModal: React.FC<ExportModalProps> = ({
 }) => {
   const [activeTab, setActiveTab] = useState<"html" | "markdown">(initialTab);
   const [copied, setCopied] = useState<boolean>(false);
+  const [exporting, setExporting] = useState<boolean>(false);
+
+  useEffect(() => {
+    const cleanup = onMessage((msg) => {
+      if (msg.type === "fileSaved") {
+        setExporting(false);
+        if (msg.success) {
+          setCopied(true);
+          setTimeout(() => setCopied(false), 2000);
+        }
+      }
+    });
+    return cleanup;
+  }, []);
 
   if (!isOpen) return null;
 
@@ -32,23 +47,19 @@ export const ExportModal: React.FC<ExportModalProps> = ({
       : `THEME_SPEC_${activeTheme.number}.md`;
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(currentContent);
+    postMessage({ type: "copyToClipboard", text: currentContent });
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
 
   const handleDownload = () => {
-    const blob = new Blob([currentContent], {
-      type: activeTab === "html" ? "text/html" : "text/markdown",
+    setExporting(true);
+    postMessage({
+      type: "exportFile",
+      fileName,
+      content: currentContent,
+      format: activeTab === "html" ? "html" : "md",
     });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = fileName;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
   };
 
   return (
@@ -64,7 +75,7 @@ export const ExportModal: React.FC<ExportModalProps> = ({
               </span>
             </h2>
             <p className="text-xs text-slate-400 mt-0.5">
-              Copy or download single-file HTML preview or AI System Prompt Markdown
+              Copy or save single-file HTML preview or AI System Prompt Markdown via VS Code
             </p>
           </div>
           <button
@@ -123,10 +134,11 @@ export const ExportModal: React.FC<ExportModalProps> = ({
 
             <button
               onClick={handleDownload}
-              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold transition shadow-sm cursor-pointer"
+              disabled={exporting}
+              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold transition shadow-sm cursor-pointer disabled:opacity-50"
             >
               <Download className="w-3.5 h-3.5" />
-              <span>Download File</span>
+              <span>{exporting ? "Saving..." : "Save File..."}</span>
             </button>
           </div>
         </div>

@@ -4,9 +4,9 @@ import * as path from 'path';
 import type {
   WebviewToExtensionMessage,
   ExtensionToWebviewMessage,
-  ThemeConfig,
-  GoogleFontItem
+  ThemeConfig
 } from './messages';
+import { fetchGoogleFontsCatalog } from './google-fonts-service';
 
 export class ThemeStudioPanel {
   public static currentPanel: ThemeStudioPanel | undefined;
@@ -221,41 +221,12 @@ export class ThemeStudioPanel {
     const config = vscode.workspace.getConfiguration('strataStudio');
     const apiKey = apiKeyParam || config.get<string>('googleFontsApiKey') || '';
 
-    if (!apiKey) {
-      this.postMessage({
-        type: 'googleFontsResult',
-        items: [],
-        fromApi: false
-      });
-      return;
-    }
-
-    try {
-      const response = await fetch(`https://www.googleapis.com/webfonts/v1/webfonts?key=${encodeURIComponent(apiKey)}&sort=popularity`);
-      if (!response.ok) {
-        throw new Error(`Google Fonts API HTTP error ${response.status}`);
-      }
-      const data = (await response.json()) as { items?: GoogleFontItem[] };
-      const items: GoogleFontItem[] = (data.items || []).map(item => ({
-        family: item.family,
-        category: item.category,
-        variants: item.variants,
-        subsets: item.subsets
-      }));
-
-      this.postMessage({
-        type: 'googleFontsResult',
-        items,
-        fromApi: true
-      });
-    } catch (err: unknown) {
-      console.error('Error fetching Google Fonts:', err);
-      this.postMessage({
-        type: 'googleFontsResult',
-        items: [],
-        fromApi: false
-      });
-    }
+    const { items, fromApi } = await fetchGoogleFontsCatalog(apiKey, this._globalState);
+    this.postMessage({
+      type: 'googleFontsResult',
+      items,
+      fromApi
+    });
   }
 
   private _handleGetPersistedState(): void {

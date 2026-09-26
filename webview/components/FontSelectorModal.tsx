@@ -2,13 +2,13 @@ import React, { useState, useEffect, useMemo } from "react";
 import { X, Search, Key, Check, Type, RefreshCw } from "lucide-react";
 import {
   type GoogleFontItem,
-  fetchGoogleFontsCatalog,
-  getSavedApiKey,
-  saveApiKey,
+  FALLBACK_GOOGLE_FONTS,
+  requestGoogleFontsCatalog,
   loadGoogleFont,
   getFontFamilyCss,
   getFontGoogleUrlParam,
 } from "../lib/google-fonts-api";
+import { onMessage, postMessage } from "../vscode-bridge";
 
 interface FontSelectorModalProps {
   isOpen: boolean;
@@ -23,34 +23,41 @@ export const FontSelectorModal: React.FC<FontSelectorModalProps> = ({
   onClose,
   onSelectFont,
 }) => {
-  const [apiKey, setApiKeyInput] = useState<string>("");
+  const [apiKeyInput, setApiKeyInput] = useState<string>("");
   const [isApiKeyOpen, setIsApiKeyOpen] = useState<boolean>(false);
-  const [fonts, setFonts] = useState<GoogleFontItem[]>([]);
+  const [fonts, setFonts] = useState<GoogleFontItem[]>(FALLBACK_GOOGLE_FONTS);
   const [isFromApi, setIsFromApi] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const [previewText, setPreviewText] = useState<string>("Vescrow Multi-Sig Vaults 2026");
+  const [previewText, setPreviewText] = useState<string>("Strata Studio Multisig 2026");
+
+  useEffect(() => {
+    const cleanup = onMessage((msg) => {
+      if (msg.type === "googleFontsResult") {
+        if (msg.items && msg.items.length > 0) {
+          setFonts(msg.items as GoogleFontItem[]);
+          setIsFromApi(msg.fromApi);
+        } else {
+          setFonts(FALLBACK_GOOGLE_FONTS);
+          setIsFromApi(false);
+        }
+        setIsLoading(false);
+      }
+    });
+    return cleanup;
+  }, []);
 
   useEffect(() => {
     if (isOpen) {
-      const savedKey = getSavedApiKey();
-      setApiKeyInput(savedKey);
-      loadCatalog(savedKey);
+      setIsLoading(true);
+      requestGoogleFontsCatalog();
     }
   }, [isOpen]);
 
-  const loadCatalog = async (key?: string) => {
+  const handleFetchWithKey = () => {
     setIsLoading(true);
-    const { items, fromApi } = await fetchGoogleFontsCatalog(key);
-    setFonts(items);
-    setIsFromApi(fromApi);
-    setIsLoading(false);
-  };
-
-  const handleSaveApiKey = () => {
-    saveApiKey(apiKey);
-    loadCatalog(apiKey);
+    requestGoogleFontsCatalog(apiKeyInput);
     setIsApiKeyOpen(false);
   };
 
@@ -87,7 +94,7 @@ export const FontSelectorModal: React.FC<FontSelectorModalProps> = ({
                 <span className={`text-[10px] px-2 py-0.5 rounded-full font-mono ${
                   isFromApi ? "bg-emerald-500/10 border border-emerald-500/30 text-emerald-400" : "bg-amber-500/10 border border-amber-500/30 text-amber-400"
                 }`}>
-                  {isFromApi ? `Live API (${fonts.length} Fonts)` : `Catalog (${fonts.length} Fonts)`}
+                  {isFromApi ? `Live API (${fonts.length} Fonts)` : `Preset Catalog (${fonts.length} Fonts)`}
                 </span>
               </div>
               <p className="text-xs text-slate-400">
@@ -102,7 +109,7 @@ export const FontSelectorModal: React.FC<FontSelectorModalProps> = ({
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold transition cursor-pointer"
             >
               <Key className="w-3.5 h-3.5 text-amber-400" />
-              <span>{getSavedApiKey() ? "API Key Configured" : "Add Google API Key"}</span>
+              <span>{isFromApi ? "Google API Active" : "Configure API Key"}</span>
             </button>
 
             <button
@@ -118,29 +125,27 @@ export const FontSelectorModal: React.FC<FontSelectorModalProps> = ({
         {isApiKeyOpen && (
           <div className="p-4 bg-slate-950 border-b border-slate-800 space-y-2 animate-fadeIn">
             <div className="flex items-center justify-between text-xs font-semibold text-slate-200">
-              <span>Google Webfonts Developer API Key</span>
-              <a
-                href="https://console.cloud.google.com/apis/credentials"
-                target="_blank"
-                rel="noreferrer"
-                className="text-indigo-400 hover:underline text-[11px]"
+              <span>Google Webfonts Developer API Key (VS Code Setting: <code>strataStudio.googleFontsApiKey</code>)</span>
+              <button
+                onClick={() => postMessage({ type: "openExternal", url: "https://console.cloud.google.com/apis/credentials" })}
+                className="text-indigo-400 hover:underline text-[11px] cursor-pointer bg-transparent border-0"
               >
                 Get Free Key from Google Console →
-              </a>
+              </button>
             </div>
             <div className="flex items-center gap-2">
               <input
                 type="text"
-                placeholder="Paste AI key or Google Webfonts API Key..."
-                value={apiKey}
+                placeholder="Enter Google Webfonts API Key..."
+                value={apiKeyInput}
                 onChange={(e) => setApiKeyInput(e.target.value)}
                 className="flex-1 px-3 py-1.5 text-xs font-mono bg-slate-900 border border-slate-800 rounded-lg text-slate-200 focus:outline-none focus:border-indigo-500"
               />
               <button
-                onClick={handleSaveApiKey}
+                onClick={handleFetchWithKey}
                 className="px-4 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold transition cursor-pointer"
               >
-                Save Key & Reload
+                Fetch Full Catalog
               </button>
             </div>
           </div>
@@ -194,7 +199,7 @@ export const FontSelectorModal: React.FC<FontSelectorModalProps> = ({
           {isLoading ? (
             <div className="col-span-full flex flex-col items-center justify-center py-16 text-slate-400 gap-2">
               <RefreshCw className="w-6 h-6 animate-spin text-indigo-400" />
-              <span className="text-xs">Fetching Google Fonts Catalog...</span>
+              <span className="text-xs">Fetching Google Fonts Catalog via Extension Host...</span>
             </div>
           ) : filteredFonts.length === 0 ? (
             <div className="col-span-full text-center py-16 text-xs text-slate-500">

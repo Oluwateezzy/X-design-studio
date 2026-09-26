@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { PRESET_THEMES, type ThemeConfig } from "./lib/themes-dataset";
 import { Navbar } from "./components/Navbar";
 import { ThemeSelectorPanel } from "./components/ThemeSelectorPanel";
@@ -6,12 +6,45 @@ import { ColorEditorPanel } from "./components/ColorEditorPanel";
 import { LivePreviewCanvas } from "./components/LivePreviewCanvas";
 import { ExportModal } from "./components/ExportModal";
 import { FontSelectorModal } from "./components/FontSelectorModal";
+import { postMessage, onMessage, getState, setState } from "./vscode-bridge";
+import { loadGoogleFont } from "./lib/google-fonts-api";
 
 export function App() {
-  const [activeTheme, setActiveTheme] = useState<ThemeConfig>(PRESET_THEMES[0]);
+  const [activeTheme, setActiveTheme] = useState<ThemeConfig>(() => {
+    const savedWebviewState = getState<ThemeConfig>();
+    return savedWebviewState || PRESET_THEMES[0];
+  });
   const [isExportOpen, setIsExportOpen] = useState<boolean>(false);
   const [isFontModalOpen, setIsFontModalOpen] = useState<boolean>(false);
   const [exportTab, setExportTab] = useState<"html" | "markdown">("html");
+
+  // Load Google Font whenever active theme changes
+  useEffect(() => {
+    if (activeTheme?.fontName) {
+      loadGoogleFont(activeTheme.fontName);
+    }
+  }, [activeTheme?.fontName]);
+
+  // Request persisted state from Extension Host on mount
+  useEffect(() => {
+    postMessage({ type: "getPersistedState" });
+
+    const cleanup = onMessage((msg) => {
+      if (msg.type === "restoreState" && msg.theme) {
+        setActiveTheme(msg.theme);
+      }
+    });
+
+    return cleanup;
+  }, []);
+
+  // Save active theme state to Extension Host and Webview State API on change
+  useEffect(() => {
+    if (activeTheme) {
+      postMessage({ type: "saveThemeState", theme: activeTheme });
+      setState(activeTheme);
+    }
+  }, [activeTheme]);
 
   const handleSelectTheme = (theme: ThemeConfig) => {
     setActiveTheme(JSON.parse(JSON.stringify(theme)));
@@ -19,7 +52,6 @@ export function App() {
 
   const handleColorChange = (key: keyof ThemeConfig["colors"], value: string) => {
     setActiveTheme((prev) => {
-      // Sanitize hex strings to prevent invalid 7-digit hex inputs (#5889988 -> #588998)
       let sanitizedVal = value;
       if (sanitizedVal.startsWith("#") && sanitizedVal.length === 8) {
         sanitizedVal = sanitizedVal.slice(0, 7);
@@ -30,7 +62,6 @@ export function App() {
         [key]: sanitizedVal,
       };
 
-      // Automatically recompute gradient, ambient glowing orbs, and badges if primary or secondary colors are updated
       if (key === "primary" || key === "secondary") {
         const prim = updatedColors.primary;
         const sec = updatedColors.secondary;
@@ -60,6 +91,7 @@ export function App() {
   };
 
   const handleFontSelect = (fontName: string, fontFamily: string, fontGoogleUrl: string) => {
+    loadGoogleFont(fontName);
     setActiveTheme((prev) => ({
       ...prev,
       fontName,
