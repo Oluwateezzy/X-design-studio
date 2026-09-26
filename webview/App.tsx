@@ -6,8 +6,15 @@ import { ColorEditorPanel } from "./components/ColorEditorPanel";
 import { LivePreviewCanvas } from "./components/LivePreviewCanvas";
 import { ExportModal } from "./components/ExportModal";
 import { FontSelectorModal } from "./components/FontSelectorModal";
+import { SidebarView } from "./components/SidebarView";
 import { postMessage, onMessage, getState, setState } from "./vscode-bridge";
 import { loadGoogleFont } from "./lib/google-fonts-api";
+
+declare global {
+  interface Window {
+    VSCODE_VIEW_MODE?: string;
+  }
+}
 
 export function App() {
   const [activeTheme, setActiveTheme] = useState<ThemeConfig>(() => {
@@ -17,6 +24,28 @@ export function App() {
   const [isExportOpen, setIsExportOpen] = useState<boolean>(false);
   const [isFontModalOpen, setIsFontModalOpen] = useState<boolean>(false);
   const [exportTab, setExportTab] = useState<"html" | "markdown">("html");
+
+  // Determine if running inside VS Code sidebar vs full editor panel
+  const [isSidebarMode, setIsSidebarMode] = useState<boolean>(() => {
+    if (typeof window !== "undefined") {
+      return (
+        window.VSCODE_VIEW_MODE === "sidebar" ||
+        window.location.search.includes("mode=sidebar") ||
+        window.innerWidth < 480
+      );
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.VSCODE_VIEW_MODE === "sidebar") return;
+      setIsSidebarMode(window.innerWidth < 480);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   // Load Google Font whenever active theme changes
   useEffect(() => {
@@ -115,8 +144,27 @@ export function App() {
     setIsExportOpen(true);
   };
 
+  const handleOpenFullStudio = () => {
+    postMessage({ type: "openExternal", url: "command:xDesignSystem.open" });
+    // Also post openFullStudio for Extension Host handler
+    window.parent.postMessage({ type: "openFullStudio" }, "*");
+  };
+
+  if (isSidebarMode) {
+    return (
+      <SidebarView
+        activeTheme={activeTheme}
+        onSelectTheme={handleSelectTheme}
+        onRandomTheme={handleRandomTheme}
+        onColorChange={handleColorChange}
+        onResetTheme={handleResetTheme}
+        onOpenFullStudio={handleOpenFullStudio}
+      />
+    );
+  }
+
   return (
-    <div className="flex flex-col h-screen w-screen bg-slate-950 text-slate-100 overflow-hidden font-sans">
+    <div className="flex flex-col h-screen w-screen bg-[var(--vscode-app-bg)] text-[var(--vscode-app-fg)] overflow-hidden font-sans">
       {/* Top Navbar */}
       <Navbar
         activeTheme={activeTheme}

@@ -1,5 +1,8 @@
 import * as vscode from 'vscode';
+import * as fs from 'fs';
+import * as path from 'path';
 import { ThemeStudioPanel } from './ThemeStudioPanel';
+import type { ThemeConfig, WebviewToExtensionMessage } from './messages';
 
 export class ThemeStudioViewProvider implements vscode.WebviewViewProvider {
   public static readonly viewType = 'xDesignSystemSidebarView';
@@ -24,88 +27,89 @@ export class ThemeStudioViewProvider implements vscode.WebviewViewProvider {
 
     webviewView.webview.html = this._getHtmlForWebview(webviewView.webview);
 
-    webviewView.webview.onDidReceiveMessage(async message => {
-      if (message.type === 'openFullStudio') {
-        ThemeStudioPanel.createOrShow(this._extensionUri, this._globalState);
+    webviewView.webview.onDidReceiveMessage(async (message: WebviewToExtensionMessage | { type: string; url?: string; theme?: ThemeConfig }) => {
+      switch (message.type) {
+        case 'openFullStudio':
+          ThemeStudioPanel.createOrShow(this._extensionUri, this._globalState);
+          break;
+        case 'openExternal':
+          if (message.url === 'command:xDesignSystem.open') {
+            ThemeStudioPanel.createOrShow(this._extensionUri, this._globalState);
+          } else if (message.url) {
+            await vscode.env.openExternal(vscode.Uri.parse(message.url));
+          }
+          break;
+        case 'saveThemeState':
+          if (message.theme) {
+            await this._globalState.update('activeTheme', message.theme);
+            // Sync live with open main panel if active
+            if (ThemeStudioPanel.currentPanel) {
+              ThemeStudioPanel.currentPanel.postMessage({
+                type: 'restoreState',
+                theme: message.theme
+              });
+            }
+          }
+          break;
+        case 'getPersistedState':
+          const savedTheme = this._globalState.get<ThemeConfig>('activeTheme');
+          webviewView.webview.postMessage({
+            type: 'restoreState',
+            theme: savedTheme
+          });
+          break;
+        case 'copyToClipboard':
+          if ('text' in message && message.text) {
+            await vscode.env.clipboard.writeText(message.text);
+            vscode.window.showInformationMessage('Copied to clipboard!');
+          }
+          break;
       }
     });
   }
 
   private _getHtmlForWebview(webview: vscode.Webview): string {
     const webviewDir = vscode.Uri.joinPath(this._extensionUri, 'dist', 'webview');
+    const indexPath = path.join(webviewDir.fsPath, 'index.html');
+
+    let html = '';
+    try {
+      html = fs.readFileSync(indexPath, 'utf8');
+    } catch {
+      html = `<!DOCTYPE html><html><body><h2>Error loading sidebar webview</h2></body></html>`;
+      return html;
+    }
+
+    const nonce = getNonce();
+    const baseUri = webview.asWebviewUri(webviewDir);
     const cspSource = webview.cspSource;
 
-    return `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src ${cspSource} 'unsafe-inline'; script-src ${cspSource} 'unsafe-inline'; img-src ${cspSource} data:;">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      font-family: var(--vscode-font-family);
-      color: var(--vscode-foreground);
-      padding: 1rem;
-      text-align: center;
-    }
-    .icon-box {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 1rem auto 0.5rem auto;
-      font-weight: 800;
-      font-size: 1.5rem;
-      color: #ffffff;
-      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
-    }
-    .card {
-      background: var(--vscode-sideBar-background);
-      border: 1px solid var(--vscode-widget-border);
-      border-radius: 10px;
-      padding: 1.25rem 1rem;
-      margin-top: 1rem;
-    }
-    .btn {
-      background: var(--vscode-button-background);
-      color: var(--vscode-button-foreground);
-      border: none;
-      padding: 0.65rem 1.2rem;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 0.85rem;
-      cursor: pointer;
-      width: 100%;
-      margin-top: 1rem;
-      transition: opacity 0.2s;
-    }
-    .btn:hover {
-      background: var(--vscode-button-hoverBackground);
-    }
-  </style>
-</head>
-<body>
-  <div class="icon-box">X</div>
-  <h3 style="margin: 0.5rem 0 0.25rem 0;">X Design System</h3>
-  <p style="font-size: 0.78rem; opacity: 0.75; margin: 0;">100 Curated Color Themes & AI Spec Generator</p>
+    const cspMeta = `<meta http-equiv="Content-Security-Policy" content="
+      default-src 'none';
+      style-src ${cspSource} 'unsafe-inline' https://fonts.googleapis.com;
+      font-src ${cspSource} https://fonts.gstatic.com;
+      script-src 'nonce-${nonce}' ${cspSource};
+      img-src ${cspSource} data: https:;
+      connect-src https://www.googleapis.com https://fonts.googleapis.com;
+    ">`;
 
-  <div class="card">
-    <p style="font-size: 0.8rem; margin: 0; line-height: 1.4;">
-      Customize colors, preview components, and export design specs.
-    </p>
-    <button class="btn" onclick="openStudio()">Open Studio (Cmd+Shift+T)</button>
-  </div>
-
-  <script>
-    const vscode = acquireVsCodeApi();
-    function openStudio() {
-      vscode.postMessage({ type: 'openFullStudio' });
+    if (html.includes('<head>')) {
+      html = html.replace('<head>', `<head>\n    ${cspMeta}\n    <base href="${baseUri}/">`);
     }
-  </script>
-</body>
-</html>`;
+
+    // Inject sidebar mode flag so React renders the compact sidebar UI
+    html = html.replace('<body>', `<body><script nonce="${nonce}">window.VSCODE_VIEW_MODE = 'sidebar';</script>`);
+    html = html.replace(/<script /g, `<script nonce="${nonce}" `);
+
+    return html;
   }
+}
+
+function getNonce(): string {
+  let text = '';
+  const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  for (let i = 0; i < 32; i++) {
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+  }
+  return text;
 }

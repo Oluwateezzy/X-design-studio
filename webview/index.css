@@ -1,5 +1,27 @@
 @import "tailwindcss";
 
+:root {
+  --vscode-bg: var(--vscode-editor-background, #0b0f19);
+  --vscode-fg: var(--vscode-editor-foreground, #f1f5f9);
+  --vscode-sidebar-bg: var(--vscode-sideBar-background, #0f172a);
+  --vscode-sidebar-fg: var(--vscode-sideBar-foreground, #cbd5e1);
+  --vscode-input-bg: var(--vscode-input-background, #1e293b);
+  --vscode-input-fg: var(--vscode-input-foreground, #f8fafc);
+  --vscode-input-border: var(--vscode-input-border, rgba(255, 255, 255, 0.15));
+  --vscode-border: var(--vscode-panel-border, var(--vscode-widget-border, rgba(255, 255, 255, 0.12)));
+  --vscode-button-bg: var(--vscode-button-background, #6366f1);
+  --vscode-button-fg: var(--vscode-button-foreground, #ffffff);
+  --vscode-button-hover: var(--vscode-button-hoverBackground, #4f46e5);
+}
+
+body {
+  background-color: var(--vscode-bg);
+  color: var(--vscode-fg);
+  font-family: var(--vscode-font-family, system-ui, -apple-system, sans-serif);
+  margin: 0;
+  padding: 0;
+}
+
 @layer utilities {
   /* Hide scrollbar for Chrome, Safari and Opera */
   .no-scrollbar::-webkit-scrollbar {
