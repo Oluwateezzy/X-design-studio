@@ -10,7 +10,7 @@ import type {
 
 export class ThemeStudioPanel {
   public static currentPanel: ThemeStudioPanel | undefined;
-  public static readonly viewType = 'vibeThemeStudio';
+  public static readonly viewType = 'strataStudio';
 
   private readonly _panel: vscode.WebviewPanel;
   private readonly _extensionUri: vscode.Uri;
@@ -31,7 +31,7 @@ export class ThemeStudioPanel {
     // Otherwise, create a new panel.
     const panel = vscode.window.createWebviewPanel(
       ThemeStudioPanel.viewType,
-      'Vibe Theme Studio',
+      'Strata Studio',
       column || vscode.ViewColumn.One,
       {
         enableScripts: true,
@@ -100,9 +100,8 @@ export class ThemeStudioPanel {
   }
 
   private _update(): void {
-    const webview = this._panel.webview;
-    this._panel.title = 'Vibe Theme Studio';
-    this._panel.webview.html = this._getWebviewContent(webview);
+    this._panel.title = 'Strata Studio';
+    this._panel.webview.html = this._getWebviewContent(this._panel.webview);
   }
 
   private _getWebviewContent(webview: vscode.Webview): string {
@@ -219,7 +218,7 @@ export class ThemeStudioPanel {
   }
 
   private async _handleFetchGoogleFonts(apiKeyParam?: string): Promise<void> {
-    const config = vscode.workspace.getConfiguration('vibeThemeStudio');
+    const config = vscode.workspace.getConfiguration('strataStudio');
     const apiKey = apiKeyParam || config.get<string>('googleFontsApiKey') || '';
 
     if (!apiKey) {
@@ -272,16 +271,16 @@ export class ThemeStudioPanel {
   private _registerSettingsListener(): void {
     vscode.workspace.onDidChangeConfiguration(
       e => {
-        if (e.affectsConfiguration('vibeThemeStudio.googleFontsApiKey')) {
-          const val = vscode.workspace.getConfiguration('vibeThemeStudio').get<string>('googleFontsApiKey');
+        if (e.affectsConfiguration('strataStudio.googleFontsApiKey')) {
+          const val = vscode.workspace.getConfiguration('strataStudio').get<string>('googleFontsApiKey');
           this.postMessage({
             type: 'settingsChanged',
             key: 'googleFontsApiKey',
             value: val
           });
         }
-        if (e.affectsConfiguration('vibeThemeStudio.defaultExportFormat')) {
-          const val = vscode.workspace.getConfiguration('vibeThemeStudio').get<string>('defaultExportFormat');
+        if (e.affectsConfiguration('strataStudio.defaultExportFormat')) {
+          const val = vscode.workspace.getConfiguration('strataStudio').get<string>('defaultExportFormat');
           this.postMessage({
             type: 'settingsChanged',
             key: 'defaultExportFormat',

@@ -2,10 +2,10 @@ import * as vscode from 'vscode';
 import { ThemeStudioPanel } from './ThemeStudioPanel';
 
 export function activate(context: vscode.ExtensionContext) {
-  console.log('Vibe Theme Studio extension is now active');
+  console.log('Strata Studio extension is now active');
 
-  // Register command to open Theme Studio
-  const openCommand = vscode.commands.registerCommand('vibeThemeStudio.open', () => {
+  // Register command to open Strata Studio
+  const openCommand = vscode.commands.registerCommand('strataStudio.open', () => {
     ThemeStudioPanel.createOrShow(context.extensionUri, context.globalState);
   });
 

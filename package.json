@@ -1,12 +1,12 @@
 {
-  "name": "vibe-theme-studio",
-  "displayName": "Vibe Theme Studio",
+  "name": "strata-studio",
+  "displayName": "Strata Studio",
   "description": "Visual theme studio for VS Code with live preview and theme spec generator",
   "version": "0.1.0",
-  "publisher": "vibe",
+  "publisher": "strata",
   "repository": {
     "type": "git",
-    "url": "https://github.com/vibe/theme-studio"
+    "url": "https://github.com/strata/strata-studio"
   },
   "engines": {
     "vscode": "^1.85.0"
@@ -20,20 +20,20 @@
   "contributes": {
     "commands": [
       {
-        "command": "vibeThemeStudio.open",
-        "title": "Open Vibe Theme Studio",
-        "category": "Vibe Theme Studio"
+        "command": "strataStudio.open",
+        "title": "Open Strata Studio",
+        "category": "Strata Studio"
       }
     ],
     "configuration": {
-      "title": "Vibe Theme Studio",
+      "title": "Strata Studio",
       "properties": {
-        "vibeThemeStudio.googleFontsApiKey": {
+        "strataStudio.googleFontsApiKey": {
           "type": "string",
           "default": "",
           "description": "Google Fonts API key for custom font preview"
         },
-        "vibeThemeStudio.defaultExportFormat": {
+        "strataStudio.defaultExportFormat": {
           "type": "string",
           "enum": [
             "vsCodeTheme",
@@ -48,7 +48,7 @@
     },
     "keybindings": [
       {
-        "command": "vibeThemeStudio.open",
+        "command": "strataStudio.open",
         "key": "cmd+shift+t",
         "mac": "cmd+shift+t",
         "win": "ctrl+shift+t"

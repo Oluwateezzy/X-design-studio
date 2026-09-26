@@ -8,7 +8,7 @@ export function generateThemeHtml(theme: ThemeConfig): string {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vescrow Theme Showcase - ${name}</title>
+  <title>Strata Studio Theme Showcase - ${name}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=${fontGoogleUrl}&display=swap" rel="stylesheet">
@@ -358,9 +358,9 @@ export function generateThemeHtml(theme: ThemeConfig): string {
   <div class="container">
     <header>
       <div class="brand">
-        <div class="brand-logo">V</div>
+        <div class="brand-logo">S</div>
         <div>
-          <div class="brand-title">Vescrow Showcase</div>
+          <div class="brand-title">Strata Studio Showcase</div>
           <div style="font-size: 0.75rem; color: var(--theme-muted-text);">Theme #${number} • ${category} • Font: ${fontName}</div>
         </div>
       </div>
@@ -377,7 +377,7 @@ export function generateThemeHtml(theme: ThemeConfig): string {
         <h1 class="hero-title">${name}</h1>
         <p class="hero-subtitle">${personality}</p>
         <div class="btn-group">
-          <button class="btn btn-primary">Create Escrow Vault</button>
+          <button class="btn btn-primary">Create Vault</button>
           <button class="btn btn-secondary">Explore Typography & Motion</button>
         </div>
       </div>
@@ -387,7 +387,7 @@ export function generateThemeHtml(theme: ThemeConfig): string {
       <!-- Wallet Card -->
       <div class="card">
         <div class="card-header">
-          <span class="card-title">Escrow Vault Liquidity</span>
+          <span class="card-title">Vault Liquidity</span>
           <span class="badge">Multisig Secured</span>
         </div>
         <div class="wallet-amount">$1,485,200.00</div>
@@ -432,14 +432,14 @@ export function generateThemeHtml(theme: ThemeConfig): string {
     <!-- Table Card -->
     <div class="card" style="margin-bottom: 2.5rem;">
       <div class="card-header">
-        <span class="card-title">Recent Escrow Ledger</span>
+        <span class="card-title">Recent Contract Ledger</span>
         <span class="badge">Live Contract Stream</span>
       </div>
       <div class="table-container">
         <table>
           <thead>
             <tr>
-              <th>Escrow ID</th>
+              <th>Contract ID</th>
               <th>Counterparty</th>
               <th>Amount</th>
               <th>Status</th>
@@ -448,14 +448,14 @@ export function generateThemeHtml(theme: ThemeConfig): string {
           </thead>
           <tbody>
             <tr>
-              <td style="font-family: monospace; font-weight: 600;">ESC-9042-881</td>
+              <td style="font-family: monospace; font-weight: 600;">STR-9042-881</td>
               <td>Apex Global Capital</td>
               <td style="font-weight: 700;">$450,000.00</td>
               <td><span class="badge" style="background: ${colors.badgeBg}; border-color: ${colors.badgeBorder}; color: ${colors.badgeText};">In Escrow</span></td>
               <td><span style="color: ${colors.success}; font-weight: 600;">Hardware Multisig</span></td>
             </tr>
             <tr>
-              <td style="font-family: monospace; font-weight: 600;">ESC-8821-104</td>
+              <td style="font-family: monospace; font-weight: 600;">STR-8821-104</td>
               <td>Aether Robotics Labs</td>
               <td style="font-weight: 700;">$125,000.00</td>
               <td><span class="badge" style="background: ${colors.badgeBg}; border-color: ${colors.badgeBorder}; color: ${colors.badgeText};">Released</span></td>
@@ -467,7 +467,7 @@ export function generateThemeHtml(theme: ThemeConfig): string {
     </div>
 
     <footer>
-      Generated with Vescrow Theme Studio • Theme #${number}: ${name} (${category}) • Google Font: ${fontName}
+      Generated with Strata Studio • Theme #${number}: ${name} (${category}) • Google Font: ${fontName}
     </footer>
   </div>
 </body>

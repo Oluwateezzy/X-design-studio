@@ -91,7 +91,7 @@ export const FontSelectorModal: React.FC<FontSelectorModalProps> = ({
                 </span>
               </div>
               <p className="text-xs text-slate-400">
-                Explore typography for Vescrow Theme Studio
+                Explore typography for Strata Studio
               </p>
             </div>
           </div>

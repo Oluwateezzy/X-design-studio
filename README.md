@@ -1,32 +1,46 @@
-# React + TypeScript + Vite
+# 🎨 Strata Studio — VS Code Extension
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+**Strata Studio** is a visual color theme studio and design system generator for VS Code. Browse 100 curated color themes across 10 aesthetic categories, customize colors and Google Fonts live on an interactive preview canvas, and export single-file HTML showcases or AI system-prompt Markdown specifications.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## ✨ Features
 
-## React Compiler
+- **100 Curated Themes**: High-Trust Fintech, Cyberpunk & Sci-Fi, Dark Luxury & Obsidian, Neon & Synthesizer, Neo-Brutalist & Bold, Warm Editorial & Paper, Organic Earth & Biophilic, Monochromatic Minimal, Deep Space & Cosmic, and Retro & Vintage.
+- **Live Preview Canvas**: Toggle between Desktop and Mobile preview modes to observe theme colors and typography on realistic UI components.
+- **Custom Color & Typography Editor**: Tweak any of the 17 theme color tokens live, inspect WCAG contrast ratios, and select from Google Fonts.
+- **Single-File Exports**: Export standalone HTML pages with CSS custom properties or AI system-prompt Markdown specs for LLMs.
+- **VS Code Integration**: Native `cmd+shift+t` keybinding, persistent state storage (`globalState`), settings management, and save dialog integration.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the Oxlint configuration
+## 🚀 Quick Start
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+1. Open VS Code Command Palette (`Cmd+Shift+P` on Mac, `Ctrl+Shift+P` on Windows/Linux).
+2. Type **Strata Studio: Open Strata Studio** (or press `Cmd+Shift+T`).
+3. Select a preset theme or customize colors and typography live.
+4. Export your theme definition as an HTML page or Markdown spec.
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+---
+
+## 🛠️ Build & Development
+
+```bash
+# Install dependencies
+npm install
+
+# Build extension host + React webview
+npm run build
+
+# Run typecheck across both compilation targets
+npm run typecheck
+
+# Package extension into .vsix file
+npx @vscode/vsce package --no-dependencies
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+---
+
+## 📄 License
+
+[MIT License](LICENSE) © 2026 Strata Studio
