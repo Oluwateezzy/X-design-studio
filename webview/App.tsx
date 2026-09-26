@@ -155,6 +155,7 @@ export function App() {
           onSelectTheme={handleSelectTheme}
           onRandomTheme={handleRandomTheme}
           onColorChange={handleColorChange}
+          onFontChange={handleFontSelect}
           onResetTheme={handleResetTheme}
           onOpenExport={handleOpenExport}
           onOpenFullStudio={handleOpenFullStudio}

@@ -1,12 +1,14 @@
 import React, { useState, useMemo } from "react";
-import { Search, Check, Shuffle, ExternalLink, Sparkles, RefreshCw, SlidersHorizontal, Code, Download } from "lucide-react";
+import { Search, Check, Shuffle, ExternalLink, Sparkles, RefreshCw, SlidersHorizontal, Code, Download, Type } from "lucide-react";
 import { PRESET_THEMES, THEME_CATEGORIES, type ThemeConfig } from "../lib/themes-dataset";
+import { FALLBACK_GOOGLE_FONTS, loadGoogleFont, getFontFamilyCss, getFontGoogleUrlParam } from "../lib/google-fonts-api";
 
 interface SidebarViewProps {
   activeTheme: ThemeConfig;
   onSelectTheme: (theme: ThemeConfig) => void;
   onRandomTheme: () => void;
   onColorChange: (key: keyof ThemeConfig["colors"], value: string) => void;
+  onFontChange: (fontName: string, fontFamily: string, fontGoogleUrl: string) => void;
   onResetTheme: () => void;
   onOpenExport: (tab: "html" | "markdown") => void;
   onOpenFullStudio: () => void;
@@ -17,6 +19,7 @@ export const SidebarView: React.FC<SidebarViewProps> = ({
   onSelectTheme,
   onRandomTheme,
   onColorChange,
+  onFontChange,
   onResetTheme,
   onOpenExport,
   onOpenFullStudio,
@@ -38,6 +41,15 @@ export const SidebarView: React.FC<SidebarViewProps> = ({
       return matchesCategory && matchesSearch;
     });
   }, [selectedCategory, searchQuery]);
+
+  const handleFontSelect = (fontFamilyName: string) => {
+    const fontObj = FALLBACK_GOOGLE_FONTS.find((f) => f.family === fontFamilyName);
+    const category = fontObj ? fontObj.category : "sans-serif";
+    loadGoogleFont(fontFamilyName);
+    const cssVal = getFontFamilyCss(fontFamilyName, category);
+    const urlParam = getFontGoogleUrlParam(fontFamilyName);
+    onFontChange(fontFamilyName, cssVal, urlParam);
+  };
 
   return (
     <div className="flex flex-col h-screen w-full bg-[var(--vscode-sidebar-bg)] text-[var(--vscode-fg)] overflow-hidden font-sans border-r border-[var(--vscode-border)]">
@@ -224,8 +236,33 @@ export const SidebarView: React.FC<SidebarViewProps> = ({
           </div>
         </>
       ) : (
-        /* Tuner / Color Swatches Quick Controls */
+        /* Tuner / Color Swatches & Dynamic Typography Controls */
         <div className="flex-1 overflow-y-auto p-3 space-y-4">
+          {/* Dynamic Typography Section */}
+          <div className="p-2.5 rounded-lg bg-[var(--vscode-input-bg)] border border-[var(--vscode-border)] space-y-2">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-1.5 text-xs font-bold text-indigo-400">
+                <Type className="w-3.5 h-3.5" />
+                <span>Dynamic Google Font</span>
+              </div>
+              <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-[var(--vscode-bg)] text-[var(--vscode-fg)] border border-[var(--vscode-border)]">
+                {activeTheme.fontName}
+              </span>
+            </div>
+
+            <select
+              value={activeTheme.fontName}
+              onChange={(e) => handleFontSelect(e.target.value)}
+              className="w-full py-1.5 px-2 text-xs bg-[var(--vscode-bg)] border border-[var(--vscode-border)] rounded text-[var(--vscode-fg)] focus:outline-none focus:ring-1 focus:ring-indigo-500 cursor-pointer"
+            >
+              {FALLBACK_GOOGLE_FONTS.map((font) => (
+                <option key={font.family} value={font.family}>
+                  {font.family} ({font.category})
+                </option>
+              ))}
+            </select>
+          </div>
+
           <div className="flex items-center justify-between pb-2 border-b border-[var(--vscode-border)]">
             <div className="flex items-center gap-1.5">
               <SlidersHorizontal className="w-3.5 h-3.5 text-indigo-400" />
