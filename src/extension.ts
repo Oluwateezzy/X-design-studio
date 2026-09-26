@@ -1,8 +1,15 @@
 import * as vscode from 'vscode';
 import { ThemeStudioPanel } from './ThemeStudioPanel';
+import { ThemeStudioViewProvider } from './ThemeStudioViewProvider';
 
 export function activate(context: vscode.ExtensionContext) {
   console.log('X Design System extension is now active');
+
+  // Register sidebar activity bar view provider
+  const sidebarProvider = new ThemeStudioViewProvider(context.extensionUri, context.globalState);
+  context.subscriptions.push(
+    vscode.window.registerWebviewViewProvider(ThemeStudioViewProvider.viewType, sidebarProvider)
+  );
 
   // Register command to open X Design System
   const openCommand = vscode.commands.registerCommand('xDesignSystem.open', () => {

@@ -32,6 +32,24 @@
   "main": "./dist/extension.js",
   "activationEvents": [],
   "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "xDesignSystemActivityBar",
+          "title": "X Design System",
+          "icon": "public/favicon.svg"
+        }
+      ]
+    },
+    "views": {
+      "xDesignSystemActivityBar": [
+        {
+          "type": "webview",
+          "id": "xDesignSystemSidebarView",
+          "name": "X Design System"
+        }
+      ]
+    },
     "commands": [
       {
         "command": "xDesignSystem.open",
@@ -77,7 +95,8 @@
     "watch:extension": "node esbuild.config.mjs --watch",
     "watch:webview": "vite build --watch --config vite.config.webview.mjs",
     "watch": "concurrently \"npm run watch:extension\" \"npm run watch:webview\"",
-    "typecheck": "tsc --noEmit && tsc -p tsconfig.webview.json"
+    "typecheck": "tsc --noEmit && tsc -p tsconfig.webview.json",
+    "package": "vsce package --no-dependencies"
   },
   "dependencies": {
     "lucide-react": "^1.47.0",
