@@ -25,6 +25,8 @@
 
 ## 🛠️ Build & Development
 
+### Commands
+
 ```bash
 # Install dependencies
 npm install
@@ -32,12 +34,22 @@ npm install
 # Build extension host + React webview
 npm run build
 
+# Watch mode for dual build pipelines
+npm run watch
+
 # Run typecheck across both compilation targets
 npm run typecheck
 
 # Package extension into .vsix file
 npx @vscode/vsce package --no-dependencies
 ```
+
+### F5 Debugging in VS Code
+
+1. Open the project in VS Code.
+2. Press `F5` (or go to **Run and Debug** and click **Run Extension**).
+3. A new Extension Development Host window will open with Strata Studio pre-loaded.
+4. Run `Cmd+Shift+T` or **Open Strata Studio** from the Command Palette.
 
 ---
 

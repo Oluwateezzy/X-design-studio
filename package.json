@@ -62,6 +62,7 @@
     "build": "npm run build:extension && npm run build:webview",
     "watch:extension": "node esbuild.config.mjs --watch",
     "watch:webview": "vite build --watch --config vite.config.webview.mjs",
+    "watch": "concurrently \"npm run watch:extension\" \"npm run watch:webview\"",
     "typecheck": "tsc --noEmit && tsc -p tsconfig.webview.json"
   },
   "dependencies": {

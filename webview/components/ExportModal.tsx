@@ -23,6 +23,18 @@ export const ExportModal: React.FC<ExportModalProps> = ({
   const [exporting, setExporting] = useState<boolean>(false);
 
   useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        onClose();
+      }
+    };
+    if (isOpen) {
+      window.addEventListener("keydown", handleKeyDown);
+    }
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, onClose]);
+
+  useEffect(() => {
     const cleanup = onMessage((msg) => {
       if (msg.type === "fileSaved") {
         setExporting(false);
@@ -63,12 +75,17 @@ export const ExportModal: React.FC<ExportModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 animate-fadeIn">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 animate-fadeIn"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="export-modal-title"
+    >
       <div className="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-4xl max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
         {/* Header */}
         <div className="p-4 border-b border-slate-800 flex items-center justify-between bg-slate-950">
           <div>
-            <h2 className="text-base font-bold text-slate-100 flex items-center gap-2">
+            <h2 id="export-modal-title" className="text-base font-bold text-slate-100 flex items-center gap-2">
               Export Theme Output
               <span className="text-xs px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 font-mono">
                 Theme #{activeTheme.number}: {activeTheme.name}
@@ -80,7 +97,8 @@ export const ExportModal: React.FC<ExportModalProps> = ({
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition cursor-pointer"
+            aria-label="Close export modal"
+            className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500"
           >
             <X className="w-5 h-5" />
           </button>
@@ -88,13 +106,15 @@ export const ExportModal: React.FC<ExportModalProps> = ({
 
         {/* Tab switcher */}
         <div className="flex items-center justify-between px-4 py-2.5 bg-slate-900 border-b border-slate-800">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2" role="tablist">
             <button
+              role="tab"
+              aria-selected={activeTab === "html"}
               onClick={() => {
                 setActiveTab("html");
                 setCopied(false);
               }}
-              className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer ${
+              className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
                 activeTab === "html"
                   ? "bg-indigo-600 text-white shadow-sm"
                   : "text-slate-400 hover:text-slate-200 hover:bg-slate-800"
@@ -104,11 +124,13 @@ export const ExportModal: React.FC<ExportModalProps> = ({
               <span>Standalone HTML Page (.html)</span>
             </button>
             <button
+              role="tab"
+              aria-selected={activeTab === "markdown"}
               onClick={() => {
                 setActiveTab("markdown");
                 setCopied(false);
               }}
-              className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer ${
+              className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
                 activeTab === "markdown"
                   ? "bg-emerald-600 text-white shadow-sm"
                   : "text-slate-400 hover:text-slate-200 hover:bg-slate-800"
@@ -122,7 +144,8 @@ export const ExportModal: React.FC<ExportModalProps> = ({
           <div className="flex items-center gap-2">
             <button
               onClick={handleCopy}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer ${
+              aria-label="Copy output to clipboard"
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
                 copied
                   ? "bg-emerald-500 text-white"
                   : "bg-slate-800 hover:bg-slate-700 text-slate-200"
@@ -135,7 +158,8 @@ export const ExportModal: React.FC<ExportModalProps> = ({
             <button
               onClick={handleDownload}
               disabled={exporting}
-              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold transition shadow-sm cursor-pointer disabled:opacity-50"
+              aria-label="Save exported theme file"
+              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold transition shadow-sm cursor-pointer disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-indigo-400"
             >
               <Download className="w-3.5 h-3.5" />
               <span>{exporting ? "Saving..." : "Save File..."}</span>

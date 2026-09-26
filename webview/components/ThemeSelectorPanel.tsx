@@ -37,21 +37,24 @@ export const ThemeSelectorPanel: React.FC<ThemeSelectorPanelProps> = ({
           <input
             type="text"
             placeholder="Search 100 themes..."
+            aria-label="Search 100 themes by name or category"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-9 pr-3 py-1.5 text-xs bg-slate-950 border border-slate-800 rounded-lg text-slate-200 placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+            className="w-full pl-9 pr-3 py-1.5 text-xs bg-slate-950 border border-slate-800 rounded-lg text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
           />
         </div>
 
         {/* Category Chips */}
-        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar">
+        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar" role="tablist" aria-label="Theme categories">
           {THEME_CATEGORIES.map((cat) => {
             const isActive = selectedCategory === cat;
             return (
               <button
                 key={cat}
+                role="tab"
+                aria-selected={isActive}
                 onClick={() => setSelectedCategory(cat)}
-                className={`whitespace-nowrap px-2.5 py-1 rounded-md text-[11px] font-medium transition cursor-pointer ${
+                className={`whitespace-nowrap px-2.5 py-1 rounded-md text-[11px] font-medium transition cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
                   isActive
                     ? "bg-indigo-600 text-white shadow-sm"
                     : "bg-slate-800/60 text-slate-400 hover:text-slate-200 hover:bg-slate-800"
@@ -84,7 +87,8 @@ export const ThemeSelectorPanel: React.FC<ThemeSelectorPanelProps> = ({
               <button
                 key={theme.id}
                 onClick={() => onSelectTheme(theme)}
-                className={`w-full text-left p-3 rounded-xl border transition group relative cursor-pointer ${
+                aria-label={`Select theme ${theme.number}: ${theme.name} (${theme.category})`}
+                className={`w-full text-left p-3 rounded-xl border transition group relative cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
                   isActive
                     ? "bg-slate-800/90 border-indigo-500 shadow-md shadow-indigo-500/10"
                     : "bg-slate-950/40 border-slate-800/60 hover:border-slate-700 hover:bg-slate-800/40"

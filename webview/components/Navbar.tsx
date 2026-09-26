@@ -40,7 +40,8 @@ export const Navbar: React.FC<NavbarProps> = ({
         <div className="flex items-center gap-2.5">
           <button
             onClick={onRandomTheme}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-slate-900 border border-slate-700/80 text-slate-300 hover:text-white hover:border-slate-600 text-xs font-semibold transition cursor-pointer"
+            aria-label="Randomize Theme"
+            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-slate-900 border border-slate-700/80 text-slate-300 hover:text-white hover:border-slate-600 text-xs font-semibold transition cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500"
             title="Randomize Theme"
           >
             <Shuffle className="w-3.5 h-3.5 text-indigo-400" />
@@ -49,7 +50,8 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           <button
             onClick={() => onOpenExport("html")}
-            className="flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-md shadow-indigo-600/20 transition cursor-pointer"
+            aria-label="Export HTML Page"
+            className="flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-md shadow-indigo-600/20 transition cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-400"
           >
             <Code className="w-3.5 h-3.5" />
             <span>Export HTML Page</span>
@@ -57,7 +59,8 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           <button
             onClick={() => onOpenExport("markdown")}
-            className="flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold shadow-md shadow-emerald-600/20 transition cursor-pointer"
+            aria-label="Export AI Prompt Markdown"
+            className="flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold shadow-md shadow-emerald-600/20 transition cursor-pointer focus:outline-none focus:ring-2 focus:ring-emerald-400"
           >
             <Download className="w-3.5 h-3.5" />
             <span>Export AI Prompt (.md)</span>
