@@ -2,10 +2,10 @@ import * as vscode from 'vscode';
 import { ThemeStudioPanel } from './ThemeStudioPanel';
 
 export function activate(context: vscode.ExtensionContext) {
-  console.log('Strata Studio extension is now active');
+  console.log('X Design System extension is now active');
 
-  // Register command to open Strata Studio
-  const openCommand = vscode.commands.registerCommand('strataStudio.open', () => {
+  // Register command to open X Design System
+  const openCommand = vscode.commands.registerCommand('xDesignSystem.open', () => {
     ThemeStudioPanel.createOrShow(context.extensionUri, context.globalState);
   });
 

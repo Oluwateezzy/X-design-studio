@@ -55,7 +55,7 @@ export const ExportModal: React.FC<ExportModalProps> = ({
   const currentContent = activeTab === "html" ? htmlContent : markdownContent;
   const fileName =
     activeTab === "html"
-      ? `strata-theme-${activeTheme.number}-${activeTheme.name.toLowerCase().replace(/\s+/g, "-")}.html`
+      ? `x-theme-${activeTheme.number}-${activeTheme.name.toLowerCase().replace(/\s+/g, "-")}.html`
       : `THEME_SPEC_${activeTheme.number}.md`;
 
   const handleCopy = () => {

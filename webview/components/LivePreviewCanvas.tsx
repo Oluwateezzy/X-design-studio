@@ -81,10 +81,10 @@ export const LivePreviewCanvas: React.FC<LivePreviewCanvasProps> = ({ theme }) =
                 className="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-white shadow-lg transition hover:scale-110 hover:-rotate-3"
                 style={{ background: colors.btnGradient }}
               >
-                S
+                X
               </div>
               <div>
-                <h2 className="text-lg font-bold tracking-tight">Strata Vault</h2>
+                <h2 className="text-lg font-bold tracking-tight">X Vault</h2>
                 <p className="text-xs opacity-75" style={{ color: colors.mutedText }}>
                   Multi-Sig Financial Escrow • Google Font: {fontName}
                 </p>

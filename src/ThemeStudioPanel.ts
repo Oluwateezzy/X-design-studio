@@ -10,7 +10,7 @@ import { fetchGoogleFontsCatalog } from './google-fonts-service';
 
 export class ThemeStudioPanel {
   public static currentPanel: ThemeStudioPanel | undefined;
-  public static readonly viewType = 'strataStudio';
+  public static readonly viewType = 'xDesignSystem';
 
   private readonly _panel: vscode.WebviewPanel;
   private readonly _extensionUri: vscode.Uri;
@@ -31,7 +31,7 @@ export class ThemeStudioPanel {
     // Otherwise, create a new panel.
     const panel = vscode.window.createWebviewPanel(
       ThemeStudioPanel.viewType,
-      'Strata Studio',
+      'X Design System',
       column || vscode.ViewColumn.One,
       {
         enableScripts: true,
@@ -100,7 +100,7 @@ export class ThemeStudioPanel {
   }
 
   private _update(): void {
-    this._panel.title = 'Strata Studio';
+    this._panel.title = 'X Design System';
     this._panel.webview.html = this._getWebviewContent(this._panel.webview);
   }
 
@@ -218,7 +218,7 @@ export class ThemeStudioPanel {
   }
 
   private async _handleFetchGoogleFonts(apiKeyParam?: string): Promise<void> {
-    const config = vscode.workspace.getConfiguration('strataStudio');
+    const config = vscode.workspace.getConfiguration('xDesignSystem');
     const apiKey = apiKeyParam || config.get<string>('googleFontsApiKey') || '';
 
     const { items, fromApi } = await fetchGoogleFontsCatalog(apiKey, this._globalState);
@@ -242,16 +242,16 @@ export class ThemeStudioPanel {
   private _registerSettingsListener(): void {
     vscode.workspace.onDidChangeConfiguration(
       e => {
-        if (e.affectsConfiguration('strataStudio.googleFontsApiKey')) {
-          const val = vscode.workspace.getConfiguration('strataStudio').get<string>('googleFontsApiKey');
+        if (e.affectsConfiguration('xDesignSystem.googleFontsApiKey')) {
+          const val = vscode.workspace.getConfiguration('xDesignSystem').get<string>('googleFontsApiKey');
           this.postMessage({
             type: 'settingsChanged',
             key: 'googleFontsApiKey',
             value: val
           });
         }
-        if (e.affectsConfiguration('strataStudio.defaultExportFormat')) {
-          const val = vscode.workspace.getConfiguration('strataStudio').get<string>('defaultExportFormat');
+        if (e.affectsConfiguration('xDesignSystem.defaultExportFormat')) {
+          const val = vscode.workspace.getConfiguration('xDesignSystem').get<string>('defaultExportFormat');
           this.postMessage({
             type: 'settingsChanged',
             key: 'defaultExportFormat',

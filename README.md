@@ -1,6 +1,6 @@
-# 🎨 Strata Studio — Visual Theme Studio for VS Code
+# 🎨 X Design System — Visual Theme Studio for VS Code
 
-**Strata Studio** is a visual color theme studio and design system generator built directly into VS Code as a Webview extension. Browse **100 curated color themes** across 10 aesthetic categories, customize colors and Google Fonts live on a realistic interactive preview canvas, inspect WCAG contrast health ratios, and export single-file HTML showcases or AI system-prompt Markdown specifications.
+**X Design System** is a visual color theme studio and design system generator built directly into VS Code as a Webview extension. Browse **100 curated color themes** across 10 aesthetic categories, customize colors and Google Fonts live on a realistic interactive preview canvas, inspect WCAG contrast health ratios, and export single-file HTML showcases or AI system-prompt Markdown specifications.
 
 ---
 
@@ -22,18 +22,18 @@
 
 | Command | Action | Keybinding (Mac) | Keybinding (Win/Linux) |
 |:--------|:-------|:-----------------|:-----------------------|
-| `strataStudio.open` | Open Strata Studio | `Cmd+Shift+T` | `Ctrl+Shift+T` |
+| `xDesignSystem.open` | Open X Design System | `Cmd+Shift+T` | `Ctrl+Shift+T` |
 
 ---
 
 ## ⚙️ Configuration Settings
 
-Manage extension options via VS Code Settings (**Preferences → Settings** or `Cmd+,` searching for `Strata Studio`):
+Manage extension options via VS Code Settings (**Preferences → Settings** or `Cmd+,` searching for `X Design System`):
 
 | Setting Key | Type | Default | Description |
 |:------------|:-----|:--------|:------------|
-| `strataStudio.googleFontsApiKey` | `string` | `""` | Optional Google Fonts API Key for browsing the full 1,950+ font catalog |
-| `strataStudio.defaultExportFormat` | `string` | `"vsCodeTheme"` | Default theme export format (`vsCodeTheme`, `tailwindConfig`, `cssVariables`, `jsonTheme`) |
+| `xDesignSystem.googleFontsApiKey` | `string` | `""` | Optional Google Fonts API Key for browsing the full 1,950+ font catalog |
+| `xDesignSystem.defaultExportFormat` | `string` | `"vsCodeTheme"` | Default theme export format (`vsCodeTheme`, `tailwindConfig`, `cssVariables`, `jsonTheme`) |
 
 ---
 
@@ -41,9 +41,9 @@ Manage extension options via VS Code Settings (**Preferences → Settings** or `
 
 1. Get a free API Key from the [Google Cloud Console](https://console.cloud.google.com/apis/credentials).
 2. Open VS Code Settings (`Cmd+,`).
-3. Search for **Strata Studio: Google Fonts Api Key**.
+3. Search for **X Design System: Google Fonts Api Key**.
 4. Paste your API key into the setting field.
-5. Open Strata Studio font catalog to search and preview 1,950+ Google Fonts.
+5. Open X Design System font catalog to search and preview 1,950+ Google Fonts.
 
 ---
 
@@ -66,8 +66,15 @@ npm run typecheck
 npx @vscode/vsce package --no-dependencies
 ```
 
+### F5 Debugging in VS Code
+
+1. Open the project in VS Code.
+2. Press `F5` (or go to **Run and Debug** and click **Run Extension**).
+3. A new Extension Development Host window will open with X Design System pre-loaded.
+4. Run `Cmd+Shift+T` or **Open X Design System** from the Command Palette.
+
 ---
 
 ## 📄 License
 
-[MIT License](LICENSE) © 2026 Strata Studio
+[MIT License](LICENSE) © 2026 X Design System

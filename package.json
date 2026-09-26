@@ -1,17 +1,17 @@
 {
-  "name": "strata-studio",
-  "displayName": "Strata Studio",
-  "description": "Visual theme studio for VS Code with live preview and theme spec generator",
+  "name": "x-design-system",
+  "displayName": "X Design System",
+  "description": "Visual theme studio and design system generator for VS Code with live preview and theme spec generator",
   "version": "1.0.0",
-  "publisher": "strata",
+  "publisher": "x-design-system",
   "icon": "images/icon.png",
   "repository": {
     "type": "git",
-    "url": "https://github.com/strata/strata-studio"
+    "url": "https://github.com/x-design-system/x-design-system"
   },
-  "homepage": "https://github.com/strata/strata-studio#readme",
+  "homepage": "https://github.com/x-design-system/x-design-system#readme",
   "bugs": {
-    "url": "https://github.com/strata/strata-studio/issues"
+    "url": "https://github.com/x-design-system/x-design-system/issues"
   },
   "engines": {
     "vscode": "^1.85.0"
@@ -34,20 +34,20 @@
   "contributes": {
     "commands": [
       {
-        "command": "strataStudio.open",
-        "title": "Open Strata Studio",
-        "category": "Strata Studio"
+        "command": "xDesignSystem.open",
+        "title": "Open X Design System",
+        "category": "X Design System"
       }
     ],
     "configuration": {
-      "title": "Strata Studio",
+      "title": "X Design System",
       "properties": {
-        "strataStudio.googleFontsApiKey": {
+        "xDesignSystem.googleFontsApiKey": {
           "type": "string",
           "default": "",
           "description": "Google Fonts API key for custom font preview"
         },
-        "strataStudio.defaultExportFormat": {
+        "xDesignSystem.defaultExportFormat": {
           "type": "string",
           "enum": [
             "vsCodeTheme",
@@ -62,7 +62,7 @@
     },
     "keybindings": [
       {
-        "command": "strataStudio.open",
+        "command": "xDesignSystem.open",
         "key": "cmd+shift+t",
         "mac": "cmd+shift+t",
         "win": "ctrl+shift+t"

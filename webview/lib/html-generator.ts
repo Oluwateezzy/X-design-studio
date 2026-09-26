@@ -8,7 +8,7 @@ export function generateThemeHtml(theme: ThemeConfig): string {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Strata Studio Theme Showcase - ${name}</title>
+  <title>X Design System Theme Showcase - ${name}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=${fontGoogleUrl}&display=swap" rel="stylesheet">
@@ -358,9 +358,9 @@ export function generateThemeHtml(theme: ThemeConfig): string {
   <div class="container">
     <header>
       <div class="brand">
-        <div class="brand-logo">S</div>
+        <div class="brand-logo">X</div>
         <div>
-          <div class="brand-title">Strata Studio Showcase</div>
+          <div class="brand-title">X Design System Showcase</div>
           <div style="font-size: 0.75rem; color: var(--theme-muted-text);">Theme #${number} • ${category} • Font: ${fontName}</div>
         </div>
       </div>
@@ -448,14 +448,14 @@ export function generateThemeHtml(theme: ThemeConfig): string {
           </thead>
           <tbody>
             <tr>
-              <td style="font-family: monospace; font-weight: 600;">STR-9042-881</td>
+              <td style="font-family: monospace; font-weight: 600;">X-9042-881</td>
               <td>Apex Global Capital</td>
               <td style="font-weight: 700;">$450,000.00</td>
               <td><span class="badge" style="background: ${colors.badgeBg}; border-color: ${colors.badgeBorder}; color: ${colors.badgeText};">In Escrow</span></td>
               <td><span style="color: ${colors.success}; font-weight: 600;">Hardware Multisig</span></td>
             </tr>
             <tr>
-              <td style="font-family: monospace; font-weight: 600;">STR-8821-104</td>
+              <td style="font-family: monospace; font-weight: 600;">X-8821-104</td>
               <td>Aether Robotics Labs</td>
               <td style="font-weight: 700;">$125,000.00</td>
               <td><span class="badge" style="background: ${colors.badgeBg}; border-color: ${colors.badgeBorder}; color: ${colors.badgeText};">Released</span></td>
@@ -467,7 +467,7 @@ export function generateThemeHtml(theme: ThemeConfig): string {
     </div>
 
     <footer>
-      Generated with Strata Studio • Theme #${number}: ${name} (${category}) • Google Font: ${fontName}
+      Generated with X Design System • Theme #${number}: ${name} (${category}) • Google Font: ${fontName}
     </footer>
   </div>
 </body>

@@ -98,7 +98,7 @@ export const FontSelectorModal: React.FC<FontSelectorModalProps> = ({
                 </span>
               </div>
               <p className="text-xs text-slate-400">
-                Explore typography for Strata Studio
+                Explore typography for X Design System
               </p>
             </div>
           </div>
@@ -125,7 +125,7 @@ export const FontSelectorModal: React.FC<FontSelectorModalProps> = ({
         {isApiKeyOpen && (
           <div className="p-4 bg-slate-950 border-b border-slate-800 space-y-2 animate-fadeIn">
             <div className="flex items-center justify-between text-xs font-semibold text-slate-200">
-              <span>Google Webfonts Developer API Key (VS Code Setting: <code>strataStudio.googleFontsApiKey</code>)</span>
+              <span>Google Webfonts Developer API Key (VS Code Setting: <code>xDesignSystem.googleFontsApiKey</code>)</span>
               <button
                 onClick={() => postMessage({ type: "openExternal", url: "https://console.cloud.google.com/apis/credentials" })}
                 className="text-indigo-400 hover:underline text-[11px] cursor-pointer bg-transparent border-0"
