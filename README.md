@@ -1,55 +1,70 @@
-# 🎨 Strata Studio — VS Code Extension
+# 🎨 Strata Studio — Visual Theme Studio for VS Code
 
-**Strata Studio** is a visual color theme studio and design system generator for VS Code. Browse 100 curated color themes across 10 aesthetic categories, customize colors and Google Fonts live on an interactive preview canvas, and export single-file HTML showcases or AI system-prompt Markdown specifications.
+**Strata Studio** is a visual color theme studio and design system generator built directly into VS Code as a Webview extension. Browse **100 curated color themes** across 10 aesthetic categories, customize colors and Google Fonts live on a realistic interactive preview canvas, inspect WCAG contrast health ratios, and export single-file HTML showcases or AI system-prompt Markdown specifications.
 
 ---
 
 ## ✨ Features
 
-- **100 Curated Themes**: High-Trust Fintech, Cyberpunk & Sci-Fi, Dark Luxury & Obsidian, Neon & Synthesizer, Neo-Brutalist & Bold, Warm Editorial & Paper, Organic Earth & Biophilic, Monochromatic Minimal, Deep Space & Cosmic, and Retro & Vintage.
-- **Live Preview Canvas**: Toggle between Desktop and Mobile preview modes to observe theme colors and typography on realistic UI components.
-- **Custom Color & Typography Editor**: Tweak any of the 17 theme color tokens live, inspect WCAG contrast ratios, and select from Google Fonts.
-- **Single-File Exports**: Export standalone HTML pages with CSS custom properties or AI system-prompt Markdown specs for LLMs.
-- **VS Code Integration**: Native `cmd+shift+t` keybinding, persistent state storage (`globalState`), settings management, and save dialog integration.
+- 🎭 **100 Curated Color Themes**: Includes High-Trust Fintech, Cyberpunk & Sci-Fi, Dark Luxury & Obsidian, Neon & Synthesizer, Neo-Brutalist & Bold, Warm Editorial & Paper, Organic Earth & Biophilic, Monochromatic Minimal, Deep Space & Cosmic, and Retro & Vintage.
+- 📱 **Interactive Live Preview Canvas**: Toggle between **Desktop** and **Mobile View** to see how color palettes and typography render on actual UI components in real time.
+- 🎛️ **Live Color & Typography Editor**: Override any of the 17 theme color tokens live. Recomputes gradients, badge borders, and hero glowing orbs automatically.
+- 🛡️ **WCAG Contrast Health Analysis**: Instant WCAG AA & AAA contrast ratio analysis for body text vs background and accent text vs background.
+- 🔤 **Google Fonts Catalog**: Browse and search 1,950+ Google Fonts directly inside VS Code with live font preview.
+- 📄 **Single-File HTML & AI Prompt Exports**:
+  - **HTML Page**: Export a complete, standalone HTML page containing CSS custom variables and responsive layout.
+  - **AI System Prompt Spec (`THEME_SPEC.md`)**: Export detailed Markdown design specifications tailored for AI coding assistants (e.g. Gemini, Claude, ChatGPT).
+- 💾 **Persistent Session State**: Your selected theme automatically persists across VS Code restarts.
 
 ---
 
-## 🚀 Quick Start
+## ⌨️ Keyboard Shortcuts
 
-1. Open VS Code Command Palette (`Cmd+Shift+P` on Mac, `Ctrl+Shift+P` on Windows/Linux).
-2. Type **Strata Studio: Open Strata Studio** (or press `Cmd+Shift+T`).
-3. Select a preset theme or customize colors and typography live.
-4. Export your theme definition as an HTML page or Markdown spec.
+| Command | Action | Keybinding (Mac) | Keybinding (Win/Linux) |
+|:--------|:-------|:-----------------|:-----------------------|
+| `strataStudio.open` | Open Strata Studio | `Cmd+Shift+T` | `Ctrl+Shift+T` |
 
 ---
 
-## 🛠️ Build & Development
+## ⚙️ Configuration Settings
 
-### Commands
+Manage extension options via VS Code Settings (**Preferences → Settings** or `Cmd+,` searching for `Strata Studio`):
+
+| Setting Key | Type | Default | Description |
+|:------------|:-----|:--------|:------------|
+| `strataStudio.googleFontsApiKey` | `string` | `""` | Optional Google Fonts API Key for browsing the full 1,950+ font catalog |
+| `strataStudio.defaultExportFormat` | `string` | `"vsCodeTheme"` | Default theme export format (`vsCodeTheme`, `tailwindConfig`, `cssVariables`, `jsonTheme`) |
+
+---
+
+## 🔑 Google Fonts API Key Setup (Optional)
+
+1. Get a free API Key from the [Google Cloud Console](https://console.cloud.google.com/apis/credentials).
+2. Open VS Code Settings (`Cmd+,`).
+3. Search for **Strata Studio: Google Fonts Api Key**.
+4. Paste your API key into the setting field.
+5. Open Strata Studio font catalog to search and preview 1,950+ Google Fonts.
+
+---
+
+## 🛠️ Development & Building
 
 ```bash
 # Install dependencies
 npm install
 
-# Build extension host + React webview
+# Build extension host & webview
 npm run build
 
-# Watch mode for dual build pipelines
+# Watch mode for dual pipelines
 npm run watch
 
-# Run typecheck across both compilation targets
+# Typecheck TypeScript targets
 npm run typecheck
 
-# Package extension into .vsix file
+# Package VSIX for distribution
 npx @vscode/vsce package --no-dependencies
 ```
-
-### F5 Debugging in VS Code
-
-1. Open the project in VS Code.
-2. Press `F5` (or go to **Run and Debug** and click **Run Extension**).
-3. A new Extension Development Host window will open with Strata Studio pre-loaded.
-4. Run `Cmd+Shift+T` or **Open Strata Studio** from the Command Palette.
 
 ---
 

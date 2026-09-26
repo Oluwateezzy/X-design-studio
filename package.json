@@ -2,11 +2,16 @@
   "name": "strata-studio",
   "displayName": "Strata Studio",
   "description": "Visual theme studio for VS Code with live preview and theme spec generator",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "publisher": "strata",
+  "icon": "images/icon.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/strata/strata-studio"
+  },
+  "homepage": "https://github.com/strata/strata-studio#readme",
+  "bugs": {
+    "url": "https://github.com/strata/strata-studio/issues"
   },
   "engines": {
     "vscode": "^1.85.0"
@@ -14,6 +19,15 @@
   "categories": [
     "Themes",
     "Other"
+  ],
+  "keywords": [
+    "theme",
+    "color-palette",
+    "design-system",
+    "css",
+    "typography",
+    "export",
+    "vscode-theme"
   ],
   "main": "./dist/extension.js",
   "activationEvents": [],
