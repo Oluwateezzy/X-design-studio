@@ -1,24 +1,24 @@
-# 🎨 X Design System — Visual Theme Studio for VS Code
+# X Design System — Visual Theme Studio for VS Code
 
 **X Design System** is a visual color theme studio and design system generator built directly into VS Code as a Webview extension. Browse **100 curated color themes** across 10 aesthetic categories, customize colors and Google Fonts live on a realistic interactive preview canvas, inspect WCAG contrast health ratios, and export single-file HTML showcases or AI system-prompt Markdown specifications.
 
 ---
 
-## ✨ Features
+## Features
 
-- 🎭 **100 Curated Color Themes**: Includes High-Trust Fintech, Cyberpunk & Sci-Fi, Dark Luxury & Obsidian, Neon & Synthesizer, Neo-Brutalist & Bold, Warm Editorial & Paper, Organic Earth & Biophilic, Monochromatic Minimal, Deep Space & Cosmic, and Retro & Vintage.
-- 📱 **Interactive Live Preview Canvas**: Toggle between **Desktop** and **Mobile View** to see how color palettes and typography render on actual UI components in real time.
-- 🎛️ **Live Color & Typography Editor**: Override any of the 17 theme color tokens live. Recomputes gradients, badge borders, and hero glowing orbs automatically.
-- 🛡️ **WCAG Contrast Health Analysis**: Instant WCAG AA & AAA contrast ratio analysis for body text vs background and accent text vs background.
-- 🔤 **Google Fonts Catalog**: Browse and search 1,950+ Google Fonts directly inside VS Code with live font preview.
-- 📄 **Single-File HTML & AI Prompt Exports**:
+- **100 Curated Color Themes**: Includes High-Trust Fintech, Cyberpunk & Sci-Fi, Dark Luxury & Obsidian, Neon & Synthesizer, Neo-Brutalist & Bold, Warm Editorial & Paper, Organic Earth & Biophilic, Monochromatic Minimal, Deep Space & Cosmic, and Retro & Vintage.
+- **Interactive Live Preview Canvas**: Toggle between **Desktop** and **Mobile View** to see how color palettes and typography render on actual UI components in real time.
+- **Live Color & Typography Editor**: Override any of the 17 theme color tokens live. Recomputes gradients, badge borders, and hero glowing orbs automatically.
+- **WCAG Contrast Health Analysis**: Instant WCAG AA & AAA contrast ratio analysis for body text vs background and accent text vs background.
+- **Google Fonts Catalog**: Browse and search 1,950+ Google Fonts directly inside VS Code with live font preview.
+- **Single-File HTML & AI Prompt Exports**:
   - **HTML Page**: Export a complete, standalone HTML page containing CSS custom variables and responsive layout.
   - **AI System Prompt Spec (`THEME_SPEC.md`)**: Export detailed Markdown design specifications tailored for AI coding assistants (e.g. Gemini, Claude, ChatGPT).
-- 💾 **Persistent Session State**: Your selected theme automatically persists across VS Code restarts.
+- **Persistent Session State**: Your selected theme automatically persists across VS Code restarts.
 
 ---
 
-## ⌨️ Keyboard Shortcuts
+## Keyboard Shortcuts
 
 | Command | Action | Keybinding (Mac) | Keybinding (Win/Linux) |
 |:--------|:-------|:-----------------|:-----------------------|
@@ -26,7 +26,7 @@
 
 ---
 
-## ⚙️ Configuration Settings
+## Configuration Settings
 
 Manage extension options via VS Code Settings (**Preferences → Settings** or `Cmd+,` searching for `X Design System`):
 
@@ -37,7 +37,7 @@ Manage extension options via VS Code Settings (**Preferences → Settings** or `
 
 ---
 
-## 🔑 Google Fonts API Key Setup (Optional)
+## Google Fonts API Key Setup (Optional)
 
 1. Get a free API Key from the [Google Cloud Console](https://console.cloud.google.com/apis/credentials).
 2. Open VS Code Settings (`Cmd+,`).
@@ -47,7 +47,7 @@ Manage extension options via VS Code Settings (**Preferences → Settings** or `
 
 ---
 
-## 🛠️ Development & Building
+## Development & Building
 
 ```bash
 # Install dependencies
@@ -75,6 +75,6 @@ npx @vscode/vsce package --no-dependencies
 
 ---
 
-## 📄 License
+## License
 
 [MIT License](LICENSE) © 2026 X Design System

@@ -3,15 +3,15 @@
   "displayName": "X Design System",
   "description": "Visual theme studio and design system generator for VS Code with live preview and theme spec generator",
   "version": "1.0.0",
-  "publisher": "x-design-system",
+  "publisher": "Oluwateezzy",
   "icon": "images/icon.png",
   "repository": {
     "type": "git",
-    "url": "https://github.com/x-design-system/x-design-system"
+    "url": "https://github.com/Oluwateezzy/X-design-studio"
   },
-  "homepage": "https://github.com/x-design-system/x-design-system#readme",
+  "homepage": "https://github.com/Oluwateezzy/X-design-studio#readme",
   "bugs": {
-    "url": "https://github.com/x-design-system/x-design-system/issues"
+    "url": "https://github.com/Oluwateezzy/X-design-studio/issues"
   },
   "engines": {
     "vscode": "^1.85.0"

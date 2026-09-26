@@ -365,7 +365,7 @@ export function generateThemeHtml(theme: ThemeConfig): string {
         </div>
       </div>
       <div class="badge">
-        <span>✨ Active Theme: ${name}</span>
+        <span>Active Theme: ${name}</span>
       </div>
     </header>
 
