@@ -1,32 +1,7 @@
-export interface ThemeConfig {
-  id: string;
-  number: number;
-  name: string;
-  category: string;
-  personality: string;
-  fontFamily: string;
-  fontName: string;
-  fontGoogleUrl: string;
-  colors: {
-    bg: string;
-    primary: string;
-    secondary: string;
-    accent: string;
-    cardBg: string;
-    cardBorder: string;
-    textColor: string;
-    mutedText: string;
-    btnGradient: string;
-    badgeBg: string;
-    badgeBorder: string;
-    badgeText: string;
-    heroGlow1: string;
-    heroGlow2: string;
-    success: string;
-    warning: string;
-    error: string;
-  };
-}
+import type { ThemeConfig } from '../../src/messages';
+
+export type { ThemeConfig };
+
 
 export interface FontOption {
   name: string;

@@ -15,5 +15,5 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["webview/**/*"]
+  "include": ["webview/**/*", "src/messages.ts"]
 }
