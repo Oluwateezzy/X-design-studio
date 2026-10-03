@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { PRESET_THEMES, type ThemeConfig } from "./lib/themes-dataset";
-import type { ThemeConfigV2 } from "./lib/types/theme-config-v2";
+import { PRESET_THEMES, type ThemeConfig, type ThemeConfigV2 } from "./lib/themes-dataset";
 import type { ColorToken } from "./lib/types/color-token";
 import { migrateV1ToV2 } from "./lib/theme-migrator";
 import { LivePreviewCanvas } from "./components/LivePreviewCanvas";
@@ -25,7 +24,8 @@ export function App() {
       }
       return migrateV1ToV2(saved as ThemeConfig);
     }
-    return migrateV1ToV2(PRESET_THEMES[0]);
+
+    return PRESET_THEMES[0];
   });
 
   const [isExportOpen, setIsExportOpen] = useState<boolean>(false);
@@ -84,8 +84,8 @@ export function App() {
     }
   }, [activeTheme]);
 
-  const handleSelectTheme = (v1Theme: ThemeConfig) => {
-    setActiveTheme(migrateV1ToV2(v1Theme));
+  const handleSelectTheme = (v2Theme: ThemeConfigV2) => {
+    setActiveTheme(JSON.parse(JSON.stringify(v2Theme)));
   };
 
   const handleColorChange = (path: string, token: ColorToken) => {
@@ -118,12 +118,12 @@ export function App() {
 
   const handleResetTheme = () => {
     const original = PRESET_THEMES.find((t) => t.id === activeTheme.id) || PRESET_THEMES[0];
-    setActiveTheme(migrateV1ToV2(original));
+    setActiveTheme(JSON.parse(JSON.stringify(original)));
   };
 
   const handleRandomTheme = () => {
     const randomIndex = Math.floor(Math.random() * PRESET_THEMES.length);
-    setActiveTheme(migrateV1ToV2(PRESET_THEMES[randomIndex]));
+    setActiveTheme(JSON.parse(JSON.stringify(PRESET_THEMES[randomIndex])));
   };
 
   const handleOpenExport = (tab: "html" | "markdown") => {

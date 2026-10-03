@@ -1,14 +1,13 @@
 import React, { useState, useMemo } from "react";
 import { Search, Check, Shuffle, ExternalLink, Sparkles, RefreshCw, SlidersHorizontal, Code, Download, Type } from "lucide-react";
-import { PRESET_THEMES, THEME_CATEGORIES, type ThemeConfig } from "../lib/themes-dataset";
-import type { ThemeConfigV2 } from "../lib/types/theme-config-v2";
+import { PRESET_THEMES, THEME_CATEGORIES, type ThemeConfigV2 } from "../lib/themes-dataset";
 import type { ColorToken } from "../lib/types/color-token";
 import { colorTokenToCss } from "../lib/types/color-token";
 import { FALLBACK_GOOGLE_FONTS, loadGoogleFont, getFontFamilyCss, getFontGoogleUrlParam } from "../lib/google-fonts-api";
 
 interface SidebarViewProps {
   activeTheme: ThemeConfigV2;
-  onSelectTheme: (theme: ThemeConfig) => void;
+  onSelectTheme: (theme: ThemeConfigV2) => void;
   onRandomTheme: () => void;
   onColorChange: (path: string, token: ColorToken) => void;
   onFontChange: (fontName: string, fontFamily: string, fontGoogleUrl: string) => void;
@@ -35,12 +34,13 @@ export const SidebarView: React.FC<SidebarViewProps> = ({
     return PRESET_THEMES.filter((theme) => {
       const matchesCategory =
         selectedCategory === "All" || theme.category === selectedCategory;
+      const numStr = `#${theme.id.replace(/\D/g, "")}`;
       const matchesSearch =
         searchQuery.trim() === "" ||
         theme.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         theme.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
         theme.personality.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        `#${theme.number}`.includes(searchQuery);
+        numStr.includes(searchQuery);
       return matchesCategory && matchesSearch;
     });
   }, [selectedCategory, searchQuery]);
@@ -192,8 +192,15 @@ export const SidebarView: React.FC<SidebarViewProps> = ({
                 No themes found matching "{searchQuery}"
               </div>
             ) : (
-              filteredThemes.map((theme) => {
+              filteredThemes.map((theme, idx) => {
                 const isActive = theme.id === activeTheme.id;
+                const themeNum = parseInt(theme.id.replace(/\D/g, ""), 10) || idx + 1;
+                const bgCss = colorTokenToCss(theme.colors.bg);
+                const primaryCss = colorTokenToCss(theme.colors.primary);
+                const secondaryCss = colorTokenToCss(theme.colors.secondary);
+                const accentCss = colorTokenToCss(theme.colors.accent);
+                const ctaCss = colorTokenToCss(theme.colors.cta);
+
                 return (
                   <button
                     type="button"
@@ -208,7 +215,7 @@ export const SidebarView: React.FC<SidebarViewProps> = ({
                     <div className="flex items-center justify-between mb-1.5">
                       <div className="flex items-center gap-1.5 truncate">
                         <span className="text-[9px] font-mono px-1 py-0.2 rounded bg-[var(--vscode-input-bg)] text-indigo-400 font-bold border border-[var(--vscode-border)]">
-                          #{theme.number}
+                          #{themeNum}
                         </span>
                         <span className="text-[11px] font-semibold truncate text-[var(--vscode-fg)]">
                           {theme.name}
@@ -225,28 +232,28 @@ export const SidebarView: React.FC<SidebarViewProps> = ({
                     <div className="flex items-center gap-1">
                       <div
                         className="w-4 h-4 rounded border border-white/20"
-                        style={{ backgroundColor: theme.colors.bg }}
-                        title={`BG: ${theme.colors.bg}`}
+                        style={{ backgroundColor: bgCss }}
+                        title={`BG: ${bgCss}`}
                       />
                       <div
                         className="w-4 h-4 rounded border border-white/20"
-                        style={{ backgroundColor: theme.colors.primary }}
-                        title={`Primary: ${theme.colors.primary}`}
+                        style={{ backgroundColor: primaryCss }}
+                        title={`Primary: ${primaryCss}`}
                       />
                       <div
                         className="w-4 h-4 rounded border border-white/20"
-                        style={{ backgroundColor: theme.colors.secondary }}
-                        title={`Secondary: ${theme.colors.secondary}`}
+                        style={{ backgroundColor: secondaryCss }}
+                        title={`Secondary: ${secondaryCss}`}
                       />
                       <div
                         className="w-4 h-4 rounded border border-white/20"
-                        style={{ backgroundColor: theme.colors.accent }}
-                        title={`Accent: ${theme.colors.accent}`}
+                        style={{ backgroundColor: accentCss }}
+                        title={`Accent: ${accentCss}`}
                       />
                       <div
                         className="flex-1 h-4 rounded border border-white/20"
-                        style={{ background: theme.colors.btnGradient }}
-                        title={`Gradient: ${theme.colors.btnGradient}`}
+                        style={{ background: ctaCss }}
+                        title={`CTA: ${ctaCss}`}
                       />
                     </div>
                   </button>

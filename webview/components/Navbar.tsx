@@ -1,9 +1,9 @@
 import React from "react";
 import { Sparkles, Code, Download, Shuffle, PanelLeft, PanelRight } from "lucide-react";
-import type { ThemeConfig } from "../lib/themes-dataset";
+import type { ThemeConfigV2 } from "../lib/types/theme-config-v2";
 
 interface NavbarProps {
-  activeTheme: ThemeConfig;
+  activeTheme: ThemeConfigV2;
   showLeftPanel: boolean;
   showRightPanel: boolean;
   onToggleLeftPanel: () => void;
@@ -21,12 +21,15 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenExport,
   onRandomTheme,
 }) => {
+  const themeNum = parseInt(activeTheme.id.replace(/\D/g, ""), 10) || 1;
+
   return (
     <header className="sticky top-0 z-40 bg-[var(--vscode-app-bg)] border-b border-[var(--vscode-border)] px-4 py-2.5">
       <div className="w-full flex flex-wrap items-center justify-between gap-3">
         {/* Brand & Panel Toggles */}
         <div className="flex items-center gap-3">
           <button
+            type="button"
             onClick={onToggleLeftPanel}
             className={`p-1.5 rounded-lg border transition cursor-pointer ${
               showLeftPanel
@@ -48,11 +51,11 @@ export const Navbar: React.FC<NavbarProps> = ({
                   X Design System
                 </h1>
                 <span className="text-[10px] px-2 py-0.2 rounded-full bg-indigo-500/15 border border-indigo-500/30 text-indigo-400 font-semibold">
-                  100 Themes
+                  100 Themes V2
                 </span>
               </div>
               <p className="text-[11px] opacity-75">
-                Active: <span className="font-semibold text-[var(--vscode-fg)]">#{activeTheme.number} {activeTheme.name}</span> ({activeTheme.category})
+                Active: <span className="font-semibold text-[var(--vscode-fg)]">#{themeNum} {activeTheme.name}</span> ({activeTheme.category})
               </p>
             </div>
           </div>
@@ -61,6 +64,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         {/* Action Controls */}
         <div className="flex items-center gap-2">
           <button
+            type="button"
             onClick={onRandomTheme}
             aria-label="Randomize Theme"
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[var(--vscode-input-bg)] border border-[var(--vscode-border)] text-[var(--vscode-fg)] hover:opacity-90 text-xs font-semibold transition cursor-pointer"
@@ -71,6 +75,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           </button>
 
           <button
+            type="button"
             onClick={() => onOpenExport("html")}
             aria-label="Export HTML Page"
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-sm transition cursor-pointer"
@@ -80,6 +85,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           </button>
 
           <button
+            type="button"
             onClick={() => onOpenExport("markdown")}
             aria-label="Export AI Prompt Markdown"
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold shadow-sm transition cursor-pointer"
@@ -89,11 +95,12 @@ export const Navbar: React.FC<NavbarProps> = ({
           </button>
 
           <button
+            type="button"
             onClick={onToggleRightPanel}
             className={`p-1.5 rounded-lg border transition cursor-pointer ${
               showRightPanel
                 ? "bg-[var(--vscode-button-bg)] text-[var(--vscode-button-fg)] border-transparent"
-                : "bg-[var(--vscode-input-bg)] text-[var(--vscode-fg)] border-[var(--vscode-border)] hover:bg-[var(--vscode-border)]"
+                : "bg-[var(--vscode-input-bg)] text-[var(--vscode-border)] hover:bg-[var(--vscode-border)]"
             }`}
             title={showRightPanel ? "Hide Color Tuner" : "Show Color Tuner"}
           >

@@ -1,4 +1,5 @@
 import type { ThemeConfigV2 } from './types/theme-config-v2.js';
+export type { ThemeConfigV2 };
 
 export interface ThemeConfig {
   id: string;

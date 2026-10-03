@@ -1,10 +1,11 @@
 import React, { useState, useMemo } from "react";
 import { Search, Palette, Check } from "lucide-react";
-import { PRESET_THEMES, THEME_CATEGORIES, type ThemeConfig } from "../lib/themes-dataset";
+import { PRESET_THEMES, THEME_CATEGORIES, type ThemeConfigV2 } from "../lib/themes-dataset";
+import { colorTokenToCss } from "../lib/types/color-token";
 
 interface ThemeSelectorPanelProps {
   activeThemeId: string;
-  onSelectTheme: (theme: ThemeConfig) => void;
+  onSelectTheme: (theme: ThemeConfigV2) => void;
 }
 
 export const ThemeSelectorPanel: React.FC<ThemeSelectorPanelProps> = ({
@@ -18,12 +19,13 @@ export const ThemeSelectorPanel: React.FC<ThemeSelectorPanelProps> = ({
     return PRESET_THEMES.filter((theme) => {
       const matchesCategory =
         selectedCategory === "All" || theme.category === selectedCategory;
+      const numStr = `#${theme.id.replace(/\D/g, "")}`;
       const matchesSearch =
         searchQuery.trim() === "" ||
         theme.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         theme.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
         theme.personality.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        `#${theme.number}`.includes(searchQuery);
+        numStr.includes(searchQuery);
       return matchesCategory && matchesSearch;
     });
   }, [selectedCategory, searchQuery]);
@@ -51,6 +53,7 @@ export const ThemeSelectorPanel: React.FC<ThemeSelectorPanelProps> = ({
             return (
               <button
                 key={cat}
+                type="button"
                 role="tab"
                 aria-selected={isActive}
                 onClick={() => setSelectedCategory(cat)}
@@ -81,13 +84,21 @@ export const ThemeSelectorPanel: React.FC<ThemeSelectorPanelProps> = ({
             No themes found matching "{searchQuery}"
           </div>
         ) : (
-          filteredThemes.map((theme) => {
+          filteredThemes.map((theme, idx) => {
             const isActive = theme.id === activeThemeId;
+            const themeNum = parseInt(theme.id.replace(/\D/g, ""), 10) || idx + 1;
+            const bgCss = colorTokenToCss(theme.colors.bg);
+            const primaryCss = colorTokenToCss(theme.colors.primary);
+            const accentCss = colorTokenToCss(theme.colors.accent);
+            const textCss = colorTokenToCss(theme.colors.text);
+            const ctaCss = colorTokenToCss(theme.colors.cta);
+
             return (
               <button
                 key={theme.id}
+                type="button"
                 onClick={() => onSelectTheme(theme)}
-                aria-label={`Select theme ${theme.number}: ${theme.name} (${theme.category})`}
+                aria-label={`Select theme ${themeNum}: ${theme.name} (${theme.category})`}
                 className={`w-full text-left p-3 rounded-xl border transition group relative cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
                   isActive
                     ? "bg-slate-800/90 border-indigo-500 shadow-md shadow-indigo-500/10"
@@ -98,7 +109,7 @@ export const ThemeSelectorPanel: React.FC<ThemeSelectorPanelProps> = ({
                   <div>
                     <div className="flex items-center gap-1.5">
                       <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-slate-800 text-indigo-300">
-                        #{theme.number}
+                        #{themeNum}
                       </span>
                       <span className="text-xs font-semibold text-slate-100 group-hover:text-indigo-300 transition">
                         {theme.name}
@@ -120,28 +131,28 @@ export const ThemeSelectorPanel: React.FC<ThemeSelectorPanelProps> = ({
                 <div className="flex items-center gap-1.5 mt-2">
                   <div
                     className="w-5 h-5 rounded-md border border-white/20 shadow-sm"
-                    style={{ backgroundColor: theme.colors.bg }}
-                    title={`BG: ${theme.colors.bg}`}
+                    style={{ backgroundColor: bgCss }}
+                    title={`BG: ${bgCss}`}
                   />
                   <div
                     className="w-5 h-5 rounded-md border border-white/20 shadow-sm"
-                    style={{ backgroundColor: theme.colors.primary }}
-                    title={`Primary: ${theme.colors.primary}`}
+                    style={{ backgroundColor: primaryCss }}
+                    title={`Primary: ${primaryCss}`}
                   />
                   <div
                     className="w-5 h-5 rounded-md border border-white/20 shadow-sm"
-                    style={{ backgroundColor: theme.colors.accent }}
-                    title={`Accent: ${theme.colors.accent}`}
+                    style={{ backgroundColor: accentCss }}
+                    title={`Accent: ${accentCss}`}
                   />
                   <div
                     className="w-5 h-5 rounded-md border border-white/20 shadow-sm"
-                    style={{ backgroundColor: theme.colors.textColor }}
-                    title={`Text: ${theme.colors.textColor}`}
+                    style={{ backgroundColor: textCss }}
+                    title={`Text: ${textCss}`}
                   />
                   <div
                     className="flex-1 h-5 rounded-md border border-white/20 shadow-sm"
-                    style={{ background: theme.colors.btnGradient }}
-                    title={`Gradient: ${theme.colors.btnGradient}`}
+                    style={{ background: ctaCss }}
+                    title={`CTA: ${ctaCss}`}
                   />
                 </div>
               </button>

@@ -1,6 +1,6 @@
-import type { ThemeConfig } from '../../src/messages';
+import type { ThemeConfig, ThemeConfigV2 } from '../../src/messages';
 
-export type { ThemeConfig };
+export type { ThemeConfig, ThemeConfigV2 };
 
 
 export interface FontOption {
@@ -12,64 +12,64 @@ export interface FontOption {
 
 export const AVAILABLE_FONTS: FontOption[] = [
   {
-    name: "Plus Jakarta Sans",
-    family: "'Plus Jakarta Sans', sans-serif",
-    googleParam: "Plus+Jakarta+Sans:wght@400;600;700;800",
-    category: "sans"
+    "name": "Plus Jakarta Sans",
+    "family": "'Plus Jakarta Sans', sans-serif",
+    "googleParam": "Plus+Jakarta+Sans:wght@400;600;700;800",
+    "category": "sans"
   },
   {
-    name: "Outfit",
-    family: "'Outfit', sans-serif",
-    googleParam: "Outfit:wght@400;500;600;700;800",
-    category: "sans"
+    "name": "Outfit",
+    "family": "'Outfit', sans-serif",
+    "googleParam": "Outfit:wght@400;500;600;700;800",
+    "category": "sans"
   },
   {
-    name: "Space Grotesk",
-    family: "'Space Grotesk', sans-serif",
-    googleParam: "Space+Grotesk:wght@400;500;600;700",
-    category: "sans"
+    "name": "Space Grotesk",
+    "family": "'Space Grotesk', sans-serif",
+    "googleParam": "Space+Grotesk:wght@400;500;600;700",
+    "category": "sans"
   },
   {
-    name: "Syne",
-    family: "'Syne', sans-serif",
-    googleParam: "Syne:wght@500;700;800",
-    category: "display"
+    "name": "Syne",
+    "family": "'Syne', sans-serif",
+    "googleParam": "Syne:wght@500;700;800",
+    "category": "display"
   },
   {
-    name: "Cinzel",
-    family: "'Cinzel', serif",
-    googleParam: "Cinzel:wght@500;700;900",
-    category: "serif"
+    "name": "Cinzel",
+    "family": "'Cinzel', serif",
+    "googleParam": "Cinzel:wght@500;700;900",
+    "category": "serif"
   },
   {
-    name: "Playfair Display",
-    family: "'Playfair Display', serif",
-    googleParam: "Playfair+Display:ital,wght@0,600;0,800;1,400",
-    category: "serif"
+    "name": "Playfair Display",
+    "family": "'Playfair Display', serif",
+    "googleParam": "Playfair+Display:ital,wght@0,600;0,800;1,400",
+    "category": "serif"
   },
   {
-    name: "Instrument Serif",
-    family: "'Instrument Serif', serif",
-    googleParam: "Instrument+Serif:ital@0;1",
-    category: "serif"
+    "name": "Instrument Serif",
+    "family": "'Instrument Serif', serif",
+    "googleParam": "Instrument+Serif:ital@0;1",
+    "category": "serif"
   },
   {
-    name: "JetBrains Mono",
-    family: "'JetBrains Mono', monospace",
-    googleParam: "JetBrains+Mono:wght@400;500;700",
-    category: "mono"
+    "name": "JetBrains Mono",
+    "family": "'JetBrains Mono', monospace",
+    "googleParam": "JetBrains+Mono:wght@400;500;700",
+    "category": "mono"
   },
   {
-    name: "Inter",
-    family: "'Inter', sans-serif",
-    googleParam: "Inter:wght@400;500;600;700;800",
-    category: "sans"
+    "name": "Inter",
+    "family": "'Inter', sans-serif",
+    "googleParam": "Inter:wght@400;500;600;700;800",
+    "category": "sans"
   },
   {
-    name: "Press Start 2P",
-    family: "'Press Start 2P', cursive",
-    googleParam: "Press+Start+2P",
-    category: "display"
+    "name": "Press Start 2P",
+    "family": "'Press Start 2P', cursive",
+    "googleParam": "Press+Start+2P",
+    "category": "display"
   }
 ];
 
@@ -87,2951 +87,13205 @@ export const THEME_CATEGORIES = [
   "Retro & Vintage"
 ];
 
-function getCategoryFont(cat: string): FontOption {
-  switch (cat) {
-    case "High-Trust Fintech":
-      return AVAILABLE_FONTS[0]; // Plus Jakarta Sans
-    case "Cyberpunk & Sci-Fi":
-      return AVAILABLE_FONTS[2]; // Space Grotesk
-    case "Dark Luxury & Obsidian":
-      return AVAILABLE_FONTS[4]; // Cinzel
-    case "Neon & Synthesizer":
-      return AVAILABLE_FONTS[1]; // Outfit
-    case "Neo-Brutalist & Bold":
-      return AVAILABLE_FONTS[3]; // Syne
-    case "Warm Editorial & Paper":
-      return AVAILABLE_FONTS[6]; // Instrument Serif
-    case "Organic Earth & Biophilic":
-      return AVAILABLE_FONTS[1]; // Outfit
-    case "Monochromatic Minimal":
-      return AVAILABLE_FONTS[8]; // Inter
-    case "Deep Space & Cosmic":
-      return AVAILABLE_FONTS[2]; // Space Grotesk
-    case "Retro & Vintage":
-      return AVAILABLE_FONTS[7]; // JetBrains Mono
-    default:
-      return AVAILABLE_FONTS[0];
-  }
-}
-
-export const PRESET_THEMES: ThemeConfig[] = [
-  // 1. High-Trust Fintech (1-10)
-  {
-    id: "theme-1",
-    number: 1,
-    name: "Obsidian Vault",
-    category: "High-Trust Fintech",
-    personality: "Ultra-secure corporate escrow, bank-level encryption feel",
-    fontFamily: getCategoryFont("High-Trust Fintech").family,
-    fontName: getCategoryFont("High-Trust Fintech").name,
-    fontGoogleUrl: getCategoryFont("High-Trust Fintech").googleParam,
-    colors: {
-      bg: "#0B0F19",
-      primary: "#1E3A8A",
-      secondary: "#3B82F6",
-      accent: "#10B981",
-      cardBg: "rgba(17, 24, 39, 0.8)",
-      cardBorder: "rgba(30, 58, 138, 0.4)",
-      textColor: "#F3F4F6",
-      mutedText: "#9CA3AF",
-      btnGradient: "linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%)",
-      badgeBg: "rgba(16, 185, 129, 0.15)",
-      badgeBorder: "rgba(16, 185, 129, 0.3)",
-      badgeText: "#34D399",
-      heroGlow1: "rgba(59, 130, 246, 0.15)",
-      heroGlow2: "rgba(16, 185, 129, 0.1)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-2",
-    number: 2,
-    name: "Midnight Sapphire",
-    category: "High-Trust Fintech",
-    personality: "Deep ocean corporate trust with glowing cyan accents",
-    fontFamily: getCategoryFont("High-Trust Fintech").family,
-    fontName: getCategoryFont("High-Trust Fintech").name,
-    fontGoogleUrl: getCategoryFont("High-Trust Fintech").googleParam,
-    colors: {
-      bg: "#0A1128",
-      primary: "#1C2541",
-      secondary: "#475569",
-      accent: "#00F5D4",
-      cardBg: "rgba(11, 19, 43, 0.85)",
-      cardBorder: "rgba(0, 245, 212, 0.25)",
-      textColor: "#FFFFFF",
-      mutedText: "#8D99AE",
-      btnGradient: "linear-gradient(135deg, #00B4D8 0%, #00F5D4 100%)",
-      badgeBg: "rgba(0, 245, 212, 0.12)",
-      badgeBorder: "rgba(0, 245, 212, 0.3)",
-      badgeText: "#00F5D4",
-      heroGlow1: "rgba(0, 180, 216, 0.2)",
-      heroGlow2: "rgba(0, 245, 212, 0.12)",
-      success: "#00F5D4",
-      warning: "#FFB703",
-      error: "#FF0054"
-    }
-  },
-  {
-    id: "theme-3",
-    number: 3,
-    name: "Sovereign Gold",
-    category: "High-Trust Fintech",
-    personality: "Institutional wealth management, premium bullion aesthetic",
-    fontFamily: getCategoryFont("High-Trust Fintech").family,
-    fontName: getCategoryFont("High-Trust Fintech").name,
-    fontGoogleUrl: getCategoryFont("High-Trust Fintech").googleParam,
-    colors: {
-      bg: "#0D0D0D",
-      primary: "#D4AF37",
-      secondary: "#AA7C11",
-      accent: "#F3E5AB",
-      cardBg: "rgba(26, 26, 26, 0.85)",
-      cardBorder: "rgba(212, 175, 55, 0.3)",
-      textColor: "#F9FAFB",
-      mutedText: "#A1A1AA",
-      btnGradient: "linear-gradient(135deg, #D4AF37 0%, #AA7C11 100%)",
-      badgeBg: "rgba(212, 175, 55, 0.15)",
-      badgeBorder: "rgba(212, 175, 55, 0.4)",
-      badgeText: "#F3E5AB",
-      heroGlow1: "rgba(212, 175, 55, 0.15)",
-      heroGlow2: "rgba(170, 124, 17, 0.1)",
-      success: "#10B981",
-      warning: "#D4AF37",
-      error: "#F43F5E"
-    }
-  },
-  {
-    id: "theme-4",
-    number: 4,
-    name: "Federal Mint",
-    category: "High-Trust Fintech",
-    personality: "Monetary policy authority with rich emerald and platinum",
-    fontFamily: getCategoryFont("High-Trust Fintech").family,
-    fontName: getCategoryFont("High-Trust Fintech").name,
-    fontGoogleUrl: getCategoryFont("High-Trust Fintech").googleParam,
-    colors: {
-      bg: "#061A14",
-      primary: "#0D5C46",
-      secondary: "#14B8A6",
-      accent: "#34D399",
-      cardBg: "rgba(10, 38, 30, 0.85)",
-      cardBorder: "rgba(20, 184, 166, 0.3)",
-      textColor: "#ECFDF5",
-      mutedText: "#6EE7B7",
-      btnGradient: "linear-gradient(135deg, #0D5C46 0%, #14B8A6 100%)",
-      badgeBg: "rgba(52, 211, 153, 0.15)",
-      badgeBorder: "rgba(52, 211, 153, 0.3)",
-      badgeText: "#34D399",
-      heroGlow1: "rgba(20, 184, 166, 0.2)",
-      heroGlow2: "rgba(52, 211, 153, 0.12)",
-      success: "#34D399",
-      warning: "#FBBF24",
-      error: "#F87171"
-    }
-  },
-  {
-    id: "theme-5",
-    number: 5,
-    name: "Capital Platinum",
-    category: "High-Trust Fintech",
-    personality: "Cool silver slate with sharp ice blue precision highlights",
-    fontFamily: getCategoryFont("High-Trust Fintech").family,
-    fontName: getCategoryFont("High-Trust Fintech").name,
-    fontGoogleUrl: getCategoryFont("High-Trust Fintech").googleParam,
-    colors: {
-      bg: "#0F172A",
-      primary: "#334155",
-      secondary: "#64748B",
-      accent: "#38BDF8",
-      cardBg: "rgba(30, 41, 59, 0.8)",
-      cardBorder: "rgba(56, 189, 248, 0.25)",
-      textColor: "#F8FAFC",
-      mutedText: "#94A3B8",
-      btnGradient: "linear-gradient(135deg, #0284C7 0%, #38BDF8 100%)",
-      badgeBg: "rgba(56, 189, 248, 0.12)",
-      badgeBorder: "rgba(56, 189, 248, 0.3)",
-      badgeText: "#38BDF8",
-      heroGlow1: "rgba(56, 189, 248, 0.15)",
-      heroGlow2: "rgba(2, 132, 199, 0.12)",
-      success: "#22C55E",
-      warning: "#EAB308",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-6",
-    number: 6,
-    name: "Cobalt Citadel",
-    category: "High-Trust Fintech",
-    personality: "Ultra-solid deep navy fortress with vibrant cobalt blue core",
-    fontFamily: getCategoryFont("High-Trust Fintech").family,
-    fontName: getCategoryFont("High-Trust Fintech").name,
-    fontGoogleUrl: getCategoryFont("High-Trust Fintech").googleParam,
-    colors: {
-      bg: "#090D16",
-      primary: "#1D4ED8",
-      secondary: "#3B82F6",
-      accent: "#60A5FA",
-      cardBg: "rgba(17, 24, 39, 0.85)",
-      cardBorder: "rgba(59, 130, 246, 0.35)",
-      textColor: "#F9FAFB",
-      mutedText: "#9CA3AF",
-      btnGradient: "linear-gradient(135deg, #1D4ED8 0%, #3B82F6 100%)",
-      badgeBg: "rgba(59, 130, 246, 0.15)",
-      badgeBorder: "rgba(59, 130, 246, 0.35)",
-      badgeText: "#60A5FA",
-      heroGlow1: "rgba(29, 78, 216, 0.25)",
-      heroGlow2: "rgba(96, 165, 250, 0.15)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-7",
-    number: 7,
-    name: "Titanium Escrow",
-    category: "High-Trust Fintech",
-    personality: "Industrial security, heavy metallic feel with cyan borders",
-    fontFamily: getCategoryFont("High-Trust Fintech").family,
-    fontName: getCategoryFont("High-Trust Fintech").name,
-    fontGoogleUrl: getCategoryFont("High-Trust Fintech").googleParam,
-    colors: {
-      bg: "#111827",
-      primary: "#374151",
-      secondary: "#4B5563",
-      accent: "#06B6D4",
-      cardBg: "rgba(31, 41, 55, 0.85)",
-      cardBorder: "rgba(6, 182, 212, 0.3)",
-      textColor: "#F9FAFB",
-      mutedText: "#9CA3AF",
-      btnGradient: "linear-gradient(135deg, #0891B2 0%, #06B6D4 100%)",
-      badgeBg: "rgba(6, 182, 212, 0.15)",
-      badgeBorder: "rgba(6, 182, 212, 0.35)",
-      badgeText: "#22D3EE",
-      heroGlow1: "rgba(6, 182, 212, 0.2)",
-      heroGlow2: "rgba(14, 165, 233, 0.12)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-8",
-    number: 8,
-    name: "Prussian Reserve",
-    category: "High-Trust Fintech",
-    personality: "Classic European banking heritage combined with modern UI depth",
-    fontFamily: getCategoryFont("High-Trust Fintech").family,
-    fontName: getCategoryFont("High-Trust Fintech").name,
-    fontGoogleUrl: getCategoryFont("High-Trust Fintech").googleParam,
-    colors: {
-      bg: "#0B132B",
-      primary: "#1C2541",
-      secondary: "#3A506B",
-      accent: "#5BC0BE",
-      cardBg: "rgba(28, 37, 65, 0.85)",
-      cardBorder: "rgba(91, 192, 190, 0.25)",
-      textColor: "#FFFFFF",
-      mutedText: "#A5B4FC",
-      btnGradient: "linear-gradient(135deg, #3A506B 0%, #5BC0BE 100%)",
-      badgeBg: "rgba(91, 192, 190, 0.15)",
-      badgeBorder: "rgba(91, 192, 190, 0.3)",
-      badgeText: "#5BC0BE",
-      heroGlow1: "rgba(91, 192, 190, 0.2)",
-      heroGlow2: "rgba(58, 80, 107, 0.2)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-9",
-    number: 9,
-    name: "Emerald Sovereign",
-    category: "High-Trust Fintech",
-    personality: "Deep rich emerald luxury with gold badge highlights",
-    fontFamily: getCategoryFont("High-Trust Fintech").family,
-    fontName: getCategoryFont("High-Trust Fintech").name,
-    fontGoogleUrl: getCategoryFont("High-Trust Fintech").googleParam,
-    colors: {
-      bg: "#022C22",
-      primary: "#064E3B",
-      secondary: "#047857",
-      accent: "#F59E0B",
-      cardBg: "rgba(6, 78, 59, 0.8)",
-      cardBorder: "rgba(245, 158, 11, 0.3)",
-      textColor: "#ECFDF5",
-      mutedText: "#A7F3D0",
-      btnGradient: "linear-gradient(135deg, #047857 0%, #10B981 100%)",
-      badgeBg: "rgba(245, 158, 11, 0.15)",
-      badgeBorder: "rgba(245, 158, 11, 0.4)",
-      badgeText: "#FBBF24",
-      heroGlow1: "rgba(16, 185, 129, 0.2)",
-      heroGlow2: "rgba(245, 158, 11, 0.15)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-10",
-    number: 10,
-    name: "Alpine Trust",
-    category: "High-Trust Fintech",
-    personality: "Swiss banking crispness with ice turquoise clarity",
-    fontFamily: getCategoryFont("High-Trust Fintech").family,
-    fontName: getCategoryFont("High-Trust Fintech").name,
-    fontGoogleUrl: getCategoryFont("High-Trust Fintech").googleParam,
-    colors: {
-      bg: "#081C24",
-      primary: "#0E3A47",
-      secondary: "#155E75",
-      accent: "#06B6D4",
-      cardBg: "rgba(14, 58, 71, 0.8)",
-      cardBorder: "rgba(6, 182, 212, 0.3)",
-      textColor: "#F0FDFA",
-      mutedText: "#99F6E4",
-      btnGradient: "linear-gradient(135deg, #0891B2 0%, #22D3EE 100%)",
-      badgeBg: "rgba(6, 182, 212, 0.15)",
-      badgeBorder: "rgba(6, 182, 212, 0.35)",
-      badgeText: "#22D3EE",
-      heroGlow1: "rgba(6, 182, 212, 0.2)",
-      heroGlow2: "rgba(34, 211, 238, 0.15)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-
-  // 2. Cyberpunk & Sci-Fi (11-20)
-  {
-    id: "theme-11",
-    number: 11,
-    name: "Neon Gridlock",
-    category: "Cyberpunk & Sci-Fi",
-    personality: "High-contrast cyberpunk grid with magenta and cyan neon luminescence",
-    fontFamily: getCategoryFont("Cyberpunk & Sci-Fi").family,
-    fontName: getCategoryFont("Cyberpunk & Sci-Fi").name,
-    fontGoogleUrl: getCategoryFont("Cyberpunk & Sci-Fi").googleParam,
-    colors: {
-      bg: "#080312",
-      primary: "#7C3AED",
-      secondary: "#DB2777",
-      accent: "#06B6D4",
-      cardBg: "rgba(19, 9, 36, 0.85)",
-      cardBorder: "rgba(219, 39, 119, 0.4)",
-      textColor: "#FDF2F8",
-      mutedText: "#F472B6",
-      btnGradient: "linear-gradient(135deg, #7C3AED 0%, #EC4899 100%)",
-      badgeBg: "rgba(6, 182, 212, 0.2)",
-      badgeBorder: "rgba(6, 182, 212, 0.5)",
-      badgeText: "#22D3EE",
-      heroGlow1: "rgba(219, 39, 119, 0.3)",
-      heroGlow2: "rgba(6, 182, 212, 0.25)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#F43F5E"
-    }
-  },
-  {
-    id: "theme-12",
-    number: 12,
-    name: "Matrix Override",
-    category: "Cyberpunk & Sci-Fi",
-    personality: "Phosphor green terminal matrix vibe on pitch void background",
-    fontFamily: getCategoryFont("Cyberpunk & Sci-Fi").family,
-    fontName: getCategoryFont("Cyberpunk & Sci-Fi").name,
-    fontGoogleUrl: getCategoryFont("Cyberpunk & Sci-Fi").googleParam,
-    colors: {
-      bg: "#030A05",
-      primary: "#052E16",
-      secondary: "#14532D",
-      accent: "#22C55E",
-      cardBg: "rgba(6, 26, 14, 0.9)",
-      cardBorder: "rgba(34, 197, 94, 0.35)",
-      textColor: "#DCFCE7",
-      mutedText: "#4ADE80",
-      btnGradient: "linear-gradient(135deg, #15803D 0%, #22C55E 100%)",
-      badgeBg: "rgba(34, 197, 94, 0.15)",
-      badgeBorder: "rgba(34, 197, 94, 0.4)",
-      badgeText: "#4ADE80",
-      heroGlow1: "rgba(34, 197, 94, 0.25)",
-      heroGlow2: "rgba(74, 222, 128, 0.15)",
-      success: "#22C55E",
-      warning: "#EAB308",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-13",
-    number: 13,
-    name: "Cyber Crimson",
-    category: "Cyberpunk & Sci-Fi",
-    personality: "Tactical red alert sci-fi interface for high-frequency transactions",
-    fontFamily: getCategoryFont("Cyberpunk & Sci-Fi").family,
-    fontName: getCategoryFont("Cyberpunk & Sci-Fi").name,
-    fontGoogleUrl: getCategoryFont("Cyberpunk & Sci-Fi").googleParam,
-    colors: {
-      bg: "#0F0507",
-      primary: "#881337",
-      secondary: "#E11D48",
-      accent: "#FB7185",
-      cardBg: "rgba(28, 9, 15, 0.85)",
-      cardBorder: "rgba(225, 29, 72, 0.4)",
-      textColor: "#FFF1F2",
-      mutedText: "#FDA4AF",
-      btnGradient: "linear-gradient(135deg, #9F1239 0%, #F43F5E 100%)",
-      badgeBg: "rgba(244, 63, 94, 0.2)",
-      badgeBorder: "rgba(244, 63, 94, 0.5)",
-      badgeText: "#FB7185",
-      heroGlow1: "rgba(225, 29, 72, 0.3)",
-      heroGlow2: "rgba(251, 113, 133, 0.2)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#F43F5E"
-    }
-  },
-  {
-    id: "theme-14",
-    number: 14,
-    name: "Synthwave Sunset",
-    category: "Cyberpunk & Sci-Fi",
-    personality: "80s retrofuturistic sunset grid with warm magenta to violet fades",
-    fontFamily: getCategoryFont("Cyberpunk & Sci-Fi").family,
-    fontName: getCategoryFont("Cyberpunk & Sci-Fi").name,
-    fontGoogleUrl: getCategoryFont("Cyberpunk & Sci-Fi").googleParam,
-    colors: {
-      bg: "#18062B",
-      primary: "#581C87",
-      secondary: "#C084FC",
-      accent: "#F43F5E",
-      cardBg: "rgba(38, 12, 64, 0.85)",
-      cardBorder: "rgba(192, 132, 252, 0.35)",
-      textColor: "#FAF5FF",
-      mutedText: "#E9D5FF",
-      btnGradient: "linear-gradient(135deg, #A855F7 0%, #EC4899 100%)",
-      badgeBg: "rgba(244, 63, 94, 0.2)",
-      badgeBorder: "rgba(244, 63, 94, 0.4)",
-      badgeText: "#FB7185",
-      heroGlow1: "rgba(168, 85, 247, 0.3)",
-      heroGlow2: "rgba(236, 72, 153, 0.2)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-15",
-    number: 15,
-    name: "Sub-Zero Cryo",
-    category: "Cyberpunk & Sci-Fi",
-    personality: "Cryogenic sci-fi module with frosted glass ice cyan reflections",
-    fontFamily: getCategoryFont("Cyberpunk & Sci-Fi").family,
-    fontName: getCategoryFont("Cyberpunk & Sci-Fi").name,
-    fontGoogleUrl: getCategoryFont("Cyberpunk & Sci-Fi").googleParam,
-    colors: {
-      bg: "#03141D",
-      primary: "#0C4A6E",
-      secondary: "#0284C7",
-      accent: "#38BDF8",
-      cardBg: "rgba(12, 74, 110, 0.6)",
-      cardBorder: "rgba(56, 189, 248, 0.4)",
-      textColor: "#F0F9FF",
-      mutedText: "#BAE6FD",
-      btnGradient: "linear-gradient(135deg, #0284C7 0%, #38BDF8 100%)",
-      badgeBg: "rgba(56, 189, 248, 0.15)",
-      badgeBorder: "rgba(56, 189, 248, 0.4)",
-      badgeText: "#7DD3FC",
-      heroGlow1: "rgba(56, 189, 248, 0.25)",
-      heroGlow2: "rgba(14, 165, 233, 0.2)",
-      success: "#34D399",
-      warning: "#FBBF24",
-      error: "#F87171"
-    }
-  },
-  {
-    id: "theme-16",
-    number: 16,
-    name: "Akira Neo-Tokyo",
-    category: "Cyberpunk & Sci-Fi",
-    personality: "Hyper-urban Japanese cyberpunk aesthetic with neon orange pop",
-    fontFamily: getCategoryFont("Cyberpunk & Sci-Fi").family,
-    fontName: getCategoryFont("Cyberpunk & Sci-Fi").name,
-    fontGoogleUrl: getCategoryFont("Cyberpunk & Sci-Fi").googleParam,
-    colors: {
-      bg: "#0B0914",
-      primary: "#311B92",
-      secondary: "#FF6D00",
-      accent: "#FFD600",
-      cardBg: "rgba(20, 16, 38, 0.85)",
-      cardBorder: "rgba(255, 109, 0, 0.4)",
-      textColor: "#FFF8E1",
-      mutedText: "#FFB74D",
-      btnGradient: "linear-gradient(135deg, #FF6D00 0%, #FF9100 100%)",
-      badgeBg: "rgba(255, 214, 0, 0.15)",
-      badgeBorder: "rgba(255, 214, 0, 0.4)",
-      badgeText: "#FFD600",
-      heroGlow1: "rgba(255, 109, 0, 0.3)",
-      heroGlow2: "rgba(255, 214, 0, 0.2)",
-      success: "#00E676",
-      warning: "#FF9100",
-      error: "#FF1744"
-    }
-  },
-  {
-    id: "theme-17",
-    number: 17,
-    name: "Quantum Void",
-    category: "Cyberpunk & Sci-Fi",
-    personality: "Deep space particle physics chamber with electric ultraviolet beams",
-    fontFamily: getCategoryFont("Cyberpunk & Sci-Fi").family,
-    fontName: getCategoryFont("Cyberpunk & Sci-Fi").name,
-    fontGoogleUrl: getCategoryFont("Cyberpunk & Sci-Fi").googleParam,
-    colors: {
-      bg: "#050014",
-      primary: "#2E0854",
-      secondary: "#8B5CF6",
-      accent: "#C084FC",
-      cardBg: "rgba(20, 5, 45, 0.85)",
-      cardBorder: "rgba(139, 92, 246, 0.4)",
-      textColor: "#F5F3FF",
-      mutedText: "#DDD6FE",
-      btnGradient: "linear-gradient(135deg, #7C3AED 0%, #C084FC 100%)",
-      badgeBg: "rgba(192, 132, 252, 0.18)",
-      badgeBorder: "rgba(192, 132, 252, 0.4)",
-      badgeText: "#E9D5FF",
-      heroGlow1: "rgba(139, 92, 246, 0.3)",
-      heroGlow2: "rgba(192, 132, 252, 0.2)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-18",
-    number: 18,
-    name: "Solar Flare",
-    category: "Cyberpunk & Sci-Fi",
-    personality: "Intense coronal mass ejection theme with blinding amber plasma glow",
-    fontFamily: getCategoryFont("Cyberpunk & Sci-Fi").family,
-    fontName: getCategoryFont("Cyberpunk & Sci-Fi").name,
-    fontGoogleUrl: getCategoryFont("Cyberpunk & Sci-Fi").googleParam,
-    colors: {
-      bg: "#140700",
-      primary: "#7C2D12",
-      secondary: "#EA580C",
-      accent: "#F97316",
-      cardBg: "rgba(36, 14, 3, 0.85)",
-      cardBorder: "rgba(234, 88, 12, 0.4)",
-      textColor: "#FFF7ED",
-      mutedText: "#FDBA74",
-      btnGradient: "linear-gradient(135deg, #C2410C 0%, #F97316 100%)",
-      badgeBg: "rgba(249, 115, 22, 0.18)",
-      badgeBorder: "rgba(249, 115, 22, 0.4)",
-      badgeText: "#FFEDD5",
-      heroGlow1: "rgba(234, 88, 12, 0.3)",
-      heroGlow2: "rgba(249, 115, 22, 0.2)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-19",
-    number: 19,
-    name: "Holographic Prism",
-    category: "Cyberpunk & Sci-Fi",
-    personality: "Multi-spectrum holographic glass interface with iridescent edge shifts",
-    fontFamily: getCategoryFont("Cyberpunk & Sci-Fi").family,
-    fontName: getCategoryFont("Cyberpunk & Sci-Fi").name,
-    fontGoogleUrl: getCategoryFont("Cyberpunk & Sci-Fi").googleParam,
-    colors: {
-      bg: "#0A0D1B",
-      primary: "#1E1B4B",
-      secondary: "#6366F1",
-      accent: "#38BDF8",
-      cardBg: "rgba(25, 28, 55, 0.75)",
-      cardBorder: "rgba(99, 102, 241, 0.4)",
-      textColor: "#EEF2FF",
-      mutedText: "#C7D2FE",
-      btnGradient: "linear-gradient(135deg, #4F46E5 0%, #06B6D4 100%)",
-      badgeBg: "rgba(56, 189, 248, 0.15)",
-      badgeBorder: "rgba(56, 189, 248, 0.4)",
-      badgeText: "#38BDF8",
-      heroGlow1: "rgba(99, 102, 241, 0.25)",
-      heroGlow2: "rgba(6, 182, 212, 0.2)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-20",
-    number: 20,
-    name: "Bio-Luminescent Deep",
-    category: "Cyberpunk & Sci-Fi",
-    personality: "Abyssal trench marine organism teal-emerald pulsing radiance",
-    fontFamily: getCategoryFont("Cyberpunk & Sci-Fi").family,
-    fontName: getCategoryFont("Cyberpunk & Sci-Fi").name,
-    fontGoogleUrl: getCategoryFont("Cyberpunk & Sci-Fi").googleParam,
-    colors: {
-      bg: "#01161B",
-      primary: "#042F2E",
-      secondary: "#0D9488",
-      accent: "#2DD4BF",
-      cardBg: "rgba(5, 46, 44, 0.8)",
-      cardBorder: "rgba(45, 212, 191, 0.35)",
-      textColor: "#F0FDFA",
-      mutedText: "#99F6E4",
-      btnGradient: "linear-gradient(135deg, #0F766E 0%, #2DD4BF 100%)",
-      badgeBg: "rgba(45, 212, 191, 0.15)",
-      badgeBorder: "rgba(45, 212, 191, 0.4)",
-      badgeText: "#5EEAD4",
-      heroGlow1: "rgba(13, 148, 136, 0.25)",
-      heroGlow2: "rgba(45, 212, 191, 0.2)",
-      success: "#2DD4BF",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-
-  // 3. Dark Luxury & Obsidian (21-30)
-  {
-    id: "theme-21",
-    number: 21,
-    name: "Champagne Velvet",
-    category: "Dark Luxury & Obsidian",
-    personality: "Ultra-luxury VIP private banking with soft champagne silk highlights",
-    fontFamily: getCategoryFont("Dark Luxury & Obsidian").family,
-    fontName: getCategoryFont("Dark Luxury & Obsidian").name,
-    fontGoogleUrl: getCategoryFont("Dark Luxury & Obsidian").googleParam,
-    colors: {
-      bg: "#0E0C0A",
-      primary: "#26201A",
-      secondary: "#8C7355",
-      accent: "#E6C594",
-      cardBg: "rgba(28, 24, 20, 0.85)",
-      cardBorder: "rgba(230, 197, 148, 0.25)",
-      textColor: "#FDFBF7",
-      mutedText: "#C5B8A5",
-      btnGradient: "linear-gradient(135deg, #8C7355 0%, #E6C594 100%)",
-      badgeBg: "rgba(230, 197, 148, 0.15)",
-      badgeBorder: "rgba(230, 197, 148, 0.35)",
-      badgeText: "#E6C594",
-      heroGlow1: "rgba(230, 197, 148, 0.15)",
-      heroGlow2: "rgba(140, 115, 85, 0.12)",
-      success: "#10B981",
-      warning: "#E6C594",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-22",
-    number: 22,
-    name: "Rose Quartz Gold",
-    category: "Dark Luxury & Obsidian",
-    personality: "Sophisticated blush bronze and rose gold accents over ebony base",
-    fontFamily: getCategoryFont("Dark Luxury & Obsidian").family,
-    fontName: getCategoryFont("Dark Luxury & Obsidian").name,
-    fontGoogleUrl: getCategoryFont("Dark Luxury & Obsidian").googleParam,
-    colors: {
-      bg: "#120B0E",
-      primary: "#2D1B22",
-      secondary: "#9E5A73",
-      accent: "#F4B8C7",
-      cardBg: "rgba(33, 20, 26, 0.85)",
-      cardBorder: "rgba(244, 184, 199, 0.25)",
-      textColor: "#FFF5F7",
-      mutedText: "#D8A3B2",
-      btnGradient: "linear-gradient(135deg, #9E5A73 0%, #F4B8C7 100%)",
-      badgeBg: "rgba(244, 184, 199, 0.15)",
-      badgeBorder: "rgba(244, 184, 199, 0.35)",
-      badgeText: "#F4B8C7",
-      heroGlow1: "rgba(244, 184, 199, 0.18)",
-      heroGlow2: "rgba(158, 90, 115, 0.15)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-23",
-    number: 23,
-    name: "Black Card Onyx",
-    category: "Dark Luxury & Obsidian",
-    personality: "Exclusive invite-only credit card aesthetic, matte black with silver trim",
-    fontFamily: getCategoryFont("Dark Luxury & Obsidian").family,
-    fontName: getCategoryFont("Dark Luxury & Obsidian").name,
-    fontGoogleUrl: getCategoryFont("Dark Luxury & Obsidian").googleParam,
-    colors: {
-      bg: "#050505",
-      primary: "#171717",
-      secondary: "#404040",
-      accent: "#E5E5E5",
-      cardBg: "rgba(23, 23, 23, 0.9)",
-      cardBorder: "rgba(229, 229, 229, 0.2)",
-      textColor: "#FAFAFA",
-      mutedText: "#A3A3A3",
-      btnGradient: "linear-gradient(135deg, #404040 0%, #737373 100%)",
-      badgeBg: "rgba(229, 229, 229, 0.12)",
-      badgeBorder: "rgba(229, 229, 229, 0.3)",
-      badgeText: "#FAFAFA",
-      heroGlow1: "rgba(255, 255, 255, 0.08)",
-      heroGlow2: "rgba(115, 115, 115, 0.08)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-24",
-    number: 24,
-    name: "Imperial Amethyst",
-    category: "Dark Luxury & Obsidian",
-    personality: "Royal deep purple and gold trim, aristocratic high-end finance",
-    fontFamily: getCategoryFont("Dark Luxury & Obsidian").family,
-    fontName: getCategoryFont("Dark Luxury & Obsidian").name,
-    fontGoogleUrl: getCategoryFont("Dark Luxury & Obsidian").googleParam,
-    colors: {
-      bg: "#0D0814",
-      primary: "#261438",
-      secondary: "#6B21A8",
-      accent: "#FBBF24",
-      cardBg: "rgba(30, 16, 44, 0.85)",
-      cardBorder: "rgba(251, 191, 36, 0.3)",
-      textColor: "#FAF5FF",
-      mutedText: "#D8B4FE",
-      btnGradient: "linear-gradient(135deg, #6B21A8 0%, #A855F7 100%)",
-      badgeBg: "rgba(251, 191, 36, 0.15)",
-      badgeBorder: "rgba(251, 191, 36, 0.4)",
-      badgeText: "#FCD34D",
-      heroGlow1: "rgba(107, 33, 168, 0.25)",
-      heroGlow2: "rgba(251, 191, 36, 0.15)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-25",
-    number: 25,
-    name: "Mayfair Midnight",
-    category: "Dark Luxury & Obsidian",
-    personality: "London private club vibe with rich mahogany undertones and warm amber",
-    fontFamily: getCategoryFont("Dark Luxury & Obsidian").family,
-    fontName: getCategoryFont("Dark Luxury & Obsidian").name,
-    fontGoogleUrl: getCategoryFont("Dark Luxury & Obsidian").googleParam,
-    colors: {
-      bg: "#0F0B09",
-      primary: "#2B1A12",
-      secondary: "#78350F",
-      accent: "#F59E0B",
-      cardBg: "rgba(33, 20, 14, 0.85)",
-      cardBorder: "rgba(245, 158, 11, 0.25)",
-      textColor: "#FFFBEB",
-      mutedText: "#FDE68A",
-      btnGradient: "linear-gradient(135deg, #78350F 0%, #D97706 100%)",
-      badgeBg: "rgba(245, 158, 11, 0.15)",
-      badgeBorder: "rgba(245, 158, 11, 0.35)",
-      badgeText: "#FBBF24",
-      heroGlow1: "rgba(245, 158, 11, 0.18)",
-      heroGlow2: "rgba(120, 53, 15, 0.15)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-26",
-    number: 26,
-    name: "Patek Platinum",
-    category: "Dark Luxury & Obsidian",
-    personality: "Horology craftsmanship luxury, polished slate with steel-blue hands",
-    fontFamily: getCategoryFont("Dark Luxury & Obsidian").family,
-    fontName: getCategoryFont("Dark Luxury & Obsidian").name,
-    fontGoogleUrl: getCategoryFont("Dark Luxury & Obsidian").googleParam,
-    colors: {
-      bg: "#0B0E14",
-      primary: "#1E293B",
-      secondary: "#475569",
-      accent: "#94A3B8",
-      cardBg: "rgba(24, 33, 47, 0.85)",
-      cardBorder: "rgba(148, 163, 184, 0.3)",
-      textColor: "#F8FAFC",
-      mutedText: "#CBD5E1",
-      btnGradient: "linear-gradient(135deg, #334155 0%, #64748B 100%)",
-      badgeBg: "rgba(148, 163, 184, 0.15)",
-      badgeBorder: "rgba(148, 163, 184, 0.35)",
-      badgeText: "#E2E8F0",
-      heroGlow1: "rgba(148, 163, 184, 0.15)",
-      heroGlow2: "rgba(71, 85, 105, 0.15)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-27",
-    number: 27,
-    name: "Bronze Sovereign",
-    category: "Dark Luxury & Obsidian",
-    personality: "Patinated architectural bronze with warm burnished highlights",
-    fontFamily: getCategoryFont("Dark Luxury & Obsidian").family,
-    fontName: getCategoryFont("Dark Luxury & Obsidian").name,
-    fontGoogleUrl: getCategoryFont("Dark Luxury & Obsidian").googleParam,
-    colors: {
-      bg: "#100D0A",
-      primary: "#2A1F18",
-      secondary: "#6E472D",
-      accent: "#D48B54",
-      cardBg: "rgba(32, 24, 18, 0.85)",
-      cardBorder: "rgba(212, 139, 84, 0.3)",
-      textColor: "#FDF8F5",
-      mutedText: "#D1BCAE",
-      btnGradient: "linear-gradient(135deg, #6E472D 0%, #D48B54 100%)",
-      badgeBg: "rgba(212, 139, 84, 0.15)",
-      badgeBorder: "rgba(212, 139, 84, 0.35)",
-      badgeText: "#E5AA7E",
-      heroGlow1: "rgba(212, 139, 84, 0.18)",
-      heroGlow2: "rgba(110, 71, 45, 0.15)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-28",
-    number: 28,
-    name: "Obsidian Pearl",
-    category: "Dark Luxury & Obsidian",
-    personality: "Glossy black pearl iridescence with subtle mauve reflections",
-    fontFamily: getCategoryFont("Dark Luxury & Obsidian").family,
-    fontName: getCategoryFont("Dark Luxury & Obsidian").name,
-    fontGoogleUrl: getCategoryFont("Dark Luxury & Obsidian").googleParam,
-    colors: {
-      bg: "#0B0A0F",
-      primary: "#1B1724",
-      secondary: "#4C3B5C",
-      accent: "#C3B1E1",
-      cardBg: "rgba(24, 20, 31, 0.85)",
-      cardBorder: "rgba(195, 177, 225, 0.25)",
-      textColor: "#FAF8FF",
-      mutedText: "#B6A7CA",
-      btnGradient: "linear-gradient(135deg, #4C3B5C 0%, #7E6396 100%)",
-      badgeBg: "rgba(195, 177, 225, 0.15)",
-      badgeBorder: "rgba(195, 177, 225, 0.35)",
-      badgeText: "#D8CCEE",
-      heroGlow1: "rgba(195, 177, 225, 0.15)",
-      heroGlow2: "rgba(76, 59, 92, 0.15)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-29",
-    number: 29,
-    name: "Tuscan Walnut",
-    category: "Dark Luxury & Obsidian",
-    personality: "Italian leather goods aesthetic, espresso base with terracotta accents",
-    fontFamily: getCategoryFont("Dark Luxury & Obsidian").family,
-    fontName: getCategoryFont("Dark Luxury & Obsidian").name,
-    fontGoogleUrl: getCategoryFont("Dark Luxury & Obsidian").googleParam,
-    colors: {
-      bg: "#0D0907",
-      primary: "#281B14",
-      secondary: "#7C3F26",
-      accent: "#E07A5F",
-      cardBg: "rgba(30, 20, 15, 0.85)",
-      cardBorder: "rgba(224, 122, 95, 0.3)",
-      textColor: "#FAF0EC",
-      mutedText: "#D3B2A5",
-      btnGradient: "linear-gradient(135deg, #7C3F26 0%, #E07A5F 100%)",
-      badgeBg: "rgba(224, 122, 95, 0.15)",
-      badgeBorder: "rgba(224, 122, 95, 0.35)",
-      badgeText: "#F4A261",
-      heroGlow1: "rgba(224, 122, 95, 0.18)",
-      heroGlow2: "rgba(124, 63, 38, 0.15)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-30",
-    number: 30,
-    name: "Venetian Velvet",
-    category: "Dark Luxury & Obsidian",
-    personality: "Deep burgundy luxury with warm copper wire frame details",
-    fontFamily: getCategoryFont("Dark Luxury & Obsidian").family,
-    fontName: getCategoryFont("Dark Luxury & Obsidian").name,
-    fontGoogleUrl: getCategoryFont("Dark Luxury & Obsidian").googleParam,
-    colors: {
-      bg: "#100508",
-      primary: "#310A14",
-      secondary: "#80132A",
-      accent: "#E85D75",
-      cardBg: "rgba(36, 9, 17, 0.85)",
-      cardBorder: "rgba(232, 93, 117, 0.3)",
-      textColor: "#FFF0F3",
-      mutedText: "#D69AA6",
-      btnGradient: "linear-gradient(135deg, #80132A 0%, #C9184A 100%)",
-      badgeBg: "rgba(232, 93, 117, 0.15)",
-      badgeBorder: "rgba(232, 93, 117, 0.35)",
-      badgeText: "#FF758F",
-      heroGlow1: "rgba(232, 93, 117, 0.2)",
-      heroGlow2: "rgba(128, 19, 42, 0.15)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-
-  // 4. Neon & Synthesizer (31-40)
-  {
-    id: "theme-31",
-    number: 31,
-    name: "Electric Violet",
-    category: "Neon & Synthesizer",
-    personality: "Vibrant electro-pop theme with pulsing neon violet and electric pink",
-    fontFamily: getCategoryFont("Neon & Synthesizer").family,
-    fontName: getCategoryFont("Neon & Synthesizer").name,
-    fontGoogleUrl: getCategoryFont("Neon & Synthesizer").googleParam,
-    colors: {
-      bg: "#0A0118",
-      primary: "#4C1D95",
-      secondary: "#8B5CF6",
-      accent: "#F43F5E",
-      cardBg: "rgba(26, 9, 52, 0.85)",
-      cardBorder: "rgba(139, 92, 246, 0.45)",
-      textColor: "#F5F3FF",
-      mutedText: "#C4B5FD",
-      btnGradient: "linear-gradient(135deg, #7C3AED 0%, #F43F5E 100%)",
-      badgeBg: "rgba(244, 63, 94, 0.2)",
-      badgeBorder: "rgba(244, 63, 94, 0.5)",
-      badgeText: "#FB7185",
-      heroGlow1: "rgba(139, 92, 246, 0.35)",
-      heroGlow2: "rgba(244, 63, 94, 0.25)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-32",
-    number: 32,
-    name: "Acid Lime Pulse",
-    category: "Neon & Synthesizer",
-    personality: "Ultra-modern club synth aesthetic with blinding acid lime accents",
-    fontFamily: getCategoryFont("Neon & Synthesizer").family,
-    fontName: getCategoryFont("Neon & Synthesizer").name,
-    fontGoogleUrl: getCategoryFont("Neon & Synthesizer").googleParam,
-    colors: {
-      bg: "#070F03",
-      primary: "#1A3A07",
-      secondary: "#4D7C0F",
-      accent: "#84CC16",
-      cardBg: "rgba(18, 38, 8, 0.85)",
-      cardBorder: "rgba(132, 204, 22, 0.4)",
-      textColor: "#F7FEE7",
-      mutedText: "#BEF264",
-      btnGradient: "linear-gradient(135deg, #4D7C0F 0%, #84CC16 100%)",
-      badgeBg: "rgba(132, 204, 22, 0.18)",
-      badgeBorder: "rgba(132, 204, 22, 0.45)",
-      badgeText: "#A3E635",
-      heroGlow1: "rgba(132, 204, 22, 0.3)",
-      heroGlow2: "rgba(77, 124, 15, 0.2)",
-      success: "#84CC16",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-33",
-    number: 33,
-    name: "Cyber Coral Glow",
-    category: "Neon & Synthesizer",
-    personality: "Vibrant coral and turquoise neon pairing, tropical synthesizer feel",
-    fontFamily: getCategoryFont("Neon & Synthesizer").family,
-    fontName: getCategoryFont("Neon & Synthesizer").name,
-    fontGoogleUrl: getCategoryFont("Neon & Synthesizer").googleParam,
-    colors: {
-      bg: "#0B0813",
-      primary: "#3B0764",
-      secondary: "#F43F5E",
-      accent: "#2DD4BF",
-      cardBg: "rgba(24, 10, 38, 0.85)",
-      cardBorder: "rgba(244, 63, 94, 0.4)",
-      textColor: "#FFF1F2",
-      mutedText: "#FDA4AF",
-      btnGradient: "linear-gradient(135deg, #F43F5E 0%, #2DD4BF 100%)",
-      badgeBg: "rgba(45, 212, 191, 0.18)",
-      badgeBorder: "rgba(45, 212, 191, 0.45)",
-      badgeText: "#5EEAD4",
-      heroGlow1: "rgba(244, 63, 94, 0.3)",
-      heroGlow2: "rgba(45, 212, 191, 0.25)",
-      success: "#2DD4BF",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-34",
-    number: 34,
-    name: "Laser Amber",
-    category: "Neon & Synthesizer",
-    personality: "Laser tag arena amber beam with deep charcoal contrast",
-    fontFamily: getCategoryFont("Neon & Synthesizer").family,
-    fontName: getCategoryFont("Neon & Synthesizer").name,
-    fontGoogleUrl: getCategoryFont("Neon & Synthesizer").googleParam,
-    colors: {
-      bg: "#0D0900",
-      primary: "#451A03",
-      secondary: "#D97706",
-      accent: "#FBBF24",
-      cardBg: "rgba(30, 18, 2, 0.85)",
-      cardBorder: "rgba(251, 191, 36, 0.4)",
-      textColor: "#FEF3C7",
-      mutedText: "#FCD34D",
-      btnGradient: "linear-gradient(135deg, #B45309 0%, #FBBF24 100%)",
-      badgeBg: "rgba(251, 191, 36, 0.18)",
-      badgeBorder: "rgba(251, 191, 36, 0.45)",
-      badgeText: "#FDE68A",
-      heroGlow1: "rgba(251, 191, 36, 0.3)",
-      heroGlow2: "rgba(217, 119, 6, 0.2)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-35",
-    number: 35,
-    name: "Vaporwave Dream",
-    category: "Neon & Synthesizer",
-    personality: "Pastel synth aesthetic with lavender clouds and soft cyan neon glow",
-    fontFamily: getCategoryFont("Neon & Synthesizer").family,
-    fontName: getCategoryFont("Neon & Synthesizer").name,
-    fontGoogleUrl: getCategoryFont("Neon & Synthesizer").googleParam,
-    colors: {
-      bg: "#100926",
-      primary: "#3B1578",
-      secondary: "#A855F7",
-      accent: "#38BDF8",
-      cardBg: "rgba(29, 17, 61, 0.85)",
-      cardBorder: "rgba(168, 85, 247, 0.4)",
-      textColor: "#FAF5FF",
-      mutedText: "#E9D5FF",
-      btnGradient: "linear-gradient(135deg, #8B5CF6 0%, #38BDF8 100%)",
-      badgeBg: "rgba(56, 189, 248, 0.18)",
-      badgeBorder: "rgba(56, 189, 248, 0.45)",
-      badgeText: "#7DD3FC",
-      heroGlow1: "rgba(168, 85, 247, 0.3)",
-      heroGlow2: "rgba(56, 189, 248, 0.2)",
-      success: "#34D399",
-      warning: "#FBBF24",
-      error: "#F87171"
-    }
-  },
-  {
-    id: "theme-36",
-    number: 36,
-    name: "Hyperdrive Cyan",
-    category: "Neon & Synthesizer",
-    personality: "Warp speed star trail cyan streaks over pitch black space",
-    fontFamily: getCategoryFont("Neon & Synthesizer").family,
-    fontName: getCategoryFont("Neon & Synthesizer").name,
-    fontGoogleUrl: getCategoryFont("Neon & Synthesizer").googleParam,
-    colors: {
-      bg: "#020B14",
-      primary: "#075985",
-      secondary: "#0284C7",
-      accent: "#38BDF8",
-      cardBg: "rgba(7, 43, 68, 0.85)",
-      cardBorder: "rgba(56, 189, 248, 0.4)",
-      textColor: "#F0F9FF",
-      mutedText: "#7DD3FC",
-      btnGradient: "linear-gradient(135deg, #0369A1 0%, #38BDF8 100%)",
-      badgeBg: "rgba(56, 189, 248, 0.18)",
-      badgeBorder: "rgba(56, 189, 248, 0.45)",
-      badgeText: "#BAE6FD",
-      heroGlow1: "rgba(56, 189, 248, 0.3)",
-      heroGlow2: "rgba(2, 132, 199, 0.2)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-37",
-    number: 37,
-    name: "Tokyo Hotline",
-    category: "Neon & Synthesizer",
-    personality: "Late night arcade glow with magenta hotline pink borders",
-    fontFamily: getCategoryFont("Neon & Synthesizer").family,
-    fontName: getCategoryFont("Neon & Synthesizer").name,
-    fontGoogleUrl: getCategoryFont("Neon & Synthesizer").googleParam,
-    colors: {
-      bg: "#12030E",
-      primary: "#701A75",
-      secondary: "#C026D3",
-      accent: "#F472B6",
-      cardBg: "rgba(38, 9, 44, 0.85)",
-      cardBorder: "rgba(192, 38, 211, 0.4)",
-      textColor: "#FDF4FF",
-      mutedText: "#F5D0FE",
-      btnGradient: "linear-gradient(135deg, #A21CAF 0%, #E879F9 100%)",
-      badgeBg: "rgba(244, 114, 182, 0.18)",
-      badgeBorder: "rgba(244, 114, 182, 0.45)",
-      badgeText: "#FBCFE8",
-      heroGlow1: "rgba(192, 38, 211, 0.3)",
-      heroGlow2: "rgba(244, 114, 182, 0.2)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-38",
-    number: 38,
-    name: "Plasma Surge",
-    category: "Neon & Synthesizer",
-    personality: "Ionized gas plasma glow with vivid electric blue-green discharge",
-    fontFamily: getCategoryFont("Neon & Synthesizer").family,
-    fontName: getCategoryFont("Neon & Synthesizer").name,
-    fontGoogleUrl: getCategoryFont("Neon & Synthesizer").googleParam,
-    colors: {
-      bg: "#02120D",
-      primary: "#064E3B",
-      secondary: "#059669",
-      accent: "#34D399",
-      cardBg: "rgba(7, 48, 36, 0.85)",
-      cardBorder: "rgba(52, 211, 153, 0.4)",
-      textColor: "#ECFDF5",
-      mutedText: "#6EE7B7",
-      btnGradient: "linear-gradient(135deg, #047857 0%, #34D399 100%)",
-      badgeBg: "rgba(52, 211, 153, 0.18)",
-      badgeBorder: "rgba(52, 211, 153, 0.45)",
-      badgeText: "#A7F3D0",
-      heroGlow1: "rgba(52, 211, 153, 0.3)",
-      heroGlow2: "rgba(5, 150, 105, 0.2)",
-      success: "#34D399",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-39",
-    number: 39,
-    name: "Inferno Synth",
-    category: "Neon & Synthesizer",
-    personality: "Searing lava synth atmosphere with bright blood orange sparks",
-    fontFamily: getCategoryFont("Neon & Synthesizer").family,
-    fontName: getCategoryFont("Neon & Synthesizer").name,
-    fontGoogleUrl: getCategoryFont("Neon & Synthesizer").googleParam,
-    colors: {
-      bg: "#170303",
-      primary: "#7F1D1D",
-      secondary: "#DC2626",
-      accent: "#F97316",
-      cardBg: "rgba(43, 9, 9, 0.85)",
-      cardBorder: "rgba(220, 38, 38, 0.4)",
-      textColor: "#FEF2F2",
-      mutedText: "#FCA5A5",
-      btnGradient: "linear-gradient(135deg, #B91C1C 0%, #EF4444 100%)",
-      badgeBg: "rgba(249, 115, 22, 0.18)",
-      badgeBorder: "rgba(249, 115, 22, 0.45)",
-      badgeText: "#FDBA74",
-      heroGlow1: "rgba(220, 38, 38, 0.3)",
-      heroGlow2: "rgba(249, 115, 22, 0.2)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-40",
-    number: 40,
-    name: "Ultraviolet Ray",
-    category: "Neon & Synthesizer",
-    personality: "Blacklight glow with fluorescing violet and neon teal contrasts",
-    fontFamily: getCategoryFont("Neon & Synthesizer").family,
-    fontName: getCategoryFont("Neon & Synthesizer").name,
-    fontGoogleUrl: getCategoryFont("Neon & Synthesizer").googleParam,
-    colors: {
-      bg: "#07021A",
-      primary: "#3B0764",
-      secondary: "#7E22CE",
-      accent: "#22D3EE",
-      cardBg: "rgba(24, 7, 50, 0.85)",
-      cardBorder: "rgba(126, 34, 206, 0.45)",
-      textColor: "#FAF5FF",
-      mutedText: "#DDD6FE",
-      btnGradient: "linear-gradient(135deg, #6B21A8 0%, #06B6D4 100%)",
-      badgeBg: "rgba(34, 211, 238, 0.18)",
-      badgeBorder: "rgba(34, 211, 238, 0.45)",
-      badgeText: "#A5F3FC",
-      heroGlow1: "rgba(126, 34, 206, 0.35)",
-      heroGlow2: "rgba(34, 211, 238, 0.25)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-
-  // 5. Neo-Brutalist & Bold (41-50)
-  {
-    id: "theme-41",
-    number: 41,
-    name: "High Voltage Industrial",
-    category: "Neo-Brutalist & Bold",
-    personality: "Heavy industrial contrast, hazard yellow accents on dark cast iron",
-    fontFamily: getCategoryFont("Neo-Brutalist & Bold").family,
-    fontName: getCategoryFont("Neo-Brutalist & Bold").name,
-    fontGoogleUrl: getCategoryFont("Neo-Brutalist & Bold").googleParam,
-    colors: {
-      bg: "#121212",
-      primary: "#262626",
-      secondary: "#EAB308",
-      accent: "#FACC15",
-      cardBg: "rgba(38, 38, 38, 0.95)",
-      cardBorder: "rgba(250, 204, 21, 0.6)",
-      textColor: "#FFFFFF",
-      mutedText: "#D4D4D4",
-      btnGradient: "linear-gradient(135deg, #CA8A04 0%, #FACC15 100%)",
-      badgeBg: "rgba(250, 204, 21, 0.25)",
-      badgeBorder: "rgba(250, 204, 21, 0.7)",
-      badgeText: "#FEF08A",
-      heroGlow1: "rgba(250, 204, 21, 0.2)",
-      heroGlow2: "rgba(234, 179, 8, 0.15)",
-      success: "#22C55E",
-      warning: "#FACC15",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-42",
-    number: 42,
-    name: "Tactical Concrete",
-    category: "Neo-Brutalist & Bold",
-    personality: "Raw concrete grey foundation with high-visibility safety orange",
-    fontFamily: getCategoryFont("Neo-Brutalist & Bold").family,
-    fontName: getCategoryFont("Neo-Brutalist & Bold").name,
-    fontGoogleUrl: getCategoryFont("Neo-Brutalist & Bold").googleParam,
-    colors: {
-      bg: "#1C1917",
-      primary: "#292524",
-      secondary: "#F97316",
-      accent: "#FB923C",
-      cardBg: "rgba(41, 37, 36, 0.95)",
-      cardBorder: "rgba(249, 115, 22, 0.5)",
-      textColor: "#FAFAF9",
-      mutedText: "#D6D3D1",
-      btnGradient: "linear-gradient(135deg, #EA580C 0%, #FB923C 100%)",
-      badgeBg: "rgba(249, 115, 22, 0.2)",
-      badgeBorder: "rgba(249, 115, 22, 0.6)",
-      badgeText: "#FFEDD5",
-      heroGlow1: "rgba(249, 115, 22, 0.2)",
-      heroGlow2: "rgba(234, 88, 12, 0.15)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-43",
-    number: 43,
-    name: "Architectural Slate",
-    category: "Neo-Brutalist & Bold",
-    personality: "Monolithic architectural blueprint with crisp electric blue trim",
-    fontFamily: getCategoryFont("Neo-Brutalist & Bold").family,
-    fontName: getCategoryFont("Neo-Brutalist & Bold").name,
-    fontGoogleUrl: getCategoryFont("Neo-Brutalist & Bold").googleParam,
-    colors: {
-      bg: "#0F172A",
-      primary: "#1E293B",
-      secondary: "#2563EB",
-      accent: "#60A5FA",
-      cardBg: "rgba(30, 41, 59, 0.95)",
-      cardBorder: "rgba(37, 99, 235, 0.5)",
-      textColor: "#F8FAFC",
-      mutedText: "#CBD5E1",
-      btnGradient: "linear-gradient(135deg, #1D4ED8 0%, #3B82F6 100%)",
-      badgeBg: "rgba(96, 165, 250, 0.2)",
-      badgeBorder: "rgba(96, 165, 250, 0.6)",
-      badgeText: "#BFDBFE",
-      heroGlow1: "rgba(37, 99, 235, 0.25)",
-      heroGlow2: "rgba(96, 165, 250, 0.15)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-44",
-    number: 44,
-    name: "Monochrome Impact",
-    category: "Neo-Brutalist & Bold",
-    personality: "Stark black-and-white editorial contrast with sharp structural lines",
-    fontFamily: getCategoryFont("Neo-Brutalist & Bold").family,
-    fontName: getCategoryFont("Neo-Brutalist & Bold").name,
-    fontGoogleUrl: getCategoryFont("Neo-Brutalist & Bold").googleParam,
-    colors: {
-      bg: "#0A0A0A",
-      primary: "#262626",
-      secondary: "#525252",
-      accent: "#FFFFFF",
-      cardBg: "rgba(23, 23, 23, 0.95)",
-      cardBorder: "rgba(255, 255, 255, 0.4)",
-      textColor: "#FFFFFF",
-      mutedText: "#A3A3A3",
-      btnGradient: "linear-gradient(135deg, #525252 0%, #A3A3A3 100%)",
-      badgeBg: "rgba(255, 255, 255, 0.15)",
-      badgeBorder: "rgba(255, 255, 255, 0.5)",
-      badgeText: "#FFFFFF",
-      heroGlow1: "rgba(255, 255, 255, 0.12)",
-      heroGlow2: "rgba(163, 163, 163, 0.1)",
-      success: "#22C55E",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-45",
-    number: 45,
-    name: "Signal Red Command",
-    category: "Neo-Brutalist & Bold",
-    personality: "Command center aesthetic with heavy signal red accents",
-    fontFamily: getCategoryFont("Neo-Brutalist & Bold").family,
-    fontName: getCategoryFont("Neo-Brutalist & Bold").name,
-    fontGoogleUrl: getCategoryFont("Neo-Brutalist & Bold").googleParam,
-    colors: {
-      bg: "#140A0C",
-      primary: "#2C1217",
-      secondary: "#DC2626",
-      accent: "#EF4444",
-      cardBg: "rgba(38, 16, 21, 0.95)",
-      cardBorder: "rgba(220, 38, 38, 0.5)",
-      textColor: "#FEF2F2",
-      mutedText: "#FCA5A5",
-      btnGradient: "linear-gradient(135deg, #991B1B 0%, #EF4444 100%)",
-      badgeBg: "rgba(239, 68, 68, 0.2)",
-      badgeBorder: "rgba(239, 68, 68, 0.6)",
-      badgeText: "#FEE2E2",
-      heroGlow1: "rgba(220, 38, 38, 0.25)",
-      heroGlow2: "rgba(239, 68, 68, 0.15)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-46",
-    number: 46,
-    name: "Radar Emerald",
-    category: "Neo-Brutalist & Bold",
-    personality: "Military sonar screen contrast with thick emerald borders",
-    fontFamily: getCategoryFont("Neo-Brutalist & Bold").family,
-    fontName: getCategoryFont("Neo-Brutalist & Bold").name,
-    fontGoogleUrl: getCategoryFont("Neo-Brutalist & Bold").googleParam,
-    colors: {
-      bg: "#051610",
-      primary: "#0B2E22",
-      secondary: "#059669",
-      accent: "#10B981",
-      cardBg: "rgba(11, 46, 34, 0.95)",
-      cardBorder: "rgba(16, 185, 129, 0.5)",
-      textColor: "#ECFDF5",
-      mutedText: "#6EE7B7",
-      btnGradient: "linear-gradient(135deg, #047857 0%, #10B981 100%)",
-      badgeBg: "rgba(16, 185, 129, 0.2)",
-      badgeBorder: "rgba(16, 185, 129, 0.6)",
-      badgeText: "#D1FAE5",
-      heroGlow1: "rgba(16, 185, 129, 0.25)",
-      heroGlow2: "rgba(5, 150, 105, 0.15)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-47",
-    number: 47,
-    name: "Bauhaus Primary",
-    category: "Neo-Brutalist & Bold",
-    personality: "Constructivist design movement with primary blue, yellow, and black",
-    fontFamily: getCategoryFont("Neo-Brutalist & Bold").family,
-    fontName: getCategoryFont("Neo-Brutalist & Bold").name,
-    fontGoogleUrl: getCategoryFont("Neo-Brutalist & Bold").googleParam,
-    colors: {
-      bg: "#0F141C",
-      primary: "#1D2636",
-      secondary: "#2563EB",
-      accent: "#FACC15",
-      cardBg: "rgba(29, 38, 54, 0.95)",
-      cardBorder: "rgba(250, 204, 21, 0.5)",
-      textColor: "#F8FAFC",
-      mutedText: "#94A3B8",
-      btnGradient: "linear-gradient(135deg, #1D4ED8 0%, #FACC15 100%)",
-      badgeBg: "rgba(250, 204, 21, 0.2)",
-      badgeBorder: "rgba(250, 204, 21, 0.6)",
-      badgeText: "#FEF08A",
-      heroGlow1: "rgba(37, 99, 235, 0.25)",
-      heroGlow2: "rgba(250, 204, 21, 0.2)",
-      success: "#10B981",
-      warning: "#FACC15",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-48",
-    number: 48,
-    name: "Bunker Steel",
-    category: "Neo-Brutalist & Bold",
-    personality: "Subterranean vault aesthetic, cold steel plates with iron rivets",
-    fontFamily: getCategoryFont("Neo-Brutalist & Bold").family,
-    fontName: getCategoryFont("Neo-Brutalist & Bold").name,
-    fontGoogleUrl: getCategoryFont("Neo-Brutalist & Bold").googleParam,
-    colors: {
-      bg: "#11161B",
-      primary: "#1F2937",
-      secondary: "#4B5563",
-      accent: "#9CA3AF",
-      cardBg: "rgba(31, 41, 55, 0.95)",
-      cardBorder: "rgba(156, 163, 175, 0.4)",
-      textColor: "#F9FAFB",
-      mutedText: "#D1D5DB",
-      btnGradient: "linear-gradient(135deg, #374151 0%, #6B7280 100%)",
-      badgeBg: "rgba(156, 163, 175, 0.18)",
-      badgeBorder: "rgba(156, 163, 175, 0.5)",
-      badgeText: "#F3F4F6",
-      heroGlow1: "rgba(156, 163, 175, 0.15)",
-      heroGlow2: "rgba(75, 85, 99, 0.15)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-49",
-    number: 49,
-    name: "Hyper-Block Magenta",
-    category: "Neo-Brutalist & Bold",
-    personality: "Blocky poster graphic design feel with high-saturation magenta frames",
-    fontFamily: getCategoryFont("Neo-Brutalist & Bold").family,
-    fontName: getCategoryFont("Neo-Brutalist & Bold").name,
-    fontGoogleUrl: getCategoryFont("Neo-Brutalist & Bold").googleParam,
-    colors: {
-      bg: "#160613",
-      primary: "#330C2D",
-      secondary: "#C026D3",
-      accent: "#E879F9",
-      cardBg: "rgba(51, 12, 45, 0.95)",
-      cardBorder: "rgba(192, 38, 211, 0.5)",
-      textColor: "#FDF4FF",
-      mutedText: "#F5D0FE",
-      btnGradient: "linear-gradient(135deg, #A21CAF 0%, #E879F9 100%)",
-      badgeBg: "rgba(232, 121, 249, 0.2)",
-      badgeBorder: "rgba(232, 121, 249, 0.6)",
-      badgeText: "#FAE8FF",
-      heroGlow1: "rgba(192, 38, 211, 0.25)",
-      heroGlow2: "rgba(232, 121, 249, 0.15)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-50",
-    number: 50,
-    name: "Hazard Cyber Yellow",
-    category: "Neo-Brutalist & Bold",
-    personality: "Safety-critical infrastructure control board with vivid electric warning gold",
-    fontFamily: getCategoryFont("Neo-Brutalist & Bold").family,
-    fontName: getCategoryFont("Neo-Brutalist & Bold").name,
-    fontGoogleUrl: getCategoryFont("Neo-Brutalist & Bold").googleParam,
-    colors: {
-      bg: "#141103",
-      primary: "#2E2707",
-      secondary: "#D97706",
-      accent: "#FBBF24",
-      cardBg: "rgba(46, 39, 7, 0.95)",
-      cardBorder: "rgba(251, 191, 36, 0.5)",
-      textColor: "#FEF3C7",
-      mutedText: "#FCD34D",
-      btnGradient: "linear-gradient(135deg, #B45309 0%, #FBBF24 100%)",
-      badgeBg: "rgba(251, 191, 36, 0.2)",
-      badgeBorder: "rgba(251, 191, 36, 0.6)",
-      badgeText: "#FEF08A",
-      heroGlow1: "rgba(251, 191, 36, 0.25)",
-      heroGlow2: "rgba(217, 119, 6, 0.15)",
-      success: "#10B981",
-      warning: "#FBBF24",
-      error: "#EF4444"
-    }
-  },
-
-  // 6. Warm Editorial & Paper (51-60)
-  {
-    id: "theme-51",
-    number: 51,
-    name: "Nordic Parchment",
-    category: "Warm Editorial & Paper",
-    personality: "High-end Scandinavian publishing feel with warm parchment and dark ink",
-    fontFamily: getCategoryFont("Warm Editorial & Paper").family,
-    fontName: getCategoryFont("Warm Editorial & Paper").name,
-    fontGoogleUrl: getCategoryFont("Warm Editorial & Paper").googleParam,
-    colors: {
-      bg: "#161412",
-      primary: "#2A2622",
-      secondary: "#786C5E",
-      accent: "#D4C5B9",
-      cardBg: "rgba(42, 38, 34, 0.85)",
-      cardBorder: "rgba(212, 197, 185, 0.25)",
-      textColor: "#F7F4F0",
-      mutedText: "#C7BCAF",
-      btnGradient: "linear-gradient(135deg, #786C5E 0%, #D4C5B9 100%)",
-      badgeBg: "rgba(212, 197, 185, 0.15)",
-      badgeBorder: "rgba(212, 197, 185, 0.35)",
-      badgeText: "#E8DFD5",
-      heroGlow1: "rgba(212, 197, 185, 0.12)",
-      heroGlow2: "rgba(120, 108, 94, 0.12)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-52",
-    number: 52,
-    name: "Espresso Library",
-    category: "Warm Editorial & Paper",
-    personality: "Deep roasted coffee bean with warm cream ink and bronze bookbinding",
-    fontFamily: getCategoryFont("Warm Editorial & Paper").family,
-    fontName: getCategoryFont("Warm Editorial & Paper").name,
-    fontGoogleUrl: getCategoryFont("Warm Editorial & Paper").googleParam,
-    colors: {
-      bg: "#120D0A",
-      primary: "#2C1E18",
-      secondary: "#794A3A",
-      accent: "#DDA15E",
-      cardBg: "rgba(44, 30, 24, 0.85)",
-      cardBorder: "rgba(221, 161, 94, 0.25)",
-      textColor: "#FEFAE0",
-      mutedText: "#D4C3A3",
-      btnGradient: "linear-gradient(135deg, #794A3A 0%, #DDA15E 100%)",
-      badgeBg: "rgba(221, 161, 94, 0.15)",
-      badgeBorder: "rgba(221, 161, 94, 0.35)",
-      badgeText: "#F4A261",
-      heroGlow1: "rgba(221, 161, 94, 0.15)",
-      heroGlow2: "rgba(121, 74, 58, 0.12)",
-      success: "#606C38",
-      warning: "#DDA15E",
-      error: "#BC6C25"
-    }
-  },
-  {
-    id: "theme-53",
-    number: 53,
-    name: "Terracotta Journal",
-    category: "Warm Editorial & Paper",
-    personality: "Warm Mediterranean clay pot tones with natural papyrus contrast",
-    fontFamily: getCategoryFont("Warm Editorial & Paper").family,
-    fontName: getCategoryFont("Warm Editorial & Paper").name,
-    fontGoogleUrl: getCategoryFont("Warm Editorial & Paper").googleParam,
-    colors: {
-      bg: "#170F0D",
-      primary: "#38201A",
-      secondary: "#9A4832",
-      accent: "#E27D60",
-      cardBg: "rgba(56, 32, 26, 0.85)",
-      cardBorder: "rgba(226, 125, 96, 0.25)",
-      textColor: "#FFF8F6",
-      mutedText: "#E0B7AD",
-      btnGradient: "linear-gradient(135deg, #9A4832 0%, #E27D60 100%)",
-      badgeBg: "rgba(226, 125, 96, 0.15)",
-      badgeBorder: "rgba(226, 125, 96, 0.35)",
-      badgeText: "#E89B85",
-      heroGlow1: "rgba(226, 125, 96, 0.15)",
-      heroGlow2: "rgba(154, 72, 50, 0.12)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-54",
-    number: 54,
-    name: "Sage & Linen",
-    category: "Warm Editorial & Paper",
-    personality: "Calming botanical herbarium aesthetic with muted sage green and warm linen",
-    fontFamily: getCategoryFont("Warm Editorial & Paper").family,
-    fontName: getCategoryFont("Warm Editorial & Paper").name,
-    fontGoogleUrl: getCategoryFont("Warm Editorial & Paper").googleParam,
-    colors: {
-      bg: "#0E1411",
-      primary: "#212F29",
-      secondary: "#52796F",
-      accent: "#84A98C",
-      cardBg: "rgba(33, 47, 41, 0.85)",
-      cardBorder: "rgba(132, 169, 140, 0.25)",
-      textColor: "#F4F7F5",
-      mutedText: "#CAD2C5",
-      btnGradient: "linear-gradient(135deg, #52796F 0%, #84A98C 100%)",
-      badgeBg: "rgba(132, 169, 140, 0.15)",
-      badgeBorder: "rgba(132, 169, 140, 0.35)",
-      badgeText: "#A3B18A",
-      heroGlow1: "rgba(132, 169, 140, 0.15)",
-      heroGlow2: "rgba(82, 121, 111, 0.12)",
-      success: "#84A98C",
-      warning: "#E9C46A",
-      error: "#E76F51"
-    }
-  },
-  {
-    id: "theme-55",
-    number: 55,
-    name: "Sienna Gazette",
-    category: "Warm Editorial & Paper",
-    personality: "Classic broadsheet newspaper tone with burnt sienna headings",
-    fontFamily: getCategoryFont("Warm Editorial & Paper").family,
-    fontName: getCategoryFont("Warm Editorial & Paper").name,
-    fontGoogleUrl: getCategoryFont("Warm Editorial & Paper").googleParam,
-    colors: {
-      bg: "#16110E",
-      primary: "#33251E",
-      secondary: "#8B4513",
-      accent: "#D2691E",
-      cardBg: "rgba(51, 37, 30, 0.85)",
-      cardBorder: "rgba(210, 105, 30, 0.25)",
-      textColor: "#FFFBF7",
-      mutedText: "#D9C3B0",
-      btnGradient: "linear-gradient(135deg, #8B4513 0%, #D2691E 100%)",
-      badgeBg: "rgba(210, 105, 30, 0.15)",
-      badgeBorder: "rgba(210, 105, 30, 0.35)",
-      badgeText: "#E08B47",
-      heroGlow1: "rgba(210, 105, 30, 0.15)",
-      heroGlow2: "rgba(139, 69, 19, 0.12)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-56",
-    number: 56,
-    name: "Charcoal Monograph",
-    category: "Warm Editorial & Paper",
-    personality: "Literary journal aesthetic with soft charcoal ink and bone white text",
-    fontFamily: getCategoryFont("Warm Editorial & Paper").family,
-    fontName: getCategoryFont("Warm Editorial & Paper").name,
-    fontGoogleUrl: getCategoryFont("Warm Editorial & Paper").googleParam,
-    colors: {
-      bg: "#141414",
-      primary: "#282828",
-      secondary: "#5C5C5C",
-      accent: "#B8B8B8",
-      cardBg: "rgba(40, 40, 40, 0.85)",
-      cardBorder: "rgba(184, 184, 184, 0.25)",
-      textColor: "#F5F5F7",
-      mutedText: "#CCCCCC",
-      btnGradient: "linear-gradient(135deg, #5C5C5C 0%, #8C8C8C 100%)",
-      badgeBg: "rgba(184, 184, 184, 0.15)",
-      badgeBorder: "rgba(184, 184, 184, 0.35)",
-      badgeText: "#E0E0E0",
-      heroGlow1: "rgba(184, 184, 184, 0.12)",
-      heroGlow2: "rgba(92, 92, 92, 0.12)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-57",
-    number: 57,
-    name: "Sepia Archive",
-    category: "Warm Editorial & Paper",
-    personality: "Archival document preservation feel with warm sepia ink accents",
-    fontFamily: getCategoryFont("Warm Editorial & Paper").family,
-    fontName: getCategoryFont("Warm Editorial & Paper").name,
-    fontGoogleUrl: getCategoryFont("Warm Editorial & Paper").googleParam,
-    colors: {
-      bg: "#14100C",
-      primary: "#2D221A",
-      secondary: "#735741",
-      accent: "#C2A68C",
-      cardBg: "rgba(45, 34, 26, 0.85)",
-      cardBorder: "rgba(194, 166, 140, 0.25)",
-      textColor: "#FDFBF7",
-      mutedText: "#CFC0B2",
-      btnGradient: "linear-gradient(135deg, #735741 0%, #C2A68C 100%)",
-      badgeBg: "rgba(194, 166, 140, 0.15)",
-      badgeBorder: "rgba(194, 166, 140, 0.35)",
-      badgeText: "#DBC7B5",
-      heroGlow1: "rgba(194, 166, 140, 0.12)",
-      heroGlow2: "rgba(115, 87, 65, 0.12)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-58",
-    number: 58,
-    name: "Oatmeal & Copper",
-    category: "Warm Editorial & Paper",
-    personality: "Artisanal studio aesthetic with textured oatmeal backdrop and raw copper",
-    fontFamily: getCategoryFont("Warm Editorial & Paper").family,
-    fontName: getCategoryFont("Warm Editorial & Paper").name,
-    fontGoogleUrl: getCategoryFont("Warm Editorial & Paper").googleParam,
-    colors: {
-      bg: "#151210",
-      primary: "#2E2622",
-      secondary: "#8C5E47",
-      accent: "#D98A6C",
-      cardBg: "rgba(46, 38, 34, 0.85)",
-      cardBorder: "rgba(217, 138, 108, 0.25)",
-      textColor: "#FAF6F3",
-      mutedText: "#D4C2B8",
-      btnGradient: "linear-gradient(135deg, #8C5E47 0%, #D98A6C 100%)",
-      badgeBg: "rgba(217, 138, 108, 0.15)",
-      badgeBorder: "rgba(217, 138, 108, 0.35)",
-      badgeText: "#E5A992",
-      heroGlow1: "rgba(217, 138, 108, 0.15)",
-      heroGlow2: "rgba(140, 94, 71, 0.12)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-59",
-    number: 59,
-    name: "Olive Manuscript",
-    category: "Warm Editorial & Paper",
-    personality: "Old-world botanical manuscript with deep Mediterranean olive green",
-    fontFamily: getCategoryFont("Warm Editorial & Paper").family,
-    fontName: getCategoryFont("Warm Editorial & Paper").name,
-    fontGoogleUrl: getCategoryFont("Warm Editorial & Paper").googleParam,
-    colors: {
-      bg: "#11140E",
-      primary: "#262E1F",
-      secondary: "#5B6B46",
-      accent: "#9BB07B",
-      cardBg: "rgba(38, 46, 31, 0.85)",
-      cardBorder: "rgba(155, 176, 123, 0.25)",
-      textColor: "#F6FAF2",
-      mutedText: "#C8D6B5",
-      btnGradient: "linear-gradient(135deg, #5B6B46 0%, #9BB07B 100%)",
-      badgeBg: "rgba(155, 176, 123, 0.15)",
-      badgeBorder: "rgba(155, 176, 123, 0.35)",
-      badgeText: "#B7C99C",
-      heroGlow1: "rgba(155, 176, 123, 0.15)",
-      heroGlow2: "rgba(91, 107, 70, 0.12)",
-      success: "#9BB07B",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-60",
-    number: 60,
-    name: "Crimson Edition",
-    category: "Warm Editorial & Paper",
-    personality: "Collector's hardcover edition with deep crimson cloth binding and gold foil stamp",
-    fontFamily: getCategoryFont("Warm Editorial & Paper").family,
-    fontName: getCategoryFont("Warm Editorial & Paper").name,
-    fontGoogleUrl: getCategoryFont("Warm Editorial & Paper").googleParam,
-    colors: {
-      bg: "#140A0C",
-      primary: "#331219",
-      secondary: "#851D31",
-      accent: "#D97706",
-      cardBg: "rgba(51, 18, 25, 0.85)",
-      cardBorder: "rgba(217, 119, 6, 0.3)",
-      textColor: "#FFF5F7",
-      mutedText: "#E5B3BC",
-      btnGradient: "linear-gradient(135deg, #851D31 0%, #D97706 100%)",
-      badgeBg: "rgba(217, 119, 6, 0.15)",
-      badgeBorder: "rgba(217, 119, 6, 0.35)",
-      badgeText: "#FBBF24",
-      heroGlow1: "rgba(133, 29, 49, 0.2)",
-      heroGlow2: "rgba(217, 119, 6, 0.15)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-
-  // 7. Organic Earth & Biophilic (61-70)
-  {
-    id: "theme-61",
-    number: 61,
-    name: "Amazon Canopy",
-    category: "Organic Earth & Biophilic",
-    personality: "Lush tropical rainforest canopy with vibrant flora highlights",
-    fontFamily: getCategoryFont("Organic Earth & Biophilic").family,
-    fontName: getCategoryFont("Organic Earth & Biophilic").name,
-    fontGoogleUrl: getCategoryFont("Organic Earth & Biophilic").googleParam,
-    colors: {
-      bg: "#05160E",
-      primary: "#0D3825",
-      secondary: "#1B7B50",
-      accent: "#34D399",
-      cardBg: "rgba(13, 56, 37, 0.85)",
-      cardBorder: "rgba(52, 211, 153, 0.3)",
-      textColor: "#ECFDF5",
-      mutedText: "#A7F3D0",
-      btnGradient: "linear-gradient(135deg, #1B7B50 0%, #34D399 100%)",
-      badgeBg: "rgba(52, 211, 153, 0.15)",
-      badgeBorder: "rgba(52, 211, 153, 0.35)",
-      badgeText: "#6EE7B7",
-      heroGlow1: "rgba(52, 211, 153, 0.2)",
-      heroGlow2: "rgba(27, 123, 80, 0.15)",
-      success: "#34D399",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-62",
-    number: 62,
-    name: "Sahara Dune",
-    category: "Organic Earth & Biophilic",
-    personality: "Warm desert sandscape with glowing amber sunset sky reflections",
-    fontFamily: getCategoryFont("Organic Earth & Biophilic").family,
-    fontName: getCategoryFont("Organic Earth & Biophilic").name,
-    fontGoogleUrl: getCategoryFont("Organic Earth & Biophilic").googleParam,
-    colors: {
-      bg: "#16100A",
-      primary: "#332214",
-      secondary: "#A05E2B",
-      accent: "#F59E0B",
-      cardBg: "rgba(51, 34, 20, 0.85)",
-      cardBorder: "rgba(245, 158, 11, 0.3)",
-      textColor: "#FFFBEB",
-      mutedText: "#FDE68A",
-      btnGradient: "linear-gradient(135deg, #A05E2B 0%, #F59E0B 100%)",
-      badgeBg: "rgba(245, 158, 11, 0.15)",
-      badgeBorder: "rgba(245, 158, 11, 0.35)",
-      badgeText: "#FBBF24",
-      heroGlow1: "rgba(245, 158, 11, 0.2)",
-      heroGlow2: "rgba(160, 94, 43, 0.15)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-63",
-    number: 63,
-    name: "Redwood Forest",
-    category: "Organic Earth & Biophilic",
-    personality: "Ancient Californian redwood bark with mossy undergrowth green",
-    fontFamily: getCategoryFont("Organic Earth & Biophilic").family,
-    fontName: getCategoryFont("Organic Earth & Biophilic").name,
-    fontGoogleUrl: getCategoryFont("Organic Earth & Biophilic").googleParam,
-    colors: {
-      bg: "#120B09",
-      primary: "#2B1611",
-      secondary: "#6E2D1E",
-      accent: "#10B981",
-      cardBg: "rgba(43, 22, 17, 0.85)",
-      cardBorder: "rgba(16, 185, 129, 0.3)",
-      textColor: "#ECFDF5",
-      mutedText: "#A7F3D0",
-      btnGradient: "linear-gradient(135deg, #6E2D1E 0%, #10B981 100%)",
-      badgeBg: "rgba(16, 185, 129, 0.15)",
-      badgeBorder: "rgba(16, 185, 129, 0.35)",
-      badgeText: "#34D399",
-      heroGlow1: "rgba(16, 185, 129, 0.18)",
-      heroGlow2: "rgba(110, 45, 30, 0.15)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-64",
-    number: 64,
-    name: "Pacific Fjord",
-    category: "Organic Earth & Biophilic",
-    personality: "Deep glacial ocean fjord water with misty pine green shoreline",
-    fontFamily: getCategoryFont("Organic Earth & Biophilic").family,
-    fontName: getCategoryFont("Organic Earth & Biophilic").name,
-    fontGoogleUrl: getCategoryFont("Organic Earth & Biophilic").googleParam,
-    colors: {
-      bg: "#0A1418",
-      primary: "#162B33",
-      secondary: "#2E5B6D",
-      accent: "#38BDF8",
-      cardBg: "rgba(22, 43, 51, 0.85)",
-      cardBorder: "rgba(56, 189, 248, 0.25)",
-      textColor: "#F0F9FF",
-      mutedText: "#BAE6FD",
-      btnGradient: "linear-gradient(135deg, #2E5B6D 0%, #38BDF8 100%)",
-      badgeBg: "rgba(56, 189, 248, 0.15)",
-      badgeBorder: "rgba(56, 189, 248, 0.35)",
-      badgeText: "#7DD3FC",
-      heroGlow1: "rgba(56, 189, 248, 0.18)",
-      heroGlow2: "rgba(46, 91, 109, 0.15)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-65",
-    number: 65,
-    name: "Volcanic Basalt",
-    category: "Organic Earth & Biophilic",
-    personality: "Cooling lava rock basalt with glowing magma fissures underneath",
-    fontFamily: getCategoryFont("Organic Earth & Biophilic").family,
-    fontName: getCategoryFont("Organic Earth & Biophilic").name,
-    fontGoogleUrl: getCategoryFont("Organic Earth & Biophilic").googleParam,
-    colors: {
-      bg: "#0F0B0A",
-      primary: "#261916",
-      secondary: "#7C2D12",
-      accent: "#F97316",
-      cardBg: "rgba(38, 25, 22, 0.85)",
-      cardBorder: "rgba(249, 115, 22, 0.3)",
-      textColor: "#FFF7ED",
-      mutedText: "#FFEDD5",
-      btnGradient: "linear-gradient(135deg, #7C2D12 0%, #F97316 100%)",
-      badgeBg: "rgba(249, 115, 22, 0.15)",
-      badgeBorder: "rgba(249, 115, 22, 0.35)",
-      badgeText: "#FDBA74",
-      heroGlow1: "rgba(249, 115, 22, 0.2)",
-      heroGlow2: "rgba(124, 45, 18, 0.15)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-66",
-    number: 66,
-    name: "Celtic Moss",
-    category: "Organic Earth & Biophilic",
-    personality: "Misty Irish countryside rock face with velvety green moss carpet",
-    fontFamily: getCategoryFont("Organic Earth & Biophilic").family,
-    fontName: getCategoryFont("Organic Earth & Biophilic").name,
-    fontGoogleUrl: getCategoryFont("Organic Earth & Biophilic").googleParam,
-    colors: {
-      bg: "#0C120C",
-      primary: "#1C2A1C",
-      secondary: "#3E5C3E",
-      accent: "#76A076",
-      cardBg: "rgba(28, 42, 28, 0.85)",
-      cardBorder: "rgba(118, 160, 118, 0.25)",
-      textColor: "#F4FAF4",
-      mutedText: "#B6D0B6",
-      btnGradient: "linear-gradient(135deg, #3E5C3E 0%, #76A076 100%)",
-      badgeBg: "rgba(118, 160, 118, 0.15)",
-      badgeBorder: "rgba(118, 160, 118, 0.35)",
-      badgeText: "#A3C7A3",
-      heroGlow1: "rgba(118, 160, 118, 0.15)",
-      heroGlow2: "rgba(62, 92, 62, 0.12)",
-      success: "#76A076",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-67",
-    number: 67,
-    name: "Amber Resin",
-    category: "Organic Earth & Biophilic",
-    personality: "Fossilized tree sap resin with translucent golden honey luminescence",
-    fontFamily: getCategoryFont("Organic Earth & Biophilic").family,
-    fontName: getCategoryFont("Organic Earth & Biophilic").name,
-    fontGoogleUrl: getCategoryFont("Organic Earth & Biophilic").googleParam,
-    colors: {
-      bg: "#140D04",
-      primary: "#33200A",
-      secondary: "#8C5411",
-      accent: "#E09F3E",
-      cardBg: "rgba(51, 32, 10, 0.85)",
-      cardBorder: "rgba(224, 159, 62, 0.3)",
-      textColor: "#FFFBF2",
-      mutedText: "#E5C89D",
-      btnGradient: "linear-gradient(135deg, #8C5411 0%, #E09F3E 100%)",
-      badgeBg: "rgba(224, 159, 62, 0.15)",
-      badgeBorder: "rgba(224, 159, 62, 0.35)",
-      badgeText: "#F3C57B",
-      heroGlow1: "rgba(224, 159, 62, 0.2)",
-      heroGlow2: "rgba(140, 84, 17, 0.15)",
-      success: "#10B981",
-      warning: "#E09F3E",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-68",
-    number: 68,
-    name: "Savanna Twilight",
-    category: "Organic Earth & Biophilic",
-    personality: "African savanna horizon dusk with deep indigo sky and burnt ochre ground",
-    fontFamily: getCategoryFont("Organic Earth & Biophilic").family,
-    fontName: getCategoryFont("Organic Earth & Biophilic").name,
-    fontGoogleUrl: getCategoryFont("Organic Earth & Biophilic").googleParam,
-    colors: {
-      bg: "#100C16",
-      primary: "#261B36",
-      secondary: "#6B3A7D",
-      accent: "#E07A5F",
-      cardBg: "rgba(38, 27, 54, 0.85)",
-      cardBorder: "rgba(224, 122, 95, 0.3)",
-      textColor: "#FAF5FF",
-      mutedText: "#D8B4FE",
-      btnGradient: "linear-gradient(135deg, #6B3A7D 0%, #E07A5F 100%)",
-      badgeBg: "rgba(224, 122, 95, 0.18)",
-      badgeBorder: "rgba(224, 122, 95, 0.35)",
-      badgeText: "#F4A261",
-      heroGlow1: "rgba(107, 58, 125, 0.25)",
-      heroGlow2: "rgba(224, 122, 95, 0.18)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-69",
-    number: 69,
-    name: "Glacial Iceberg",
-    category: "Organic Earth & Biophilic",
-    personality: "Deep antarctic blue glacial ice shelf with translucent turquoise core",
-    fontFamily: getCategoryFont("Organic Earth & Biophilic").family,
-    fontName: getCategoryFont("Organic Earth & Biophilic").name,
-    fontGoogleUrl: getCategoryFont("Organic Earth & Biophilic").googleParam,
-    colors: {
-      bg: "#05131A",
-      primary: "#0B2A38",
-      secondary: "#175B7A",
-      accent: "#06B6D4",
-      cardBg: "rgba(11, 42, 56, 0.85)",
-      cardBorder: "rgba(6, 182, 212, 0.3)",
-      textColor: "#ECFEFF",
-      mutedText: "#A5F3FC",
-      btnGradient: "linear-gradient(135deg, #175B7A 0%, #06B6D4 100%)",
-      badgeBg: "rgba(6, 182, 212, 0.15)",
-      badgeBorder: "rgba(6, 182, 212, 0.35)",
-      badgeText: "#67E8F9",
-      heroGlow1: "rgba(6, 182, 212, 0.2)",
-      heroGlow2: "rgba(23, 91, 122, 0.15)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-70",
-    number: 70,
-    name: "Clay Quarry",
-    category: "Organic Earth & Biophilic",
-    personality: "Open pit terracotta clay mine with warm rust red and sandstone earth",
-    fontFamily: getCategoryFont("Organic Earth & Biophilic").family,
-    fontName: getCategoryFont("Organic Earth & Biophilic").name,
-    fontGoogleUrl: getCategoryFont("Organic Earth & Biophilic").googleParam,
-    colors: {
-      bg: "#160C0A",
-      primary: "#381B15",
-      secondary: "#8B3A2B",
-      accent: "#D96B43",
-      cardBg: "rgba(56, 27, 21, 0.85)",
-      cardBorder: "rgba(217, 107, 67, 0.3)",
-      textColor: "#FFF8F6",
-      mutedText: "#E7BEB3",
-      btnGradient: "linear-gradient(135deg, #8B3A2B 0%, #D96B43 100%)",
-      badgeBg: "rgba(217, 107, 67, 0.15)",
-      badgeBorder: "rgba(217, 107, 67, 0.35)",
-      badgeText: "#E88D6A",
-      heroGlow1: "rgba(217, 107, 67, 0.18)",
-      heroGlow2: "rgba(139, 58, 43, 0.15)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-
-  // 8. Monochromatic Minimal (71-80)
-  {
-    id: "theme-71",
-    number: 71,
-    name: "Pure Graphite",
-    category: "Monochromatic Minimal",
-    personality: "Ultra-clean pencil graphite gradient hierarchy with precise white text",
-    fontFamily: getCategoryFont("Monochromatic Minimal").family,
-    fontName: getCategoryFont("Monochromatic Minimal").name,
-    fontGoogleUrl: getCategoryFont("Monochromatic Minimal").googleParam,
-    colors: {
-      bg: "#121212",
-      primary: "#1E1E1E",
-      secondary: "#3A3A3A",
-      accent: "#707070",
-      cardBg: "rgba(30, 30, 30, 0.9)",
-      cardBorder: "rgba(112, 112, 112, 0.25)",
-      textColor: "#FFFFFF",
-      mutedText: "#A0A0A0",
-      btnGradient: "linear-gradient(135deg, #3A3A3A 0%, #5A5A5A 100%)",
-      badgeBg: "rgba(112, 112, 112, 0.15)",
-      badgeBorder: "rgba(112, 112, 112, 0.3)",
-      badgeText: "#E0E0E0",
-      heroGlow1: "rgba(255, 255, 255, 0.08)",
-      heroGlow2: "rgba(112, 112, 112, 0.08)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-72",
-    number: 72,
-    name: "Slate Minimal",
-    category: "Monochromatic Minimal",
-    personality: "Cool slate stone monochrome simplicity with ice white UI badges",
-    fontFamily: getCategoryFont("Monochromatic Minimal").family,
-    fontName: getCategoryFont("Monochromatic Minimal").name,
-    fontGoogleUrl: getCategoryFont("Monochromatic Minimal").googleParam,
-    colors: {
-      bg: "#0F172A",
-      primary: "#1E293B",
-      secondary: "#334155",
-      accent: "#64748B",
-      cardBg: "rgba(30, 41, 59, 0.85)",
-      cardBorder: "rgba(100, 116, 139, 0.3)",
-      textColor: "#F8FAFC",
-      mutedText: "#94A3B8",
-      btnGradient: "linear-gradient(135deg, #334155 0%, #475569 100%)",
-      badgeBg: "rgba(100, 116, 139, 0.15)",
-      badgeBorder: "rgba(100, 116, 139, 0.35)",
-      badgeText: "#CBD5E1",
-      heroGlow1: "rgba(148, 163, 184, 0.12)",
-      heroGlow2: "rgba(100, 116, 139, 0.1)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-73",
-    number: 73,
-    name: "Zinc Precision",
-    category: "Monochromatic Minimal",
-    personality: "Cold zinc metal hardware feel with sharp high-contrast clarity",
-    fontFamily: getCategoryFont("Monochromatic Minimal").family,
-    fontName: getCategoryFont("Monochromatic Minimal").name,
-    fontGoogleUrl: getCategoryFont("Monochromatic Minimal").googleParam,
-    colors: {
-      bg: "#09090B",
-      primary: "#18181B",
-      secondary: "#27272A",
-      accent: "#71717A",
-      cardBg: "rgba(24, 24, 27, 0.9)",
-      cardBorder: "rgba(113, 113, 122, 0.25)",
-      textColor: "#FAFAFA",
-      mutedText: "#A1A1AA",
-      btnGradient: "linear-gradient(135deg, #27272A 0%, #3F3F46 100%)",
-      badgeBg: "rgba(113, 113, 122, 0.15)",
-      badgeBorder: "rgba(113, 113, 122, 0.3)",
-      badgeText: "#E4E4E7",
-      heroGlow1: "rgba(255, 255, 255, 0.08)",
-      heroGlow2: "rgba(113, 113, 122, 0.08)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-74",
-    number: 74,
-    name: "Frostbyte Silver",
-    category: "Monochromatic Minimal",
-    personality: "Crisp sub-zero silver foil monochrome with mirror polished surfaces",
-    fontFamily: getCategoryFont("Monochromatic Minimal").family,
-    fontName: getCategoryFont("Monochromatic Minimal").name,
-    fontGoogleUrl: getCategoryFont("Monochromatic Minimal").googleParam,
-    colors: {
-      bg: "#0B0F14",
-      primary: "#19222D",
-      secondary: "#2D3D50",
-      accent: "#8FA3BF",
-      cardBg: "rgba(25, 34, 45, 0.85)",
-      cardBorder: "rgba(143, 163, 191, 0.25)",
-      textColor: "#F4F7FA",
-      mutedText: "#A6B7CC",
-      btnGradient: "linear-gradient(135deg, #2D3D50 0%, #465A73 100%)",
-      badgeBg: "rgba(143, 163, 191, 0.15)",
-      badgeBorder: "rgba(143, 163, 191, 0.35)",
-      badgeText: "#D3DEEC",
-      heroGlow1: "rgba(143, 163, 191, 0.12)",
-      heroGlow2: "rgba(70, 90, 115, 0.1)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-75",
-    number: 75,
-    name: "Neutral Warm Grey",
-    category: "Monochromatic Minimal",
-    personality: "Warm stone grey tone with friendly humanistic warmth",
-    fontFamily: getCategoryFont("Monochromatic Minimal").family,
-    fontName: getCategoryFont("Monochromatic Minimal").name,
-    fontGoogleUrl: getCategoryFont("Monochromatic Minimal").googleParam,
-    colors: {
-      bg: "#141312",
-      primary: "#262422",
-      secondary: "#44403C",
-      accent: "#78716C",
-      cardBg: "rgba(38, 36, 34, 0.9)",
-      cardBorder: "rgba(120, 113, 108, 0.25)",
-      textColor: "#FAFAF9",
-      mutedText: "#A8A29E",
-      btnGradient: "linear-gradient(135deg, #44403C 0%, #57534E 100%)",
-      badgeBg: "rgba(120, 113, 108, 0.15)",
-      badgeBorder: "rgba(120, 113, 108, 0.3)",
-      badgeText: "#E7E5E4",
-      heroGlow1: "rgba(168, 162, 158, 0.1)",
-      heroGlow2: "rgba(120, 113, 108, 0.08)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-76",
-    number: 76,
-    name: "Vantablack Silence",
-    category: "Monochromatic Minimal",
-    personality: "Light-absorbing void black background with ghost white text",
-    fontFamily: getCategoryFont("Monochromatic Minimal").family,
-    fontName: getCategoryFont("Monochromatic Minimal").name,
-    fontGoogleUrl: getCategoryFont("Monochromatic Minimal").googleParam,
-    colors: {
-      bg: "#000000",
-      primary: "#111111",
-      secondary: "#222222",
-      accent: "#666666",
-      cardBg: "rgba(17, 17, 17, 0.95)",
-      cardBorder: "rgba(102, 102, 102, 0.25)",
-      textColor: "#FFFFFF",
-      mutedText: "#888888",
-      btnGradient: "linear-gradient(135deg, #222222 0%, #444444 100%)",
-      badgeBg: "rgba(102, 102, 102, 0.15)",
-      badgeBorder: "rgba(102, 102, 102, 0.3)",
-      badgeText: "#DDDDDD",
-      heroGlow1: "rgba(255, 255, 255, 0.06)",
-      heroGlow2: "rgba(102, 102, 102, 0.06)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-77",
-    number: 77,
-    name: "Steel Blue Monolith",
-    category: "Monochromatic Minimal",
-    personality: "Subtle steel blue tinting over dark monolithic structure",
-    fontFamily: getCategoryFont("Monochromatic Minimal").family,
-    fontName: getCategoryFont("Monochromatic Minimal").name,
-    fontGoogleUrl: getCategoryFont("Monochromatic Minimal").googleParam,
-    colors: {
-      bg: "#0D1117",
-      primary: "#161B22",
-      secondary: "#30363D",
-      accent: "#8B949E",
-      cardBg: "rgba(22, 27, 34, 0.9)",
-      cardBorder: "rgba(139, 148, 158, 0.25)",
-      textColor: "#F0F6FC",
-      mutedText: "#8B949E",
-      btnGradient: "linear-gradient(135deg, #21262D 0%, #30363D 100%)",
-      badgeBg: "rgba(139, 148, 158, 0.15)",
-      badgeBorder: "rgba(139, 148, 158, 0.3)",
-      badgeText: "#C9D1D9",
-      heroGlow1: "rgba(139, 148, 158, 0.12)",
-      heroGlow2: "rgba(48, 54, 61, 0.1)",
-      success: "#238636",
-      warning: "#D29922",
-      error: "#DA3633"
-    }
-  },
-  {
-    id: "theme-78",
-    number: 78,
-    name: "Titanium Silver Minimal",
-    category: "Monochromatic Minimal",
-    personality: "Precision aircraft titanium minimal finish with satin shine",
-    fontFamily: getCategoryFont("Monochromatic Minimal").family,
-    fontName: getCategoryFont("Monochromatic Minimal").name,
-    fontGoogleUrl: getCategoryFont("Monochromatic Minimal").googleParam,
-    colors: {
-      bg: "#101214",
-      primary: "#1A1D20",
-      secondary: "#343A40",
-      accent: "#6C757D",
-      cardBg: "rgba(26, 29, 32, 0.9)",
-      cardBorder: "rgba(108, 117, 125, 0.25)",
-      textColor: "#F8F9FA",
-      mutedText: "#ADB5BD",
-      btnGradient: "linear-gradient(135deg, #343A40 0%, #495057 100%)",
-      badgeBg: "rgba(108, 117, 125, 0.15)",
-      badgeBorder: "rgba(108, 117, 125, 0.3)",
-      badgeText: "#DEE2E6",
-      heroGlow1: "rgba(173, 181, 189, 0.1)",
-      heroGlow2: "rgba(108, 117, 125, 0.08)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-79",
-    number: 79,
-    name: "Smokey Quartz Minimal",
-    category: "Monochromatic Minimal",
-    personality: "Translucent smoked glass quartz overlay on dark velvet charcoal",
-    fontFamily: getCategoryFont("Monochromatic Minimal").family,
-    fontName: getCategoryFont("Monochromatic Minimal").name,
-    fontGoogleUrl: getCategoryFont("Monochromatic Minimal").googleParam,
-    colors: {
-      bg: "#111012",
-      primary: "#211F24",
-      secondary: "#423E47",
-      accent: "#8A8494",
-      cardBg: "rgba(33, 31, 36, 0.9)",
-      cardBorder: "rgba(138, 132, 148, 0.25)",
-      textColor: "#FAF9FC",
-      mutedText: "#B6B0C2",
-      btnGradient: "linear-gradient(135deg, #423E47 0%, #5C5763 100%)",
-      badgeBg: "rgba(138, 132, 148, 0.15)",
-      badgeBorder: "rgba(138, 132, 148, 0.3)",
-      badgeText: "#DDD9E6",
-      heroGlow1: "rgba(138, 132, 148, 0.12)",
-      heroGlow2: "rgba(66, 62, 71, 0.1)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-80",
-    number: 80,
-    name: "Carbon Fiber Grid",
-    category: "Monochromatic Minimal",
-    personality: "Woven carbon fiber weave texture feel with high tensile silver wire",
-    fontFamily: getCategoryFont("Monochromatic Minimal").family,
-    fontName: getCategoryFont("Monochromatic Minimal").name,
-    fontGoogleUrl: getCategoryFont("Monochromatic Minimal").googleParam,
-    colors: {
-      bg: "#0B0C0E",
-      primary: "#16181C",
-      secondary: "#2C3038",
-      accent: "#5C6470",
-      cardBg: "rgba(22, 24, 28, 0.9)",
-      cardBorder: "rgba(92, 100, 112, 0.25)",
-      textColor: "#F0F2F5",
-      mutedText: "#9CA3AF",
-      btnGradient: "linear-gradient(135deg, #2C3038 0%, #404652 100%)",
-      badgeBg: "rgba(92, 100, 112, 0.15)",
-      badgeBorder: "rgba(92, 100, 112, 0.3)",
-      badgeText: "#D1D5DB",
-      heroGlow1: "rgba(156, 163, 175, 0.1)",
-      heroGlow2: "rgba(92, 100, 112, 0.08)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-
-  // 9. Deep Space & Cosmic (81-90)
-  {
-    id: "theme-81",
-    number: 81,
-    name: "Orion Nebula",
-    category: "Deep Space & Cosmic",
-    personality: "Deep intergalactic nebula with swirling violet dust and magenta star clusters",
-    fontFamily: getCategoryFont("Deep Space & Cosmic").family,
-    fontName: getCategoryFont("Deep Space & Cosmic").name,
-    fontGoogleUrl: getCategoryFont("Deep Space & Cosmic").googleParam,
-    colors: {
-      bg: "#08031A",
-      primary: "#2E0A4E",
-      secondary: "#7E22CE",
-      accent: "#EC4899",
-      cardBg: "rgba(24, 7, 45, 0.85)",
-      cardBorder: "rgba(236, 72, 153, 0.35)",
-      textColor: "#FDF2F8",
-      mutedText: "#F472B6",
-      btnGradient: "linear-gradient(135deg, #7E22CE 0%, #EC4899 100%)",
-      badgeBg: "rgba(236, 72, 153, 0.18)",
-      badgeBorder: "rgba(236, 72, 153, 0.4)",
-      badgeText: "#FBCFE8",
-      heroGlow1: "rgba(126, 34, 206, 0.3)",
-      heroGlow2: "rgba(236, 72, 153, 0.25)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-82",
-    number: 82,
-    name: "Supernova Explosion",
-    category: "Deep Space & Cosmic",
-    personality: "Dazzling stellar explosion with bright golden core and violet shockwaves",
-    fontFamily: getCategoryFont("Deep Space & Cosmic").family,
-    fontName: getCategoryFont("Deep Space & Cosmic").name,
-    fontGoogleUrl: getCategoryFont("Deep Space & Cosmic").googleParam,
-    colors: {
-      bg: "#10061A",
-      primary: "#3B0764",
-      secondary: "#9333EA",
-      accent: "#FBBF24",
-      cardBg: "rgba(30, 8, 55, 0.85)",
-      cardBorder: "rgba(251, 191, 36, 0.35)",
-      textColor: "#FAF5FF",
-      mutedText: "#DDD6FE",
-      btnGradient: "linear-gradient(135deg, #9333EA 0%, #FBBF24 100%)",
-      badgeBg: "rgba(251, 191, 36, 0.18)",
-      badgeBorder: "rgba(251, 191, 36, 0.4)",
-      badgeText: "#FEF08A",
-      heroGlow1: "rgba(147, 51, 234, 0.3)",
-      heroGlow2: "rgba(251, 191, 36, 0.2)",
-      success: "#10B981",
-      warning: "#FBBF24",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-83",
-    number: 83,
-    name: "Event Horizon",
-    category: "Deep Space & Cosmic",
-    personality: "Black hole gravitational singularity with warping photon ring amber glow",
-    fontFamily: getCategoryFont("Deep Space & Cosmic").family,
-    fontName: getCategoryFont("Deep Space & Cosmic").name,
-    fontGoogleUrl: getCategoryFont("Deep Space & Cosmic").googleParam,
-    colors: {
-      bg: "#050403",
-      primary: "#1C140A",
-      secondary: "#78350F",
-      accent: "#F97316",
-      cardBg: "rgba(28, 20, 10, 0.9)",
-      cardBorder: "rgba(249, 115, 22, 0.35)",
-      textColor: "#FFF7ED",
-      mutedText: "#FDBA74",
-      btnGradient: "linear-gradient(135deg, #9A3412 0%, #F97316 100%)",
-      badgeBg: "rgba(249, 115, 22, 0.18)",
-      badgeBorder: "rgba(249, 115, 22, 0.4)",
-      badgeText: "#FFEDD5",
-      heroGlow1: "rgba(249, 115, 22, 0.25)",
-      heroGlow2: "rgba(120, 53, 15, 0.2)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-84",
-    number: 84,
-    name: "Andromeda Spiral",
-    category: "Deep Space & Cosmic",
-    personality: "Galactic spiral arm cyan haze over void blue expanse",
-    fontFamily: getCategoryFont("Deep Space & Cosmic").family,
-    fontName: getCategoryFont("Deep Space & Cosmic").name,
-    fontGoogleUrl: getCategoryFont("Deep Space & Cosmic").googleParam,
-    colors: {
-      bg: "#030A16",
-      primary: "#0C2340",
-      secondary: "#1D4ED8",
-      accent: "#38BDF8",
-      cardBg: "rgba(12, 35, 64, 0.85)",
-      cardBorder: "rgba(56, 189, 248, 0.35)",
-      textColor: "#F0F9FF",
-      mutedText: "#7DD3FC",
-      btnGradient: "linear-gradient(135deg, #1E40AF 0%, #38BDF8 100%)",
-      badgeBg: "rgba(56, 189, 248, 0.18)",
-      badgeBorder: "rgba(56, 189, 248, 0.4)",
-      badgeText: "#BAE6FD",
-      heroGlow1: "rgba(29, 78, 216, 0.3)",
-      heroGlow2: "rgba(56, 189, 248, 0.2)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-85",
-    number: 85,
-    name: "Pulsar Beam",
-    category: "Deep Space & Cosmic",
-    personality: "Rapidly rotating neutron star beam with flashing white-cyan energetic pulses",
-    fontFamily: getCategoryFont("Deep Space & Cosmic").family,
-    fontName: getCategoryFont("Deep Space & Cosmic").name,
-    fontGoogleUrl: getCategoryFont("Deep Space & Cosmic").googleParam,
-    colors: {
-      bg: "#020813",
-      primary: "#0A2540",
-      secondary: "#00D4FF",
-      accent: "#E0F7FA",
-      cardBg: "rgba(10, 37, 64, 0.85)",
-      cardBorder: "rgba(0, 212, 255, 0.4)",
-      textColor: "#FFFFFF",
-      mutedText: "#80DEEA",
-      btnGradient: "linear-gradient(135deg, #0091EA 0%, #00D4FF 100%)",
-      badgeBg: "rgba(0, 212, 255, 0.18)",
-      badgeBorder: "rgba(0, 212, 255, 0.45)",
-      badgeText: "#B2EBF2",
-      heroGlow1: "rgba(0, 212, 255, 0.3)",
-      heroGlow2: "rgba(0, 145, 234, 0.2)",
-      success: "#00E676",
-      warning: "#FFB300",
-      error: "#FF1744"
-    }
-  },
-  {
-    id: "theme-86",
-    number: 86,
-    name: "Starlight Void",
-    category: "Deep Space & Cosmic",
-    personality: "Pure vacuum space illuminated by distant silver star clusters",
-    fontFamily: getCategoryFont("Deep Space & Cosmic").family,
-    fontName: getCategoryFont("Deep Space & Cosmic").name,
-    fontGoogleUrl: getCategoryFont("Deep Space & Cosmic").googleParam,
-    colors: {
-      bg: "#04060A",
-      primary: "#111827",
-      secondary: "#374151",
-      accent: "#E5E7EB",
-      cardBg: "rgba(17, 24, 39, 0.85)",
-      cardBorder: "rgba(229, 231, 235, 0.25)",
-      textColor: "#F9FAFB",
-      mutedText: "#9CA3AF",
-      btnGradient: "linear-gradient(135deg, #374151 0%, #9CA3AF 100%)",
-      badgeBg: "rgba(229, 231, 235, 0.15)",
-      badgeBorder: "rgba(229, 231, 235, 0.35)",
-      badgeText: "#FFFFFF",
-      heroGlow1: "rgba(255, 255, 255, 0.12)",
-      heroGlow2: "rgba(156, 163, 175, 0.1)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-87",
-    number: 87,
-    name: "Quasar Emerald Glow",
-    category: "Deep Space & Cosmic",
-    personality: "Active galactic nucleus with brilliant emerald jet discharge",
-    fontFamily: getCategoryFont("Deep Space & Cosmic").family,
-    fontName: getCategoryFont("Deep Space & Cosmic").name,
-    fontGoogleUrl: getCategoryFont("Deep Space & Cosmic").googleParam,
-    colors: {
-      bg: "#02120C",
-      primary: "#064E3B",
-      secondary: "#047857",
-      accent: "#34D399",
-      cardBg: "rgba(6, 78, 59, 0.85)",
-      cardBorder: "rgba(52, 211, 153, 0.35)",
-      textColor: "#ECFDF5",
-      mutedText: "#6EE7B7",
-      btnGradient: "linear-gradient(135deg, #047857 0%, #34D399 100%)",
-      badgeBg: "rgba(52, 211, 153, 0.18)",
-      badgeBorder: "rgba(52, 211, 153, 0.4)",
-      badgeText: "#A7F3D0",
-      heroGlow1: "rgba(52, 211, 153, 0.25)",
-      heroGlow2: "rgba(4, 120, 87, 0.2)",
-      success: "#34D399",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-88",
-    number: 88,
-    name: "Solar Eclipse Corona",
-    category: "Deep Space & Cosmic",
-    personality: "Total solar eclipse with silver halo corona surrounding pitch black moon",
-    fontFamily: getCategoryFont("Deep Space & Cosmic").family,
-    fontName: getCategoryFont("Deep Space & Cosmic").name,
-    fontGoogleUrl: getCategoryFont("Deep Space & Cosmic").googleParam,
-    colors: {
-      bg: "#080808",
-      primary: "#1A1A1A",
-      secondary: "#404040",
-      accent: "#F3F4F6",
-      cardBg: "rgba(26, 26, 26, 0.9)",
-      cardBorder: "rgba(243, 244, 246, 0.3)",
-      textColor: "#FFFFFF",
-      mutedText: "#9CA3AF",
-      btnGradient: "linear-gradient(135deg, #404040 0%, #E5E7EB 100%)",
-      badgeBg: "rgba(243, 244, 246, 0.15)",
-      badgeBorder: "rgba(243, 244, 246, 0.4)",
-      badgeText: "#FFFFFF",
-      heroGlow1: "rgba(255, 255, 255, 0.15)",
-      heroGlow2: "rgba(156, 163, 175, 0.1)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-89",
-    number: 89,
-    name: "Dark Matter Void",
-    category: "Deep Space & Cosmic",
-    personality: "Invisible cosmic mass with subtle indigo gravitational lensing effects",
-    fontFamily: getCategoryFont("Deep Space & Cosmic").family,
-    fontName: getCategoryFont("Deep Space & Cosmic").name,
-    fontGoogleUrl: getCategoryFont("Deep Space & Cosmic").googleParam,
-    colors: {
-      bg: "#06040A",
-      primary: "#170E2B",
-      secondary: "#4C1D95",
-      accent: "#818CF8",
-      cardBg: "rgba(23, 14, 43, 0.85)",
-      cardBorder: "rgba(129, 140, 248, 0.3)",
-      textColor: "#EEF2FF",
-      mutedText: "#C7D2FE",
-      btnGradient: "linear-gradient(135deg, #4C1D95 0%, #818CF8 100%)",
-      badgeBg: "rgba(129, 140, 248, 0.15)",
-      badgeBorder: "rgba(129, 140, 248, 0.35)",
-      badgeText: "#A5B4FC",
-      heroGlow1: "rgba(129, 140, 248, 0.2)",
-      heroGlow2: "rgba(76, 29, 149, 0.15)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-90",
-    number: 90,
-    name: "Cosmic Ray Aurora",
-    category: "Deep Space & Cosmic",
-    personality: "Solar particle atmosphere collision with curtaining magenta and lime aurora",
-    fontFamily: getCategoryFont("Deep Space & Cosmic").family,
-    fontName: getCategoryFont("Deep Space & Cosmic").name,
-    fontGoogleUrl: getCategoryFont("Deep Space & Cosmic").googleParam,
-    colors: {
-      bg: "#060A12",
-      primary: "#142238",
-      secondary: "#059669",
-      accent: "#E879F9",
-      cardBg: "rgba(20, 34, 56, 0.85)",
-      cardBorder: "rgba(232, 121, 249, 0.35)",
-      textColor: "#FDF4FF",
-      mutedText: "#F5D0FE",
-      btnGradient: "linear-gradient(135deg, #059669 0%, #E879F9 100%)",
-      badgeBg: "rgba(232, 121, 249, 0.18)",
-      badgeBorder: "rgba(232, 121, 249, 0.4)",
-      badgeText: "#FBCFE8",
-      heroGlow1: "rgba(5, 150, 105, 0.25)",
-      heroGlow2: "rgba(232, 121, 249, 0.25)",
-      success: "#34D399",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-
-  // 10. Retro & Vintage Computing (91-100)
-  {
-    id: "theme-91",
-    number: 91,
-    name: "Commodore Amber CRT",
-    category: "Retro & Vintage",
-    personality: "Warm monochrome amber phosphor monitor glow with scanline nostalgia",
-    fontFamily: getCategoryFont("Retro & Vintage").family,
-    fontName: getCategoryFont("Retro & Vintage").name,
-    fontGoogleUrl: getCategoryFont("Retro & Vintage").googleParam,
-    colors: {
-      bg: "#0F0B00",
-      primary: "#2E1F00",
-      secondary: "#784A00",
-      accent: "#FFB703",
-      cardBg: "rgba(46, 31, 0, 0.85)",
-      cardBorder: "rgba(255, 183, 3, 0.35)",
-      textColor: "#FFF3D1",
-      mutedText: "#FFC857",
-      btnGradient: "linear-gradient(135deg, #784A00 0%, #FFB703 100%)",
-      badgeBg: "rgba(255, 183, 3, 0.18)",
-      badgeBorder: "rgba(255, 183, 3, 0.4)",
-      badgeText: "#FFE082",
-      heroGlow1: "rgba(255, 183, 3, 0.25)",
-      heroGlow2: "rgba(120, 74, 0, 0.18)",
-      success: "#10B981",
-      warning: "#FFB703",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-92",
-    number: 92,
-    name: "VT100 Green Phosphor",
-    category: "Retro & Vintage",
-    personality: "Dec VT100 terminal nostalgia with glowing emerald monochrome text",
-    fontFamily: getCategoryFont("Retro & Vintage").family,
-    fontName: getCategoryFont("Retro & Vintage").name,
-    fontGoogleUrl: getCategoryFont("Retro & Vintage").googleParam,
-    colors: {
-      bg: "#020D05",
-      primary: "#062910",
-      secondary: "#0F5C24",
-      accent: "#39FF14",
-      cardBg: "rgba(6, 41, 16, 0.9)",
-      cardBorder: "rgba(57, 255, 20, 0.35)",
-      textColor: "#E5FFE0",
-      mutedText: "#66FF47",
-      btnGradient: "linear-gradient(135deg, #0F5C24 0%, #39FF14 100%)",
-      badgeBg: "rgba(57, 255, 20, 0.18)",
-      badgeBorder: "rgba(57, 255, 20, 0.4)",
-      badgeText: "#A3FF8F",
-      heroGlow1: "rgba(57, 255, 20, 0.25)",
-      heroGlow2: "rgba(15, 92, 36, 0.18)",
-      success: "#39FF14",
-      warning: "#FFB703",
-      error: "#FF0054"
-    }
-  },
-  {
-    id: "theme-93",
-    number: 93,
-    name: "IBM Mainframe Blue",
-    category: "Retro & Vintage",
-    personality: "System/360 computing authority, deep cobalt terminal blue",
-    fontFamily: getCategoryFont("Retro & Vintage").family,
-    fontName: getCategoryFont("Retro & Vintage").name,
-    fontGoogleUrl: getCategoryFont("Retro & Vintage").googleParam,
-    colors: {
-      bg: "#060C1B",
-      primary: "#0F1E3D",
-      secondary: "#1D4ED8",
-      accent: "#60A5FA",
-      cardBg: "rgba(15, 30, 61, 0.85)",
-      cardBorder: "rgba(96, 165, 250, 0.35)",
-      textColor: "#EFF6FF",
-      mutedText: "#93C5FD",
-      btnGradient: "linear-gradient(135deg, #1D4ED8 0%, #60A5FA 100%)",
-      badgeBg: "rgba(96, 165, 250, 0.18)",
-      badgeBorder: "rgba(96, 165, 250, 0.4)",
-      badgeText: "#BFDBFE",
-      heroGlow1: "rgba(29, 78, 216, 0.25)",
-      heroGlow2: "rgba(96, 165, 250, 0.18)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-94",
-    number: 94,
-    name: "Macintosh System 1",
-    category: "Retro & Vintage",
-    personality: "1984 original Macintosh 1-bit dithered grey UI nostalgic simplicity",
-    fontFamily: getCategoryFont("Retro & Vintage").family,
-    fontName: getCategoryFont("Retro & Vintage").name,
-    fontGoogleUrl: getCategoryFont("Retro & Vintage").googleParam,
-    colors: {
-      bg: "#121214",
-      primary: "#222226",
-      secondary: "#4A4D57",
-      accent: "#D0D4E0",
-      cardBg: "rgba(34, 34, 38, 0.9)",
-      cardBorder: "rgba(208, 212, 224, 0.3)",
-      textColor: "#F4F5F8",
-      mutedText: "#A0A5B5",
-      btnGradient: "linear-gradient(135deg, #4A4D57 0%, #767B8C 100%)",
-      badgeBg: "rgba(208, 212, 224, 0.15)",
-      badgeBorder: "rgba(208, 212, 224, 0.35)",
-      badgeText: "#E6E9F2",
-      heroGlow1: "rgba(208, 212, 224, 0.12)",
-      heroGlow2: "rgba(74, 77, 87, 0.12)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-95",
-    number: 95,
-    name: "Amiga Workbench 1.3",
-    category: "Retro & Vintage",
-    personality: "Iconic Commodore Amiga blue and orange workstation workspace",
-    fontFamily: getCategoryFont("Retro & Vintage").family,
-    fontName: getCategoryFont("Retro & Vintage").name,
-    fontGoogleUrl: getCategoryFont("Retro & Vintage").googleParam,
-    colors: {
-      bg: "#0A1224",
-      primary: "#14254A",
-      secondary: "#0055AA",
-      accent: "#FF5500",
-      cardBg: "rgba(20, 37, 74, 0.85)",
-      cardBorder: "rgba(255, 85, 0, 0.4)",
-      textColor: "#FFFFFF",
-      mutedText: "#88BBFF",
-      btnGradient: "linear-gradient(135deg, #0055AA 0%, #FF5500 100%)",
-      badgeBg: "rgba(255, 85, 0, 0.2)",
-      badgeBorder: "rgba(255, 85, 0, 0.5)",
-      badgeText: "#FF9966",
-      heroGlow1: "rgba(0, 85, 170, 0.3)",
-      heroGlow2: "rgba(255, 85, 0, 0.25)",
-      success: "#10B981",
-      warning: "#FFB703",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-96",
-    number: 96,
-    name: "C64 Blue & Light Blue",
-    category: "Retro & Vintage",
-    personality: "Commodore 64 16-color palette nostalgia with royal blue background",
-    fontFamily: getCategoryFont("Retro & Vintage").family,
-    fontName: getCategoryFont("Retro & Vintage").name,
-    fontGoogleUrl: getCategoryFont("Retro & Vintage").googleParam,
-    colors: {
-      bg: "#101830",
-      primary: "#203060",
-      secondary: "#4060C0",
-      accent: "#A0C0FF",
-      cardBg: "rgba(32, 48, 96, 0.85)",
-      cardBorder: "rgba(160, 192, 255, 0.35)",
-      textColor: "#F0F4FF",
-      mutedText: "#80A0E0",
-      btnGradient: "linear-gradient(135deg, #4060C0 0%, #7090E0 100%)",
-      badgeBg: "rgba(160, 192, 255, 0.18)",
-      badgeBorder: "rgba(160, 192, 255, 0.4)",
-      badgeText: "#C0D8FF",
-      heroGlow1: "rgba(64, 96, 192, 0.25)",
-      heroGlow2: "rgba(160, 192, 255, 0.18)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-97",
-    number: 97,
-    name: "Sinclair ZX Spectrum",
-    category: "Retro & Vintage",
-    personality: "British home computer rainbow stripe feel on matte rubber keyboard dark base",
-    fontFamily: getCategoryFont("Retro & Vintage").family,
-    fontName: getCategoryFont("Retro & Vintage").name,
-    fontGoogleUrl: getCategoryFont("Retro & Vintage").googleParam,
-    colors: {
-      bg: "#0A0A0E",
-      primary: "#1C1C24",
-      secondary: "#E11D48",
-      accent: "#06B6D4",
-      cardBg: "rgba(28, 28, 36, 0.85)",
-      cardBorder: "rgba(6, 182, 212, 0.4)",
-      textColor: "#FFFFFF",
-      mutedText: "#A5F3FC",
-      btnGradient: "linear-gradient(135deg, #E11D48 0%, #06B6D4 100%)",
-      badgeBg: "rgba(6, 182, 212, 0.18)",
-      badgeBorder: "rgba(6, 182, 212, 0.45)",
-      badgeText: "#67E8F9",
-      heroGlow1: "rgba(225, 29, 72, 0.25)",
-      heroGlow2: "rgba(6, 182, 212, 0.25)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-98",
-    number: 98,
-    name: "Arcade Neon 1982",
-    category: "Retro & Vintage",
-    personality: "Quarter-eating arcade cabinet marquee with hot pink and electric violet",
-    fontFamily: getCategoryFont("Retro & Vintage").family,
-    fontName: getCategoryFont("Retro & Vintage").name,
-    fontGoogleUrl: getCategoryFont("Retro & Vintage").googleParam,
-    colors: {
-      bg: "#110214",
-      primary: "#40084A",
-      secondary: "#9333EA",
-      accent: "#F43F5E",
-      cardBg: "rgba(40, 8, 46, 0.85)",
-      cardBorder: "rgba(244, 63, 94, 0.4)",
-      textColor: "#FFF1F2",
-      mutedText: "#F472B6",
-      btnGradient: "linear-gradient(135deg, #9333EA 0%, #F43F5E 100%)",
-      badgeBg: "rgba(244, 63, 94, 0.2)",
-      badgeBorder: "rgba(244, 63, 94, 0.45)",
-      badgeText: "#FB7185",
-      heroGlow1: "rgba(147, 51, 234, 0.3)",
-      heroGlow2: "rgba(244, 63, 94, 0.25)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-99",
-    number: 99,
-    name: "Atari 2600 Woodgrain",
-    category: "Retro & Vintage",
-    personality: "Classic woodgrain paneling with 70s orange retro game cartridge pop",
-    fontFamily: getCategoryFont("Retro & Vintage").family,
-    fontName: getCategoryFont("Retro & Vintage").name,
-    fontGoogleUrl: getCategoryFont("Retro & Vintage").googleParam,
-    colors: {
-      bg: "#140A06",
-      primary: "#2E170E",
-      secondary: "#7C2D12",
-      accent: "#EA580C",
-      cardBg: "rgba(46, 23, 14, 0.85)",
-      cardBorder: "rgba(234, 88, 12, 0.35)",
-      textColor: "#FFF7ED",
-      mutedText: "#FDBA74",
-      btnGradient: "linear-gradient(135deg, #7C2D12 0%, #EA580C 100%)",
-      badgeBg: "rgba(234, 88, 12, 0.18)",
-      badgeBorder: "rgba(234, 88, 12, 0.4)",
-      badgeText: "#FFEDD5",
-      heroGlow1: "rgba(234, 88, 12, 0.25)",
-      heroGlow2: "rgba(124, 45, 18, 0.18)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
-    }
-  },
-  {
-    id: "theme-100",
-    number: 100,
-    name: "Solaris UNIX Workstation",
-    category: "Retro & Vintage",
-    personality: "Sun Microsystems CDE desktop blue-grey precision workstation classic",
-    fontFamily: getCategoryFont("Retro & Vintage").family,
-    fontName: getCategoryFont("Retro & Vintage").name,
-    fontGoogleUrl: getCategoryFont("Retro & Vintage").googleParam,
-    colors: {
-      bg: "#0D131A",
-      primary: "#1C2836",
-      secondary: "#3A506B",
-      accent: "#48CAE4",
-      cardBg: "rgba(28, 40, 54, 0.85)",
-      cardBorder: "rgba(72, 202, 228, 0.3)",
-      textColor: "#F0F8FF",
-      mutedText: "#90E0EF",
-      btnGradient: "linear-gradient(135deg, #0077B6 0%, #48CAE4 100%)",
-      badgeBg: "rgba(72, 202, 228, 0.18)",
-      badgeBorder: "rgba(72, 202, 228, 0.4)",
-      badgeText: "#ADE8F4",
-      heroGlow1: "rgba(72, 202, 228, 0.2)",
-      heroGlow2: "rgba(0, 119, 182, 0.15)",
-      success: "#10B981",
-      warning: "#F59E0B",
-      error: "#EF4444"
+export const PRESET_THEMES: ThemeConfigV2[] = [
+  {
+    "id": "theme-1",
+    "version": 2,
+    "name": "Obsidian Vault",
+    "category": "High-Trust Fintech",
+    "personality": "Ultra-secure corporate escrow, bank-level encryption feel",
+    "typography": {
+      "fontFamily": "'Plus Jakarta Sans', sans-serif",
+      "fontName": "Plus Jakarta Sans",
+      "fontGoogleUrl": "Plus+Jakarta+Sans:wght@400;600;700;800",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#0B0F19",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#1E3A8A",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#3B82F6",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#10B981",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#111827",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#1E3A8A",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#F3F4F6",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#9CA3AF",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#1E3A8A",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#1E3A8A",
+              "position": 0
+            },
+            {
+              "color": "#3B82F6",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#34D399",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#3B82F6",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#10B981",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#1E3A8A",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-2",
+    "version": 2,
+    "name": "Midnight Sapphire",
+    "category": "High-Trust Fintech",
+    "personality": "Deep ocean corporate trust with glowing cyan accents",
+    "typography": {
+      "fontFamily": "'Plus Jakarta Sans', sans-serif",
+      "fontName": "Plus Jakarta Sans",
+      "fontGoogleUrl": "Plus+Jakarta+Sans:wght@400;600;700;800",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#0A1128",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#1C2541",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#475569",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#00F5D4",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#0B132B",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#00F5D4",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#FFFFFF",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#8D99AE",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#1C2541",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#00B4D8",
+              "position": 0
+            },
+            {
+              "color": "#00F5D4",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#00F5D4",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#00F5D4",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#00F5D4",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#00B4D8",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#00F5D4",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#00F5D4",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#FFB703",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#FF0054",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#1C2541",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-3",
+    "version": 2,
+    "name": "Sovereign Gold",
+    "category": "High-Trust Fintech",
+    "personality": "Institutional wealth management, premium bullion aesthetic",
+    "typography": {
+      "fontFamily": "'Plus Jakarta Sans', sans-serif",
+      "fontName": "Plus Jakarta Sans",
+      "fontGoogleUrl": "Plus+Jakarta+Sans:wght@400;600;700;800",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#0D0D0D",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#D4AF37",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#AA7C11",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#F3E5AB",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#1A1A1A",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#D4AF37",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#F9FAFB",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#A1A1AA",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#D4AF37",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#D4AF37",
+              "position": 0
+            },
+            {
+              "color": "#AA7C11",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#D4AF37",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#D4AF37",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#F3E5AB",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#D4AF37",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#AA7C11",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#D4AF37",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#F43F5E",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#D4AF37",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-4",
+    "version": 2,
+    "name": "Federal Mint",
+    "category": "High-Trust Fintech",
+    "personality": "Monetary policy authority with rich emerald and platinum",
+    "typography": {
+      "fontFamily": "'Plus Jakarta Sans', sans-serif",
+      "fontName": "Plus Jakarta Sans",
+      "fontGoogleUrl": "Plus+Jakarta+Sans:wght@400;600;700;800",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#061A14",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#0D5C46",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#14B8A6",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#34D399",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#0A261E",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#14B8A6",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#ECFDF5",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#6EE7B7",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#0D5C46",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#0D5C46",
+              "position": 0
+            },
+            {
+              "color": "#14B8A6",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#34D399",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#34D399",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#34D399",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#14B8A6",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#34D399",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#34D399",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#FBBF24",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#F87171",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#0D5C46",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-5",
+    "version": 2,
+    "name": "Capital Platinum",
+    "category": "High-Trust Fintech",
+    "personality": "Cool silver slate with sharp ice blue precision highlights",
+    "typography": {
+      "fontFamily": "'Plus Jakarta Sans', sans-serif",
+      "fontName": "Plus Jakarta Sans",
+      "fontGoogleUrl": "Plus+Jakarta+Sans:wght@400;600;700;800",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#0F172A",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#334155",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#64748B",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#38BDF8",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#1E293B",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#38BDF8",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#F8FAFC",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#94A3B8",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#334155",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#0284C7",
+              "position": 0
+            },
+            {
+              "color": "#38BDF8",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#38BDF8",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#38BDF8",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#38BDF8",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#38BDF8",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#0284C7",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#22C55E",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#EAB308",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#334155",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-6",
+    "version": 2,
+    "name": "Cobalt Citadel",
+    "category": "High-Trust Fintech",
+    "personality": "Ultra-solid deep navy fortress with vibrant cobalt blue core",
+    "typography": {
+      "fontFamily": "'Plus Jakarta Sans', sans-serif",
+      "fontName": "Plus Jakarta Sans",
+      "fontGoogleUrl": "Plus+Jakarta+Sans:wght@400;600;700;800",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#090D16",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#1D4ED8",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#3B82F6",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#60A5FA",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#111827",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#3B82F6",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#F9FAFB",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#9CA3AF",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#1D4ED8",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#1D4ED8",
+              "position": 0
+            },
+            {
+              "color": "#3B82F6",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#3B82F6",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#3B82F6",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#60A5FA",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#1D4ED8",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#60A5FA",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#1D4ED8",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-7",
+    "version": 2,
+    "name": "Titanium Escrow",
+    "category": "High-Trust Fintech",
+    "personality": "Industrial security, heavy metallic feel with cyan borders",
+    "typography": {
+      "fontFamily": "'Plus Jakarta Sans', sans-serif",
+      "fontName": "Plus Jakarta Sans",
+      "fontGoogleUrl": "Plus+Jakarta+Sans:wght@400;600;700;800",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#111827",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#374151",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#4B5563",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#06B6D4",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#1F2937",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#06B6D4",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#F9FAFB",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#9CA3AF",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#374151",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#0891B2",
+              "position": 0
+            },
+            {
+              "color": "#06B6D4",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#06B6D4",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#06B6D4",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#22D3EE",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#06B6D4",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#0EA5E9",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#374151",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-8",
+    "version": 2,
+    "name": "Prussian Reserve",
+    "category": "High-Trust Fintech",
+    "personality": "Classic European banking heritage combined with modern UI depth",
+    "typography": {
+      "fontFamily": "'Plus Jakarta Sans', sans-serif",
+      "fontName": "Plus Jakarta Sans",
+      "fontGoogleUrl": "Plus+Jakarta+Sans:wght@400;600;700;800",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#0B132B",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#1C2541",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#3A506B",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#5BC0BE",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#1C2541",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#5BC0BE",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#FFFFFF",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#A5B4FC",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#1C2541",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#3A506B",
+              "position": 0
+            },
+            {
+              "color": "#5BC0BE",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#5BC0BE",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#5BC0BE",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#5BC0BE",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#5BC0BE",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#3A506B",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#1C2541",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-9",
+    "version": 2,
+    "name": "Emerald Sovereign",
+    "category": "High-Trust Fintech",
+    "personality": "Deep rich emerald luxury with gold badge highlights",
+    "typography": {
+      "fontFamily": "'Plus Jakarta Sans', sans-serif",
+      "fontName": "Plus Jakarta Sans",
+      "fontGoogleUrl": "Plus+Jakarta+Sans:wght@400;600;700;800",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#022C22",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#064E3B",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#047857",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#F59E0B",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#064E3B",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#F59E0B",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#ECFDF5",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#A7F3D0",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#064E3B",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#047857",
+              "position": 0
+            },
+            {
+              "color": "#10B981",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#FBBF24",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#F59E0B",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#064E3B",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-10",
+    "version": 2,
+    "name": "Alpine Trust",
+    "category": "High-Trust Fintech",
+    "personality": "Swiss banking crispness with ice turquoise clarity",
+    "typography": {
+      "fontFamily": "'Plus Jakarta Sans', sans-serif",
+      "fontName": "Plus Jakarta Sans",
+      "fontGoogleUrl": "Plus+Jakarta+Sans:wght@400;600;700;800",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#081C24",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#0E3A47",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#155E75",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#06B6D4",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#0E3A47",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#06B6D4",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#F0FDFA",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#99F6E4",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#0E3A47",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#0891B2",
+              "position": 0
+            },
+            {
+              "color": "#22D3EE",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#06B6D4",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#06B6D4",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#22D3EE",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#06B6D4",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#22D3EE",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#0E3A47",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-11",
+    "version": 2,
+    "name": "Neon Gridlock",
+    "category": "Cyberpunk & Sci-Fi",
+    "personality": "High-contrast cyberpunk grid with magenta and cyan neon luminescence",
+    "typography": {
+      "fontFamily": "'Space Grotesk', sans-serif",
+      "fontName": "Space Grotesk",
+      "fontGoogleUrl": "Space+Grotesk:wght@400;500;600;700",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#080312",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#7C3AED",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#DB2777",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#06B6D4",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#130924",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#DB2777",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#FDF2F8",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#F472B6",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#7C3AED",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#7C3AED",
+              "position": 0
+            },
+            {
+              "color": "#EC4899",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#06B6D4",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#06B6D4",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#22D3EE",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#DB2777",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#06B6D4",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#F43F5E",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#7C3AED",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-12",
+    "version": 2,
+    "name": "Matrix Override",
+    "category": "Cyberpunk & Sci-Fi",
+    "personality": "Phosphor green terminal matrix vibe on pitch void background",
+    "typography": {
+      "fontFamily": "'Space Grotesk', sans-serif",
+      "fontName": "Space Grotesk",
+      "fontGoogleUrl": "Space+Grotesk:wght@400;500;600;700",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#030A05",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#052E16",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#14532D",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#22C55E",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#061A0E",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#22C55E",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#DCFCE7",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#4ADE80",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#052E16",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#15803D",
+              "position": 0
+            },
+            {
+              "color": "#22C55E",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#22C55E",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#22C55E",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#4ADE80",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#22C55E",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#4ADE80",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#22C55E",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#EAB308",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#052E16",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-13",
+    "version": 2,
+    "name": "Cyber Crimson",
+    "category": "Cyberpunk & Sci-Fi",
+    "personality": "Tactical red alert sci-fi interface for high-frequency transactions",
+    "typography": {
+      "fontFamily": "'Space Grotesk', sans-serif",
+      "fontName": "Space Grotesk",
+      "fontGoogleUrl": "Space+Grotesk:wght@400;500;600;700",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#0F0507",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#881337",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#E11D48",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#FB7185",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#1C090F",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#E11D48",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#FFF1F2",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#FDA4AF",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#881337",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#9F1239",
+              "position": 0
+            },
+            {
+              "color": "#F43F5E",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#F43F5E",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#F43F5E",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#FB7185",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#E11D48",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#FB7185",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#F43F5E",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#881337",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-14",
+    "version": 2,
+    "name": "Synthwave Sunset",
+    "category": "Cyberpunk & Sci-Fi",
+    "personality": "80s retrofuturistic sunset grid with warm magenta to violet fades",
+    "typography": {
+      "fontFamily": "'Space Grotesk', sans-serif",
+      "fontName": "Space Grotesk",
+      "fontGoogleUrl": "Space+Grotesk:wght@400;500;600;700",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#18062B",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#581C87",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#C084FC",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#F43F5E",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#260C40",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#C084FC",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#FAF5FF",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#E9D5FF",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#581C87",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#A855F7",
+              "position": 0
+            },
+            {
+              "color": "#EC4899",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#F43F5E",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#F43F5E",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#FB7185",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#A855F7",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#EC4899",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#581C87",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-15",
+    "version": 2,
+    "name": "Sub-Zero Cryo",
+    "category": "Cyberpunk & Sci-Fi",
+    "personality": "Cryogenic sci-fi module with frosted glass ice cyan reflections",
+    "typography": {
+      "fontFamily": "'Space Grotesk', sans-serif",
+      "fontName": "Space Grotesk",
+      "fontGoogleUrl": "Space+Grotesk:wght@400;500;600;700",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#03141D",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#0C4A6E",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#0284C7",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#38BDF8",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#0C4A6E",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#38BDF8",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#F0F9FF",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#BAE6FD",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#0C4A6E",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#0284C7",
+              "position": 0
+            },
+            {
+              "color": "#38BDF8",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#38BDF8",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#38BDF8",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#7DD3FC",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#38BDF8",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#0EA5E9",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#34D399",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#FBBF24",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#F87171",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#0C4A6E",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-16",
+    "version": 2,
+    "name": "Akira Neo-Tokyo",
+    "category": "Cyberpunk & Sci-Fi",
+    "personality": "Hyper-urban Japanese cyberpunk aesthetic with neon orange pop",
+    "typography": {
+      "fontFamily": "'Space Grotesk', sans-serif",
+      "fontName": "Space Grotesk",
+      "fontGoogleUrl": "Space+Grotesk:wght@400;500;600;700",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#0B0914",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#311B92",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#FF6D00",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#FFD600",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#141026",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#FF6D00",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#FFF8E1",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#FFB74D",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#311B92",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#FF6D00",
+              "position": 0
+            },
+            {
+              "color": "#FF9100",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#FFD600",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#FFD600",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#FFD600",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#FF6D00",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#FFD600",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#00E676",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#FF9100",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#FF1744",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#311B92",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-17",
+    "version": 2,
+    "name": "Quantum Void",
+    "category": "Cyberpunk & Sci-Fi",
+    "personality": "Deep space particle physics chamber with electric ultraviolet beams",
+    "typography": {
+      "fontFamily": "'Space Grotesk', sans-serif",
+      "fontName": "Space Grotesk",
+      "fontGoogleUrl": "Space+Grotesk:wght@400;500;600;700",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#050014",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#2E0854",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#8B5CF6",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#C084FC",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#14052D",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#8B5CF6",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#F5F3FF",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#DDD6FE",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#2E0854",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#7C3AED",
+              "position": 0
+            },
+            {
+              "color": "#C084FC",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#C084FC",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#C084FC",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#E9D5FF",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#8B5CF6",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#C084FC",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#2E0854",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-18",
+    "version": 2,
+    "name": "Solar Flare",
+    "category": "Cyberpunk & Sci-Fi",
+    "personality": "Intense coronal mass ejection theme with blinding amber plasma glow",
+    "typography": {
+      "fontFamily": "'Space Grotesk', sans-serif",
+      "fontName": "Space Grotesk",
+      "fontGoogleUrl": "Space+Grotesk:wght@400;500;600;700",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#140700",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#7C2D12",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#EA580C",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#F97316",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#240E03",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#EA580C",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#FFF7ED",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#FDBA74",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#7C2D12",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#C2410C",
+              "position": 0
+            },
+            {
+              "color": "#F97316",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#F97316",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#F97316",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#FFEDD5",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#EA580C",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#F97316",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#7C2D12",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-19",
+    "version": 2,
+    "name": "Holographic Prism",
+    "category": "Cyberpunk & Sci-Fi",
+    "personality": "Multi-spectrum holographic glass interface with iridescent edge shifts",
+    "typography": {
+      "fontFamily": "'Space Grotesk', sans-serif",
+      "fontName": "Space Grotesk",
+      "fontGoogleUrl": "Space+Grotesk:wght@400;500;600;700",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#0A0D1B",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#1E1B4B",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#6366F1",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#38BDF8",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#191C37",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#6366F1",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#EEF2FF",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#C7D2FE",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#1E1B4B",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#4F46E5",
+              "position": 0
+            },
+            {
+              "color": "#06B6D4",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#38BDF8",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#38BDF8",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#38BDF8",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#6366F1",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#06B6D4",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#1E1B4B",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-20",
+    "version": 2,
+    "name": "Bio-Luminescent Deep",
+    "category": "Cyberpunk & Sci-Fi",
+    "personality": "Abyssal trench marine organism teal-emerald pulsing radiance",
+    "typography": {
+      "fontFamily": "'Space Grotesk', sans-serif",
+      "fontName": "Space Grotesk",
+      "fontGoogleUrl": "Space+Grotesk:wght@400;500;600;700",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#01161B",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#042F2E",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#0D9488",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#2DD4BF",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#052E2C",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#2DD4BF",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#F0FDFA",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#99F6E4",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#042F2E",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#0F766E",
+              "position": 0
+            },
+            {
+              "color": "#2DD4BF",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#2DD4BF",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#2DD4BF",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#5EEAD4",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#0D9488",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#2DD4BF",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#2DD4BF",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#042F2E",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-21",
+    "version": 2,
+    "name": "Champagne Velvet",
+    "category": "Dark Luxury & Obsidian",
+    "personality": "Ultra-luxury VIP private banking with soft champagne silk highlights",
+    "typography": {
+      "fontFamily": "'Cinzel', serif",
+      "fontName": "Cinzel",
+      "fontGoogleUrl": "Cinzel:wght@500;700;900",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#0E0C0A",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#26201A",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#8C7355",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#E6C594",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#1C1814",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#E6C594",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#FDFBF7",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#C5B8A5",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#26201A",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#8C7355",
+              "position": 0
+            },
+            {
+              "color": "#E6C594",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#E6C594",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#E6C594",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#E6C594",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#E6C594",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#8C7355",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#E6C594",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#26201A",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-22",
+    "version": 2,
+    "name": "Rose Quartz Gold",
+    "category": "Dark Luxury & Obsidian",
+    "personality": "Sophisticated blush bronze and rose gold accents over ebony base",
+    "typography": {
+      "fontFamily": "'Cinzel', serif",
+      "fontName": "Cinzel",
+      "fontGoogleUrl": "Cinzel:wght@500;700;900",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#120B0E",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#2D1B22",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#9E5A73",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#F4B8C7",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#21141A",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#F4B8C7",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#FFF5F7",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#D8A3B2",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#2D1B22",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#9E5A73",
+              "position": 0
+            },
+            {
+              "color": "#F4B8C7",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#F4B8C7",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#F4B8C7",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#F4B8C7",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#F4B8C7",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#9E5A73",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#2D1B22",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-23",
+    "version": 2,
+    "name": "Black Card Onyx",
+    "category": "Dark Luxury & Obsidian",
+    "personality": "Exclusive invite-only credit card aesthetic, matte black with silver trim",
+    "typography": {
+      "fontFamily": "'Cinzel', serif",
+      "fontName": "Cinzel",
+      "fontGoogleUrl": "Cinzel:wght@500;700;900",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#050505",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#171717",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#404040",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#E5E5E5",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#171717",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#E5E5E5",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#FAFAFA",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#A3A3A3",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#171717",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#404040",
+              "position": 0
+            },
+            {
+              "color": "#737373",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#E5E5E5",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#E5E5E5",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#FAFAFA",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#FFFFFF",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#737373",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#171717",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-24",
+    "version": 2,
+    "name": "Imperial Amethyst",
+    "category": "Dark Luxury & Obsidian",
+    "personality": "Royal deep purple and gold trim, aristocratic high-end finance",
+    "typography": {
+      "fontFamily": "'Cinzel', serif",
+      "fontName": "Cinzel",
+      "fontGoogleUrl": "Cinzel:wght@500;700;900",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#0D0814",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#261438",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#6B21A8",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#FBBF24",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#1E102C",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#FBBF24",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#FAF5FF",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#D8B4FE",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#261438",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#6B21A8",
+              "position": 0
+            },
+            {
+              "color": "#A855F7",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#FBBF24",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#FBBF24",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#FCD34D",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#6B21A8",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#FBBF24",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#261438",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-25",
+    "version": 2,
+    "name": "Mayfair Midnight",
+    "category": "Dark Luxury & Obsidian",
+    "personality": "London private club vibe with rich mahogany undertones and warm amber",
+    "typography": {
+      "fontFamily": "'Cinzel', serif",
+      "fontName": "Cinzel",
+      "fontGoogleUrl": "Cinzel:wght@500;700;900",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#0F0B09",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#2B1A12",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#78350F",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#F59E0B",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#21140E",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#F59E0B",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#FFFBEB",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#FDE68A",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#2B1A12",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#78350F",
+              "position": 0
+            },
+            {
+              "color": "#D97706",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#FBBF24",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#78350F",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#2B1A12",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-26",
+    "version": 2,
+    "name": "Patek Platinum",
+    "category": "Dark Luxury & Obsidian",
+    "personality": "Horology craftsmanship luxury, polished slate with steel-blue hands",
+    "typography": {
+      "fontFamily": "'Cinzel', serif",
+      "fontName": "Cinzel",
+      "fontGoogleUrl": "Cinzel:wght@500;700;900",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#0B0E14",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#1E293B",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#475569",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#94A3B8",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#18212F",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#94A3B8",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#F8FAFC",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#CBD5E1",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#1E293B",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#334155",
+              "position": 0
+            },
+            {
+              "color": "#64748B",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#94A3B8",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#94A3B8",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#E2E8F0",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#94A3B8",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#475569",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#1E293B",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-27",
+    "version": 2,
+    "name": "Bronze Sovereign",
+    "category": "Dark Luxury & Obsidian",
+    "personality": "Patinated architectural bronze with warm burnished highlights",
+    "typography": {
+      "fontFamily": "'Cinzel', serif",
+      "fontName": "Cinzel",
+      "fontGoogleUrl": "Cinzel:wght@500;700;900",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#100D0A",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#2A1F18",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#6E472D",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#D48B54",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#201812",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#D48B54",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#FDF8F5",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#D1BCAE",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#2A1F18",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#6E472D",
+              "position": 0
+            },
+            {
+              "color": "#D48B54",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#D48B54",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#D48B54",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#E5AA7E",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#D48B54",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#6E472D",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#2A1F18",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-28",
+    "version": 2,
+    "name": "Obsidian Pearl",
+    "category": "Dark Luxury & Obsidian",
+    "personality": "Glossy black pearl iridescence with subtle mauve reflections",
+    "typography": {
+      "fontFamily": "'Cinzel', serif",
+      "fontName": "Cinzel",
+      "fontGoogleUrl": "Cinzel:wght@500;700;900",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#0B0A0F",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#1B1724",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#4C3B5C",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#C3B1E1",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#18141F",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#C3B1E1",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#FAF8FF",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#B6A7CA",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#1B1724",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#4C3B5C",
+              "position": 0
+            },
+            {
+              "color": "#7E6396",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#C3B1E1",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#C3B1E1",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#D8CCEE",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#C3B1E1",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#4C3B5C",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#1B1724",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-29",
+    "version": 2,
+    "name": "Tuscan Walnut",
+    "category": "Dark Luxury & Obsidian",
+    "personality": "Italian leather goods aesthetic, espresso base with terracotta accents",
+    "typography": {
+      "fontFamily": "'Cinzel', serif",
+      "fontName": "Cinzel",
+      "fontGoogleUrl": "Cinzel:wght@500;700;900",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#0D0907",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#281B14",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#7C3F26",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#E07A5F",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#1E140F",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#E07A5F",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#FAF0EC",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#D3B2A5",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#281B14",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#7C3F26",
+              "position": 0
+            },
+            {
+              "color": "#E07A5F",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#E07A5F",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#E07A5F",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#F4A261",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#E07A5F",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#7C3F26",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#281B14",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-30",
+    "version": 2,
+    "name": "Venetian Velvet",
+    "category": "Dark Luxury & Obsidian",
+    "personality": "Deep burgundy luxury with warm copper wire frame details",
+    "typography": {
+      "fontFamily": "'Cinzel', serif",
+      "fontName": "Cinzel",
+      "fontGoogleUrl": "Cinzel:wght@500;700;900",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#100508",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#310A14",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#80132A",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#E85D75",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#240911",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#E85D75",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#FFF0F3",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#D69AA6",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#310A14",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#80132A",
+              "position": 0
+            },
+            {
+              "color": "#C9184A",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#E85D75",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#E85D75",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#FF758F",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#E85D75",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#80132A",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#310A14",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-31",
+    "version": 2,
+    "name": "Electric Violet",
+    "category": "Neon & Synthesizer",
+    "personality": "Vibrant electro-pop theme with pulsing neon violet and electric pink",
+    "typography": {
+      "fontFamily": "'Outfit', sans-serif",
+      "fontName": "Outfit",
+      "fontGoogleUrl": "Outfit:wght@400;500;600;700;800",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#0A0118",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#4C1D95",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#8B5CF6",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#F43F5E",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#1A0934",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#8B5CF6",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#F5F3FF",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#C4B5FD",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#4C1D95",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#7C3AED",
+              "position": 0
+            },
+            {
+              "color": "#F43F5E",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#F43F5E",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#F43F5E",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#FB7185",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#8B5CF6",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#F43F5E",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#4C1D95",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-32",
+    "version": 2,
+    "name": "Acid Lime Pulse",
+    "category": "Neon & Synthesizer",
+    "personality": "Ultra-modern club synth aesthetic with blinding acid lime accents",
+    "typography": {
+      "fontFamily": "'Outfit', sans-serif",
+      "fontName": "Outfit",
+      "fontGoogleUrl": "Outfit:wght@400;500;600;700;800",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#070F03",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#1A3A07",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#4D7C0F",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#84CC16",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#122608",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#84CC16",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#F7FEE7",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#BEF264",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#1A3A07",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#4D7C0F",
+              "position": 0
+            },
+            {
+              "color": "#84CC16",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#84CC16",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#84CC16",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#A3E635",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#84CC16",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#4D7C0F",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#84CC16",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#1A3A07",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-33",
+    "version": 2,
+    "name": "Cyber Coral Glow",
+    "category": "Neon & Synthesizer",
+    "personality": "Vibrant coral and turquoise neon pairing, tropical synthesizer feel",
+    "typography": {
+      "fontFamily": "'Outfit', sans-serif",
+      "fontName": "Outfit",
+      "fontGoogleUrl": "Outfit:wght@400;500;600;700;800",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#0B0813",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#3B0764",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#F43F5E",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#2DD4BF",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#180A26",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#F43F5E",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#FFF1F2",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#FDA4AF",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#3B0764",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#F43F5E",
+              "position": 0
+            },
+            {
+              "color": "#2DD4BF",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#2DD4BF",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#2DD4BF",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#5EEAD4",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#F43F5E",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#2DD4BF",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#2DD4BF",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#3B0764",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-34",
+    "version": 2,
+    "name": "Laser Amber",
+    "category": "Neon & Synthesizer",
+    "personality": "Laser tag arena amber beam with deep charcoal contrast",
+    "typography": {
+      "fontFamily": "'Outfit', sans-serif",
+      "fontName": "Outfit",
+      "fontGoogleUrl": "Outfit:wght@400;500;600;700;800",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#0D0900",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#451A03",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#D97706",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#FBBF24",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#1E1202",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#FBBF24",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#FEF3C7",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#FCD34D",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#451A03",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#B45309",
+              "position": 0
+            },
+            {
+              "color": "#FBBF24",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#FBBF24",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#FBBF24",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#FDE68A",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#FBBF24",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#D97706",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#451A03",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-35",
+    "version": 2,
+    "name": "Vaporwave Dream",
+    "category": "Neon & Synthesizer",
+    "personality": "Pastel synth aesthetic with lavender clouds and soft cyan neon glow",
+    "typography": {
+      "fontFamily": "'Outfit', sans-serif",
+      "fontName": "Outfit",
+      "fontGoogleUrl": "Outfit:wght@400;500;600;700;800",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#100926",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#3B1578",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#A855F7",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#38BDF8",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#1D113D",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#A855F7",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#FAF5FF",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#E9D5FF",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#3B1578",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#8B5CF6",
+              "position": 0
+            },
+            {
+              "color": "#38BDF8",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#38BDF8",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#38BDF8",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#7DD3FC",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#A855F7",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#38BDF8",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#34D399",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#FBBF24",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#F87171",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#3B1578",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-36",
+    "version": 2,
+    "name": "Hyperdrive Cyan",
+    "category": "Neon & Synthesizer",
+    "personality": "Warp speed star trail cyan streaks over pitch black space",
+    "typography": {
+      "fontFamily": "'Outfit', sans-serif",
+      "fontName": "Outfit",
+      "fontGoogleUrl": "Outfit:wght@400;500;600;700;800",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#020B14",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#075985",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#0284C7",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#38BDF8",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#072B44",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#38BDF8",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#F0F9FF",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#7DD3FC",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#075985",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#0369A1",
+              "position": 0
+            },
+            {
+              "color": "#38BDF8",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#38BDF8",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#38BDF8",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#BAE6FD",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#38BDF8",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#0284C7",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#075985",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-37",
+    "version": 2,
+    "name": "Tokyo Hotline",
+    "category": "Neon & Synthesizer",
+    "personality": "Late night arcade glow with magenta hotline pink borders",
+    "typography": {
+      "fontFamily": "'Outfit', sans-serif",
+      "fontName": "Outfit",
+      "fontGoogleUrl": "Outfit:wght@400;500;600;700;800",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#12030E",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#701A75",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#C026D3",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#F472B6",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#26092C",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#C026D3",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#FDF4FF",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#F5D0FE",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#701A75",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#A21CAF",
+              "position": 0
+            },
+            {
+              "color": "#E879F9",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#F472B6",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#F472B6",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#FBCFE8",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#C026D3",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#F472B6",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#701A75",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-38",
+    "version": 2,
+    "name": "Plasma Surge",
+    "category": "Neon & Synthesizer",
+    "personality": "Ionized gas plasma glow with vivid electric blue-green discharge",
+    "typography": {
+      "fontFamily": "'Outfit', sans-serif",
+      "fontName": "Outfit",
+      "fontGoogleUrl": "Outfit:wght@400;500;600;700;800",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#02120D",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#064E3B",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#059669",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#34D399",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#073024",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#34D399",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#ECFDF5",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#6EE7B7",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#064E3B",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#047857",
+              "position": 0
+            },
+            {
+              "color": "#34D399",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#34D399",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#34D399",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#A7F3D0",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#34D399",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#059669",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#34D399",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#064E3B",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-39",
+    "version": 2,
+    "name": "Inferno Synth",
+    "category": "Neon & Synthesizer",
+    "personality": "Searing lava synth atmosphere with bright blood orange sparks",
+    "typography": {
+      "fontFamily": "'Outfit', sans-serif",
+      "fontName": "Outfit",
+      "fontGoogleUrl": "Outfit:wght@400;500;600;700;800",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#170303",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#7F1D1D",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#DC2626",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#F97316",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#2B0909",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#DC2626",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#FEF2F2",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#FCA5A5",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#7F1D1D",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#B91C1C",
+              "position": 0
+            },
+            {
+              "color": "#EF4444",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#F97316",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#F97316",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#FDBA74",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#DC2626",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#F97316",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#7F1D1D",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-40",
+    "version": 2,
+    "name": "Ultraviolet Ray",
+    "category": "Neon & Synthesizer",
+    "personality": "Blacklight glow with fluorescing violet and neon teal contrasts",
+    "typography": {
+      "fontFamily": "'Outfit', sans-serif",
+      "fontName": "Outfit",
+      "fontGoogleUrl": "Outfit:wght@400;500;600;700;800",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#07021A",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#3B0764",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#7E22CE",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#22D3EE",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#180732",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#7E22CE",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#FAF5FF",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#DDD6FE",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#3B0764",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#6B21A8",
+              "position": 0
+            },
+            {
+              "color": "#06B6D4",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#22D3EE",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#22D3EE",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#A5F3FC",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#7E22CE",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#22D3EE",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#3B0764",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-41",
+    "version": 2,
+    "name": "High Voltage Industrial",
+    "category": "Neo-Brutalist & Bold",
+    "personality": "Heavy industrial contrast, hazard yellow accents on dark cast iron",
+    "typography": {
+      "fontFamily": "'Syne', sans-serif",
+      "fontName": "Syne",
+      "fontGoogleUrl": "Syne:wght@500;700;800",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#121212",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#262626",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#EAB308",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#FACC15",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#262626",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#FACC15",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#FFFFFF",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#D4D4D4",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#262626",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#CA8A04",
+              "position": 0
+            },
+            {
+              "color": "#FACC15",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#FACC15",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#FACC15",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#FEF08A",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#FACC15",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#EAB308",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#22C55E",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#FACC15",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#262626",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-42",
+    "version": 2,
+    "name": "Tactical Concrete",
+    "category": "Neo-Brutalist & Bold",
+    "personality": "Raw concrete grey foundation with high-visibility safety orange",
+    "typography": {
+      "fontFamily": "'Syne', sans-serif",
+      "fontName": "Syne",
+      "fontGoogleUrl": "Syne:wght@500;700;800",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#1C1917",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#292524",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#F97316",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#FB923C",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#292524",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#F97316",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#FAFAF9",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#D6D3D1",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#292524",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#EA580C",
+              "position": 0
+            },
+            {
+              "color": "#FB923C",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#F97316",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#F97316",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#FFEDD5",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#F97316",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#EA580C",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#292524",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-43",
+    "version": 2,
+    "name": "Architectural Slate",
+    "category": "Neo-Brutalist & Bold",
+    "personality": "Monolithic architectural blueprint with crisp electric blue trim",
+    "typography": {
+      "fontFamily": "'Syne', sans-serif",
+      "fontName": "Syne",
+      "fontGoogleUrl": "Syne:wght@500;700;800",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#0F172A",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#1E293B",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#2563EB",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#60A5FA",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#1E293B",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#2563EB",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#F8FAFC",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#CBD5E1",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#1E293B",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#1D4ED8",
+              "position": 0
+            },
+            {
+              "color": "#3B82F6",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#60A5FA",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#60A5FA",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#BFDBFE",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#2563EB",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#60A5FA",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#1E293B",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-44",
+    "version": 2,
+    "name": "Monochrome Impact",
+    "category": "Neo-Brutalist & Bold",
+    "personality": "Stark black-and-white editorial contrast with sharp structural lines",
+    "typography": {
+      "fontFamily": "'Syne', sans-serif",
+      "fontName": "Syne",
+      "fontGoogleUrl": "Syne:wght@500;700;800",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#0A0A0A",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#262626",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#525252",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#FFFFFF",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#171717",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#FFFFFF",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#FFFFFF",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#A3A3A3",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#262626",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#525252",
+              "position": 0
+            },
+            {
+              "color": "#A3A3A3",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#FFFFFF",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#FFFFFF",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#FFFFFF",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#FFFFFF",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#A3A3A3",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#22C55E",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#262626",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-45",
+    "version": 2,
+    "name": "Signal Red Command",
+    "category": "Neo-Brutalist & Bold",
+    "personality": "Command center aesthetic with heavy signal red accents",
+    "typography": {
+      "fontFamily": "'Syne', sans-serif",
+      "fontName": "Syne",
+      "fontGoogleUrl": "Syne:wght@500;700;800",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#140A0C",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#2C1217",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#DC2626",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#EF4444",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#261015",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#DC2626",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#FEF2F2",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#FCA5A5",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#2C1217",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#991B1B",
+              "position": 0
+            },
+            {
+              "color": "#EF4444",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#FEE2E2",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#DC2626",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#EF4444",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#2C1217",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-46",
+    "version": 2,
+    "name": "Radar Emerald",
+    "category": "Neo-Brutalist & Bold",
+    "personality": "Military sonar screen contrast with thick emerald borders",
+    "typography": {
+      "fontFamily": "'Syne', sans-serif",
+      "fontName": "Syne",
+      "fontGoogleUrl": "Syne:wght@500;700;800",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#051610",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#0B2E22",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#059669",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#10B981",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#0B2E22",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#10B981",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#ECFDF5",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#6EE7B7",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#0B2E22",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#047857",
+              "position": 0
+            },
+            {
+              "color": "#10B981",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#D1FAE5",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#059669",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#0B2E22",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-47",
+    "version": 2,
+    "name": "Bauhaus Primary",
+    "category": "Neo-Brutalist & Bold",
+    "personality": "Constructivist design movement with primary blue, yellow, and black",
+    "typography": {
+      "fontFamily": "'Syne', sans-serif",
+      "fontName": "Syne",
+      "fontGoogleUrl": "Syne:wght@500;700;800",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#0F141C",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#1D2636",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#2563EB",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#FACC15",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#1D2636",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#FACC15",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#F8FAFC",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#94A3B8",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#1D2636",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#1D4ED8",
+              "position": 0
+            },
+            {
+              "color": "#FACC15",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#FACC15",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#FACC15",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#FEF08A",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#2563EB",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#FACC15",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#FACC15",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#1D2636",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-48",
+    "version": 2,
+    "name": "Bunker Steel",
+    "category": "Neo-Brutalist & Bold",
+    "personality": "Subterranean vault aesthetic, cold steel plates with iron rivets",
+    "typography": {
+      "fontFamily": "'Syne', sans-serif",
+      "fontName": "Syne",
+      "fontGoogleUrl": "Syne:wght@500;700;800",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#11161B",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#1F2937",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#4B5563",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#9CA3AF",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#1F2937",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#9CA3AF",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#F9FAFB",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#D1D5DB",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#1F2937",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#374151",
+              "position": 0
+            },
+            {
+              "color": "#6B7280",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#9CA3AF",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#9CA3AF",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#F3F4F6",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#9CA3AF",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#4B5563",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#1F2937",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-49",
+    "version": 2,
+    "name": "Hyper-Block Magenta",
+    "category": "Neo-Brutalist & Bold",
+    "personality": "Blocky poster graphic design feel with high-saturation magenta frames",
+    "typography": {
+      "fontFamily": "'Syne', sans-serif",
+      "fontName": "Syne",
+      "fontGoogleUrl": "Syne:wght@500;700;800",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#160613",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#330C2D",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#C026D3",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#E879F9",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#330C2D",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#C026D3",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#FDF4FF",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#F5D0FE",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#330C2D",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#A21CAF",
+              "position": 0
+            },
+            {
+              "color": "#E879F9",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#E879F9",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#E879F9",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#FAE8FF",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#C026D3",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#E879F9",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#330C2D",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-50",
+    "version": 2,
+    "name": "Hazard Cyber Yellow",
+    "category": "Neo-Brutalist & Bold",
+    "personality": "Safety-critical infrastructure control board with vivid electric warning gold",
+    "typography": {
+      "fontFamily": "'Syne', sans-serif",
+      "fontName": "Syne",
+      "fontGoogleUrl": "Syne:wght@500;700;800",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#141103",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#2E2707",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#D97706",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#FBBF24",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#2E2707",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#FBBF24",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#FEF3C7",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#FCD34D",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#2E2707",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#B45309",
+              "position": 0
+            },
+            {
+              "color": "#FBBF24",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#FBBF24",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#FBBF24",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#FEF08A",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#FBBF24",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#D97706",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#FBBF24",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#2E2707",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-51",
+    "version": 2,
+    "name": "Nordic Parchment",
+    "category": "Warm Editorial & Paper",
+    "personality": "High-end Scandinavian publishing feel with warm parchment and dark ink",
+    "typography": {
+      "fontFamily": "'Instrument Serif', serif",
+      "fontName": "Instrument Serif",
+      "fontGoogleUrl": "Instrument+Serif:ital@0;1",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#161412",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#2A2622",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#786C5E",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#D4C5B9",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#2A2622",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#D4C5B9",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#F7F4F0",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#C7BCAF",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#2A2622",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#786C5E",
+              "position": 0
+            },
+            {
+              "color": "#D4C5B9",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#D4C5B9",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#D4C5B9",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#E8DFD5",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#D4C5B9",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#786C5E",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#2A2622",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-52",
+    "version": 2,
+    "name": "Espresso Library",
+    "category": "Warm Editorial & Paper",
+    "personality": "Deep roasted coffee bean with warm cream ink and bronze bookbinding",
+    "typography": {
+      "fontFamily": "'Instrument Serif', serif",
+      "fontName": "Instrument Serif",
+      "fontGoogleUrl": "Instrument+Serif:ital@0;1",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#120D0A",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#2C1E18",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#794A3A",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#DDA15E",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#2C1E18",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#DDA15E",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#FEFAE0",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#D4C3A3",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#2C1E18",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#794A3A",
+              "position": 0
+            },
+            {
+              "color": "#DDA15E",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#DDA15E",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#DDA15E",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#F4A261",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#DDA15E",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#794A3A",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#606C38",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#DDA15E",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#BC6C25",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#2C1E18",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-53",
+    "version": 2,
+    "name": "Terracotta Journal",
+    "category": "Warm Editorial & Paper",
+    "personality": "Warm Mediterranean clay pot tones with natural papyrus contrast",
+    "typography": {
+      "fontFamily": "'Instrument Serif', serif",
+      "fontName": "Instrument Serif",
+      "fontGoogleUrl": "Instrument+Serif:ital@0;1",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#170F0D",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#38201A",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#9A4832",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#E27D60",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#38201A",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#E27D60",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#FFF8F6",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#E0B7AD",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#38201A",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#9A4832",
+              "position": 0
+            },
+            {
+              "color": "#E27D60",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#E27D60",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#E27D60",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#E89B85",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#E27D60",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#9A4832",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#38201A",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-54",
+    "version": 2,
+    "name": "Sage & Linen",
+    "category": "Warm Editorial & Paper",
+    "personality": "Calming botanical herbarium aesthetic with muted sage green and warm linen",
+    "typography": {
+      "fontFamily": "'Instrument Serif', serif",
+      "fontName": "Instrument Serif",
+      "fontGoogleUrl": "Instrument+Serif:ital@0;1",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#0E1411",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#212F29",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#52796F",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#84A98C",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#212F29",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#84A98C",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#F4F7F5",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#CAD2C5",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#212F29",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#52796F",
+              "position": 0
+            },
+            {
+              "color": "#84A98C",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#84A98C",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#84A98C",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#A3B18A",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#84A98C",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#52796F",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#84A98C",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#E9C46A",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#E76F51",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#212F29",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-55",
+    "version": 2,
+    "name": "Sienna Gazette",
+    "category": "Warm Editorial & Paper",
+    "personality": "Classic broadsheet newspaper tone with burnt sienna headings",
+    "typography": {
+      "fontFamily": "'Instrument Serif', serif",
+      "fontName": "Instrument Serif",
+      "fontGoogleUrl": "Instrument+Serif:ital@0;1",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#16110E",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#33251E",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#8B4513",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#D2691E",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#33251E",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#D2691E",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#FFFBF7",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#D9C3B0",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#33251E",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#8B4513",
+              "position": 0
+            },
+            {
+              "color": "#D2691E",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#D2691E",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#D2691E",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#E08B47",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#D2691E",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#8B4513",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#33251E",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-56",
+    "version": 2,
+    "name": "Charcoal Monograph",
+    "category": "Warm Editorial & Paper",
+    "personality": "Literary journal aesthetic with soft charcoal ink and bone white text",
+    "typography": {
+      "fontFamily": "'Instrument Serif', serif",
+      "fontName": "Instrument Serif",
+      "fontGoogleUrl": "Instrument+Serif:ital@0;1",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#141414",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#282828",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#5C5C5C",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#B8B8B8",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#282828",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#B8B8B8",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#F5F5F7",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#CCCCCC",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#282828",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#5C5C5C",
+              "position": 0
+            },
+            {
+              "color": "#8C8C8C",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#B8B8B8",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#B8B8B8",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#E0E0E0",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#B8B8B8",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#5C5C5C",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#282828",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-57",
+    "version": 2,
+    "name": "Sepia Archive",
+    "category": "Warm Editorial & Paper",
+    "personality": "Archival document preservation feel with warm sepia ink accents",
+    "typography": {
+      "fontFamily": "'Instrument Serif', serif",
+      "fontName": "Instrument Serif",
+      "fontGoogleUrl": "Instrument+Serif:ital@0;1",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#14100C",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#2D221A",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#735741",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#C2A68C",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#2D221A",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#C2A68C",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#FDFBF7",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#CFC0B2",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#2D221A",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#735741",
+              "position": 0
+            },
+            {
+              "color": "#C2A68C",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#C2A68C",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#C2A68C",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#DBC7B5",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#C2A68C",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#735741",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#2D221A",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-58",
+    "version": 2,
+    "name": "Oatmeal & Copper",
+    "category": "Warm Editorial & Paper",
+    "personality": "Artisanal studio aesthetic with textured oatmeal backdrop and raw copper",
+    "typography": {
+      "fontFamily": "'Instrument Serif', serif",
+      "fontName": "Instrument Serif",
+      "fontGoogleUrl": "Instrument+Serif:ital@0;1",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#151210",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#2E2622",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#8C5E47",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#D98A6C",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#2E2622",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#D98A6C",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#FAF6F3",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#D4C2B8",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#2E2622",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#8C5E47",
+              "position": 0
+            },
+            {
+              "color": "#D98A6C",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#D98A6C",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#D98A6C",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#E5A992",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#D98A6C",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#8C5E47",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#2E2622",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-59",
+    "version": 2,
+    "name": "Olive Manuscript",
+    "category": "Warm Editorial & Paper",
+    "personality": "Old-world botanical manuscript with deep Mediterranean olive green",
+    "typography": {
+      "fontFamily": "'Instrument Serif', serif",
+      "fontName": "Instrument Serif",
+      "fontGoogleUrl": "Instrument+Serif:ital@0;1",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#11140E",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#262E1F",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#5B6B46",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#9BB07B",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#262E1F",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#9BB07B",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#F6FAF2",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#C8D6B5",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#262E1F",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#5B6B46",
+              "position": 0
+            },
+            {
+              "color": "#9BB07B",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#9BB07B",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#9BB07B",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#B7C99C",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#9BB07B",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#5B6B46",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#9BB07B",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#262E1F",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-60",
+    "version": 2,
+    "name": "Crimson Edition",
+    "category": "Warm Editorial & Paper",
+    "personality": "Collector's hardcover edition with deep crimson cloth binding and gold foil stamp",
+    "typography": {
+      "fontFamily": "'Instrument Serif', serif",
+      "fontName": "Instrument Serif",
+      "fontGoogleUrl": "Instrument+Serif:ital@0;1",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#140A0C",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#331219",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#851D31",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#D97706",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#331219",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#D97706",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#FFF5F7",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#E5B3BC",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#331219",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#851D31",
+              "position": 0
+            },
+            {
+              "color": "#D97706",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#D97706",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#D97706",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#FBBF24",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#851D31",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#D97706",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#331219",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-61",
+    "version": 2,
+    "name": "Amazon Canopy",
+    "category": "Organic Earth & Biophilic",
+    "personality": "Lush tropical rainforest canopy with vibrant flora highlights",
+    "typography": {
+      "fontFamily": "'Outfit', sans-serif",
+      "fontName": "Outfit",
+      "fontGoogleUrl": "Outfit:wght@400;500;600;700;800",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#05160E",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#0D3825",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#1B7B50",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#34D399",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#0D3825",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#34D399",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#ECFDF5",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#A7F3D0",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#0D3825",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#1B7B50",
+              "position": 0
+            },
+            {
+              "color": "#34D399",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#34D399",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#34D399",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#6EE7B7",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#34D399",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#1B7B50",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#34D399",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#0D3825",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-62",
+    "version": 2,
+    "name": "Sahara Dune",
+    "category": "Organic Earth & Biophilic",
+    "personality": "Warm desert sandscape with glowing amber sunset sky reflections",
+    "typography": {
+      "fontFamily": "'Outfit', sans-serif",
+      "fontName": "Outfit",
+      "fontGoogleUrl": "Outfit:wght@400;500;600;700;800",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#16100A",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#332214",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#A05E2B",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#F59E0B",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#332214",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#F59E0B",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#FFFBEB",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#FDE68A",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#332214",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#A05E2B",
+              "position": 0
+            },
+            {
+              "color": "#F59E0B",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#FBBF24",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#A05E2B",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#332214",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-63",
+    "version": 2,
+    "name": "Redwood Forest",
+    "category": "Organic Earth & Biophilic",
+    "personality": "Ancient Californian redwood bark with mossy undergrowth green",
+    "typography": {
+      "fontFamily": "'Outfit', sans-serif",
+      "fontName": "Outfit",
+      "fontGoogleUrl": "Outfit:wght@400;500;600;700;800",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#120B09",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#2B1611",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#6E2D1E",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#10B981",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#2B1611",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#10B981",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#ECFDF5",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#A7F3D0",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#2B1611",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#6E2D1E",
+              "position": 0
+            },
+            {
+              "color": "#10B981",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#34D399",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#6E2D1E",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#2B1611",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-64",
+    "version": 2,
+    "name": "Pacific Fjord",
+    "category": "Organic Earth & Biophilic",
+    "personality": "Deep glacial ocean fjord water with misty pine green shoreline",
+    "typography": {
+      "fontFamily": "'Outfit', sans-serif",
+      "fontName": "Outfit",
+      "fontGoogleUrl": "Outfit:wght@400;500;600;700;800",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#0A1418",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#162B33",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#2E5B6D",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#38BDF8",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#162B33",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#38BDF8",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#F0F9FF",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#BAE6FD",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#162B33",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#2E5B6D",
+              "position": 0
+            },
+            {
+              "color": "#38BDF8",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#38BDF8",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#38BDF8",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#7DD3FC",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#38BDF8",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#2E5B6D",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#162B33",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-65",
+    "version": 2,
+    "name": "Volcanic Basalt",
+    "category": "Organic Earth & Biophilic",
+    "personality": "Cooling lava rock basalt with glowing magma fissures underneath",
+    "typography": {
+      "fontFamily": "'Outfit', sans-serif",
+      "fontName": "Outfit",
+      "fontGoogleUrl": "Outfit:wght@400;500;600;700;800",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#0F0B0A",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#261916",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#7C2D12",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#F97316",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#261916",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#F97316",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#FFF7ED",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#FFEDD5",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#261916",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#7C2D12",
+              "position": 0
+            },
+            {
+              "color": "#F97316",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#F97316",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#F97316",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#FDBA74",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#F97316",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#7C2D12",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#261916",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-66",
+    "version": 2,
+    "name": "Celtic Moss",
+    "category": "Organic Earth & Biophilic",
+    "personality": "Misty Irish countryside rock face with velvety green moss carpet",
+    "typography": {
+      "fontFamily": "'Outfit', sans-serif",
+      "fontName": "Outfit",
+      "fontGoogleUrl": "Outfit:wght@400;500;600;700;800",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#0C120C",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#1C2A1C",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#3E5C3E",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#76A076",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#1C2A1C",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#76A076",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#F4FAF4",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#B6D0B6",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#1C2A1C",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#3E5C3E",
+              "position": 0
+            },
+            {
+              "color": "#76A076",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#76A076",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#76A076",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#A3C7A3",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#76A076",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#3E5C3E",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#76A076",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#1C2A1C",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-67",
+    "version": 2,
+    "name": "Amber Resin",
+    "category": "Organic Earth & Biophilic",
+    "personality": "Fossilized tree sap resin with translucent golden honey luminescence",
+    "typography": {
+      "fontFamily": "'Outfit', sans-serif",
+      "fontName": "Outfit",
+      "fontGoogleUrl": "Outfit:wght@400;500;600;700;800",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#140D04",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#33200A",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#8C5411",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#E09F3E",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#33200A",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#E09F3E",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#FFFBF2",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#E5C89D",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#33200A",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#8C5411",
+              "position": 0
+            },
+            {
+              "color": "#E09F3E",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#E09F3E",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#E09F3E",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#F3C57B",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#E09F3E",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#8C5411",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#E09F3E",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#33200A",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-68",
+    "version": 2,
+    "name": "Savanna Twilight",
+    "category": "Organic Earth & Biophilic",
+    "personality": "African savanna horizon dusk with deep indigo sky and burnt ochre ground",
+    "typography": {
+      "fontFamily": "'Outfit', sans-serif",
+      "fontName": "Outfit",
+      "fontGoogleUrl": "Outfit:wght@400;500;600;700;800",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#100C16",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#261B36",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#6B3A7D",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#E07A5F",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#261B36",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#E07A5F",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#FAF5FF",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#D8B4FE",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#261B36",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#6B3A7D",
+              "position": 0
+            },
+            {
+              "color": "#E07A5F",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#E07A5F",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#E07A5F",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#F4A261",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#6B3A7D",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#E07A5F",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#261B36",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-69",
+    "version": 2,
+    "name": "Glacial Iceberg",
+    "category": "Organic Earth & Biophilic",
+    "personality": "Deep antarctic blue glacial ice shelf with translucent turquoise core",
+    "typography": {
+      "fontFamily": "'Outfit', sans-serif",
+      "fontName": "Outfit",
+      "fontGoogleUrl": "Outfit:wght@400;500;600;700;800",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#05131A",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#0B2A38",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#175B7A",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#06B6D4",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#0B2A38",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#06B6D4",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#ECFEFF",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#A5F3FC",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#0B2A38",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#175B7A",
+              "position": 0
+            },
+            {
+              "color": "#06B6D4",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#06B6D4",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#06B6D4",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#67E8F9",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#06B6D4",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#175B7A",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#0B2A38",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-70",
+    "version": 2,
+    "name": "Clay Quarry",
+    "category": "Organic Earth & Biophilic",
+    "personality": "Open pit terracotta clay mine with warm rust red and sandstone earth",
+    "typography": {
+      "fontFamily": "'Outfit', sans-serif",
+      "fontName": "Outfit",
+      "fontGoogleUrl": "Outfit:wght@400;500;600;700;800",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#160C0A",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#381B15",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#8B3A2B",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#D96B43",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#381B15",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#D96B43",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#FFF8F6",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#E7BEB3",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#381B15",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#8B3A2B",
+              "position": 0
+            },
+            {
+              "color": "#D96B43",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#D96B43",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#D96B43",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#E88D6A",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#D96B43",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#8B3A2B",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#381B15",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-71",
+    "version": 2,
+    "name": "Pure Graphite",
+    "category": "Monochromatic Minimal",
+    "personality": "Ultra-clean pencil graphite gradient hierarchy with precise white text",
+    "typography": {
+      "fontFamily": "'Inter', sans-serif",
+      "fontName": "Inter",
+      "fontGoogleUrl": "Inter:wght@400;500;600;700;800",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#121212",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#1E1E1E",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#3A3A3A",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#707070",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#1E1E1E",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#707070",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#FFFFFF",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#A0A0A0",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#1E1E1E",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#3A3A3A",
+              "position": 0
+            },
+            {
+              "color": "#5A5A5A",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#707070",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#707070",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#E0E0E0",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#FFFFFF",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#707070",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#1E1E1E",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-72",
+    "version": 2,
+    "name": "Slate Minimal",
+    "category": "Monochromatic Minimal",
+    "personality": "Cool slate stone monochrome simplicity with ice white UI badges",
+    "typography": {
+      "fontFamily": "'Inter', sans-serif",
+      "fontName": "Inter",
+      "fontGoogleUrl": "Inter:wght@400;500;600;700;800",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#0F172A",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#1E293B",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#334155",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#64748B",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#1E293B",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#64748B",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#F8FAFC",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#94A3B8",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#1E293B",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#334155",
+              "position": 0
+            },
+            {
+              "color": "#475569",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#64748B",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#64748B",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#CBD5E1",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#94A3B8",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#64748B",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#1E293B",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-73",
+    "version": 2,
+    "name": "Zinc Precision",
+    "category": "Monochromatic Minimal",
+    "personality": "Cold zinc metal hardware feel with sharp high-contrast clarity",
+    "typography": {
+      "fontFamily": "'Inter', sans-serif",
+      "fontName": "Inter",
+      "fontGoogleUrl": "Inter:wght@400;500;600;700;800",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#09090B",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#18181B",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#27272A",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#71717A",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#18181B",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#71717A",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#FAFAFA",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#A1A1AA",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#18181B",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#27272A",
+              "position": 0
+            },
+            {
+              "color": "#3F3F46",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#71717A",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#71717A",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#E4E4E7",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#FFFFFF",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#71717A",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#18181B",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-74",
+    "version": 2,
+    "name": "Frostbyte Silver",
+    "category": "Monochromatic Minimal",
+    "personality": "Crisp sub-zero silver foil monochrome with mirror polished surfaces",
+    "typography": {
+      "fontFamily": "'Inter', sans-serif",
+      "fontName": "Inter",
+      "fontGoogleUrl": "Inter:wght@400;500;600;700;800",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#0B0F14",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#19222D",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#2D3D50",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#8FA3BF",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#19222D",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#8FA3BF",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#F4F7FA",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#A6B7CC",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#19222D",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#2D3D50",
+              "position": 0
+            },
+            {
+              "color": "#465A73",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#8FA3BF",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#8FA3BF",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#D3DEEC",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#8FA3BF",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#465A73",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#19222D",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-75",
+    "version": 2,
+    "name": "Neutral Warm Grey",
+    "category": "Monochromatic Minimal",
+    "personality": "Warm stone grey tone with friendly humanistic warmth",
+    "typography": {
+      "fontFamily": "'Inter', sans-serif",
+      "fontName": "Inter",
+      "fontGoogleUrl": "Inter:wght@400;500;600;700;800",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#141312",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#262422",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#44403C",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#78716C",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#262422",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#78716C",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#FAFAF9",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#A8A29E",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#262422",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#44403C",
+              "position": 0
+            },
+            {
+              "color": "#57534E",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#78716C",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#78716C",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#E7E5E4",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#A8A29E",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#78716C",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#262422",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-76",
+    "version": 2,
+    "name": "Vantablack Silence",
+    "category": "Monochromatic Minimal",
+    "personality": "Light-absorbing void black background with ghost white text",
+    "typography": {
+      "fontFamily": "'Inter', sans-serif",
+      "fontName": "Inter",
+      "fontGoogleUrl": "Inter:wght@400;500;600;700;800",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#000000",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#111111",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#222222",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#666666",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#111111",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#666666",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#FFFFFF",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#888888",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#111111",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#222222",
+              "position": 0
+            },
+            {
+              "color": "#444444",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#666666",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#666666",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#DDDDDD",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#FFFFFF",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#666666",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#111111",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-77",
+    "version": 2,
+    "name": "Steel Blue Monolith",
+    "category": "Monochromatic Minimal",
+    "personality": "Subtle steel blue tinting over dark monolithic structure",
+    "typography": {
+      "fontFamily": "'Inter', sans-serif",
+      "fontName": "Inter",
+      "fontGoogleUrl": "Inter:wght@400;500;600;700;800",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#0D1117",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#161B22",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#30363D",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#8B949E",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#161B22",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#8B949E",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#F0F6FC",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#8B949E",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#161B22",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#21262D",
+              "position": 0
+            },
+            {
+              "color": "#30363D",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#8B949E",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#8B949E",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#C9D1D9",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#8B949E",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#30363D",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#238636",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#D29922",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#DA3633",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#161B22",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-78",
+    "version": 2,
+    "name": "Titanium Silver Minimal",
+    "category": "Monochromatic Minimal",
+    "personality": "Precision aircraft titanium minimal finish with satin shine",
+    "typography": {
+      "fontFamily": "'Inter', sans-serif",
+      "fontName": "Inter",
+      "fontGoogleUrl": "Inter:wght@400;500;600;700;800",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#101214",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#1A1D20",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#343A40",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#6C757D",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#1A1D20",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#6C757D",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#F8F9FA",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#ADB5BD",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#1A1D20",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#343A40",
+              "position": 0
+            },
+            {
+              "color": "#495057",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#6C757D",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#6C757D",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#DEE2E6",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#ADB5BD",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#6C757D",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#1A1D20",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-79",
+    "version": 2,
+    "name": "Smokey Quartz Minimal",
+    "category": "Monochromatic Minimal",
+    "personality": "Translucent smoked glass quartz overlay on dark velvet charcoal",
+    "typography": {
+      "fontFamily": "'Inter', sans-serif",
+      "fontName": "Inter",
+      "fontGoogleUrl": "Inter:wght@400;500;600;700;800",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#111012",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#211F24",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#423E47",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#8A8494",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#211F24",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#8A8494",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#FAF9FC",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#B6B0C2",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#211F24",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#423E47",
+              "position": 0
+            },
+            {
+              "color": "#5C5763",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#8A8494",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#8A8494",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#DDD9E6",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#8A8494",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#423E47",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#211F24",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-80",
+    "version": 2,
+    "name": "Carbon Fiber Grid",
+    "category": "Monochromatic Minimal",
+    "personality": "Woven carbon fiber weave texture feel with high tensile silver wire",
+    "typography": {
+      "fontFamily": "'Inter', sans-serif",
+      "fontName": "Inter",
+      "fontGoogleUrl": "Inter:wght@400;500;600;700;800",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#0B0C0E",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#16181C",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#2C3038",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#5C6470",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#16181C",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#5C6470",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#F0F2F5",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#9CA3AF",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#16181C",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#2C3038",
+              "position": 0
+            },
+            {
+              "color": "#404652",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#5C6470",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#5C6470",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#D1D5DB",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#9CA3AF",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#5C6470",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#16181C",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-81",
+    "version": 2,
+    "name": "Orion Nebula",
+    "category": "Deep Space & Cosmic",
+    "personality": "Deep intergalactic nebula with swirling violet dust and magenta star clusters",
+    "typography": {
+      "fontFamily": "'Space Grotesk', sans-serif",
+      "fontName": "Space Grotesk",
+      "fontGoogleUrl": "Space+Grotesk:wght@400;500;600;700",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#08031A",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#2E0A4E",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#7E22CE",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#EC4899",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#18072D",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#EC4899",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#FDF2F8",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#F472B6",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#2E0A4E",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#7E22CE",
+              "position": 0
+            },
+            {
+              "color": "#EC4899",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#EC4899",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#EC4899",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#FBCFE8",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#7E22CE",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#EC4899",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#2E0A4E",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-82",
+    "version": 2,
+    "name": "Supernova Explosion",
+    "category": "Deep Space & Cosmic",
+    "personality": "Dazzling stellar explosion with bright golden core and violet shockwaves",
+    "typography": {
+      "fontFamily": "'Space Grotesk', sans-serif",
+      "fontName": "Space Grotesk",
+      "fontGoogleUrl": "Space+Grotesk:wght@400;500;600;700",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#10061A",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#3B0764",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#9333EA",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#FBBF24",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#1E0837",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#FBBF24",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#FAF5FF",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#DDD6FE",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#3B0764",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#9333EA",
+              "position": 0
+            },
+            {
+              "color": "#FBBF24",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#FBBF24",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#FBBF24",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#FEF08A",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#9333EA",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#FBBF24",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#FBBF24",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#3B0764",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-83",
+    "version": 2,
+    "name": "Event Horizon",
+    "category": "Deep Space & Cosmic",
+    "personality": "Black hole gravitational singularity with warping photon ring amber glow",
+    "typography": {
+      "fontFamily": "'Space Grotesk', sans-serif",
+      "fontName": "Space Grotesk",
+      "fontGoogleUrl": "Space+Grotesk:wght@400;500;600;700",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#050403",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#1C140A",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#78350F",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#F97316",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#1C140A",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#F97316",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#FFF7ED",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#FDBA74",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#1C140A",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#9A3412",
+              "position": 0
+            },
+            {
+              "color": "#F97316",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#F97316",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#F97316",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#FFEDD5",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#F97316",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#78350F",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#1C140A",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-84",
+    "version": 2,
+    "name": "Andromeda Spiral",
+    "category": "Deep Space & Cosmic",
+    "personality": "Galactic spiral arm cyan haze over void blue expanse",
+    "typography": {
+      "fontFamily": "'Space Grotesk', sans-serif",
+      "fontName": "Space Grotesk",
+      "fontGoogleUrl": "Space+Grotesk:wght@400;500;600;700",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#030A16",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#0C2340",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#1D4ED8",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#38BDF8",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#0C2340",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#38BDF8",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#F0F9FF",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#7DD3FC",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#0C2340",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#1E40AF",
+              "position": 0
+            },
+            {
+              "color": "#38BDF8",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#38BDF8",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#38BDF8",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#BAE6FD",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#1D4ED8",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#38BDF8",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#0C2340",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-85",
+    "version": 2,
+    "name": "Pulsar Beam",
+    "category": "Deep Space & Cosmic",
+    "personality": "Rapidly rotating neutron star beam with flashing white-cyan energetic pulses",
+    "typography": {
+      "fontFamily": "'Space Grotesk', sans-serif",
+      "fontName": "Space Grotesk",
+      "fontGoogleUrl": "Space+Grotesk:wght@400;500;600;700",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#020813",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#0A2540",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#00D4FF",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#E0F7FA",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#0A2540",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#00D4FF",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#FFFFFF",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#80DEEA",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#0A2540",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#0091EA",
+              "position": 0
+            },
+            {
+              "color": "#00D4FF",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#00D4FF",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#00D4FF",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#B2EBF2",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#00D4FF",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#0091EA",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#00E676",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#FFB300",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#FF1744",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#0A2540",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-86",
+    "version": 2,
+    "name": "Starlight Void",
+    "category": "Deep Space & Cosmic",
+    "personality": "Pure vacuum space illuminated by distant silver star clusters",
+    "typography": {
+      "fontFamily": "'Space Grotesk', sans-serif",
+      "fontName": "Space Grotesk",
+      "fontGoogleUrl": "Space+Grotesk:wght@400;500;600;700",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#04060A",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#111827",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#374151",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#E5E7EB",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#111827",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#E5E7EB",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#F9FAFB",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#9CA3AF",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#111827",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#374151",
+              "position": 0
+            },
+            {
+              "color": "#9CA3AF",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#E5E7EB",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#E5E7EB",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#FFFFFF",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#FFFFFF",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#9CA3AF",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#111827",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-87",
+    "version": 2,
+    "name": "Quasar Emerald Glow",
+    "category": "Deep Space & Cosmic",
+    "personality": "Active galactic nucleus with brilliant emerald jet discharge",
+    "typography": {
+      "fontFamily": "'Space Grotesk', sans-serif",
+      "fontName": "Space Grotesk",
+      "fontGoogleUrl": "Space+Grotesk:wght@400;500;600;700",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#02120C",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#064E3B",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#047857",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#34D399",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#064E3B",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#34D399",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#ECFDF5",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#6EE7B7",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#064E3B",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#047857",
+              "position": 0
+            },
+            {
+              "color": "#34D399",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#34D399",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#34D399",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#A7F3D0",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#34D399",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#047857",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#34D399",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#064E3B",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-88",
+    "version": 2,
+    "name": "Solar Eclipse Corona",
+    "category": "Deep Space & Cosmic",
+    "personality": "Total solar eclipse with silver halo corona surrounding pitch black moon",
+    "typography": {
+      "fontFamily": "'Space Grotesk', sans-serif",
+      "fontName": "Space Grotesk",
+      "fontGoogleUrl": "Space+Grotesk:wght@400;500;600;700",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#080808",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#1A1A1A",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#404040",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#F3F4F6",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#1A1A1A",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#F3F4F6",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#FFFFFF",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#9CA3AF",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#1A1A1A",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#404040",
+              "position": 0
+            },
+            {
+              "color": "#E5E7EB",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#F3F4F6",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#F3F4F6",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#FFFFFF",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#FFFFFF",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#9CA3AF",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#1A1A1A",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-89",
+    "version": 2,
+    "name": "Dark Matter Void",
+    "category": "Deep Space & Cosmic",
+    "personality": "Invisible cosmic mass with subtle indigo gravitational lensing effects",
+    "typography": {
+      "fontFamily": "'Space Grotesk', sans-serif",
+      "fontName": "Space Grotesk",
+      "fontGoogleUrl": "Space+Grotesk:wght@400;500;600;700",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#06040A",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#170E2B",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#4C1D95",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#818CF8",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#170E2B",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#818CF8",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#EEF2FF",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#C7D2FE",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#170E2B",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#4C1D95",
+              "position": 0
+            },
+            {
+              "color": "#818CF8",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#818CF8",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#818CF8",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#A5B4FC",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#818CF8",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#4C1D95",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#170E2B",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-90",
+    "version": 2,
+    "name": "Cosmic Ray Aurora",
+    "category": "Deep Space & Cosmic",
+    "personality": "Solar particle atmosphere collision with curtaining magenta and lime aurora",
+    "typography": {
+      "fontFamily": "'Space Grotesk', sans-serif",
+      "fontName": "Space Grotesk",
+      "fontGoogleUrl": "Space+Grotesk:wght@400;500;600;700",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#060A12",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#142238",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#059669",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#E879F9",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#142238",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#E879F9",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#FDF4FF",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#F5D0FE",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#142238",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#059669",
+              "position": 0
+            },
+            {
+              "color": "#E879F9",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#E879F9",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#E879F9",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#FBCFE8",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#059669",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#E879F9",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#34D399",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#142238",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-91",
+    "version": 2,
+    "name": "Commodore Amber CRT",
+    "category": "Retro & Vintage",
+    "personality": "Warm monochrome amber phosphor monitor glow with scanline nostalgia",
+    "typography": {
+      "fontFamily": "'JetBrains Mono', monospace",
+      "fontName": "JetBrains Mono",
+      "fontGoogleUrl": "JetBrains+Mono:wght@400;500;700",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#0F0B00",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#2E1F00",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#784A00",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#FFB703",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#2E1F00",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#FFB703",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#FFF3D1",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#FFC857",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#2E1F00",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#784A00",
+              "position": 0
+            },
+            {
+              "color": "#FFB703",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#FFB703",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#FFB703",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#FFE082",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#FFB703",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#784A00",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#FFB703",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#2E1F00",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-92",
+    "version": 2,
+    "name": "VT100 Green Phosphor",
+    "category": "Retro & Vintage",
+    "personality": "Dec VT100 terminal nostalgia with glowing emerald monochrome text",
+    "typography": {
+      "fontFamily": "'JetBrains Mono', monospace",
+      "fontName": "JetBrains Mono",
+      "fontGoogleUrl": "JetBrains+Mono:wght@400;500;700",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#020D05",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#062910",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#0F5C24",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#39FF14",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#062910",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#39FF14",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#E5FFE0",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#66FF47",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#062910",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#0F5C24",
+              "position": 0
+            },
+            {
+              "color": "#39FF14",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#39FF14",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#39FF14",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#A3FF8F",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#39FF14",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#0F5C24",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#39FF14",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#FFB703",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#FF0054",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#062910",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-93",
+    "version": 2,
+    "name": "IBM Mainframe Blue",
+    "category": "Retro & Vintage",
+    "personality": "System/360 computing authority, deep cobalt terminal blue",
+    "typography": {
+      "fontFamily": "'JetBrains Mono', monospace",
+      "fontName": "JetBrains Mono",
+      "fontGoogleUrl": "JetBrains+Mono:wght@400;500;700",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#060C1B",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#0F1E3D",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#1D4ED8",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#60A5FA",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#0F1E3D",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#60A5FA",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#EFF6FF",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#93C5FD",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#0F1E3D",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#1D4ED8",
+              "position": 0
+            },
+            {
+              "color": "#60A5FA",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#60A5FA",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#60A5FA",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#BFDBFE",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#1D4ED8",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#60A5FA",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#0F1E3D",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-94",
+    "version": 2,
+    "name": "Macintosh System 1",
+    "category": "Retro & Vintage",
+    "personality": "1984 original Macintosh 1-bit dithered grey UI nostalgic simplicity",
+    "typography": {
+      "fontFamily": "'JetBrains Mono', monospace",
+      "fontName": "JetBrains Mono",
+      "fontGoogleUrl": "JetBrains+Mono:wght@400;500;700",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#121214",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#222226",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#4A4D57",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#D0D4E0",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#222226",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#D0D4E0",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#F4F5F8",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#A0A5B5",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#222226",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#4A4D57",
+              "position": 0
+            },
+            {
+              "color": "#767B8C",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#D0D4E0",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#D0D4E0",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#E6E9F2",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#D0D4E0",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#4A4D57",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#222226",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-95",
+    "version": 2,
+    "name": "Amiga Workbench 1.3",
+    "category": "Retro & Vintage",
+    "personality": "Iconic Commodore Amiga blue and orange workstation workspace",
+    "typography": {
+      "fontFamily": "'JetBrains Mono', monospace",
+      "fontName": "JetBrains Mono",
+      "fontGoogleUrl": "JetBrains+Mono:wght@400;500;700",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#0A1224",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#14254A",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#0055AA",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#FF5500",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#14254A",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#FF5500",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#FFFFFF",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#88BBFF",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#14254A",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#0055AA",
+              "position": 0
+            },
+            {
+              "color": "#FF5500",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#FF5500",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#FF5500",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#FF9966",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#0055AA",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#FF5500",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#FFB703",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#14254A",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-96",
+    "version": 2,
+    "name": "C64 Blue & Light Blue",
+    "category": "Retro & Vintage",
+    "personality": "Commodore 64 16-color palette nostalgia with royal blue background",
+    "typography": {
+      "fontFamily": "'JetBrains Mono', monospace",
+      "fontName": "JetBrains Mono",
+      "fontGoogleUrl": "JetBrains+Mono:wght@400;500;700",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#101830",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#203060",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#4060C0",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#A0C0FF",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#203060",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#A0C0FF",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#F0F4FF",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#80A0E0",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#203060",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#4060C0",
+              "position": 0
+            },
+            {
+              "color": "#7090E0",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#A0C0FF",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#A0C0FF",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#C0D8FF",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#4060C0",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#A0C0FF",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#203060",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-97",
+    "version": 2,
+    "name": "Sinclair ZX Spectrum",
+    "category": "Retro & Vintage",
+    "personality": "British home computer rainbow stripe feel on matte rubber keyboard dark base",
+    "typography": {
+      "fontFamily": "'JetBrains Mono', monospace",
+      "fontName": "JetBrains Mono",
+      "fontGoogleUrl": "JetBrains+Mono:wght@400;500;700",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#0A0A0E",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#1C1C24",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#E11D48",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#06B6D4",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#1C1C24",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#06B6D4",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#FFFFFF",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#A5F3FC",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#1C1C24",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#E11D48",
+              "position": 0
+            },
+            {
+              "color": "#06B6D4",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#06B6D4",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#06B6D4",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#67E8F9",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#E11D48",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#06B6D4",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#1C1C24",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-98",
+    "version": 2,
+    "name": "Arcade Neon 1982",
+    "category": "Retro & Vintage",
+    "personality": "Quarter-eating arcade cabinet marquee with hot pink and electric violet",
+    "typography": {
+      "fontFamily": "'JetBrains Mono', monospace",
+      "fontName": "JetBrains Mono",
+      "fontGoogleUrl": "JetBrains+Mono:wght@400;500;700",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#110214",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#40084A",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#9333EA",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#F43F5E",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#28082E",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#F43F5E",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#FFF1F2",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#F472B6",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#40084A",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#9333EA",
+              "position": 0
+            },
+            {
+              "color": "#F43F5E",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#F43F5E",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#F43F5E",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#FB7185",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#9333EA",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#F43F5E",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#40084A",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-99",
+    "version": 2,
+    "name": "Atari 2600 Woodgrain",
+    "category": "Retro & Vintage",
+    "personality": "Classic woodgrain paneling with 70s orange retro game cartridge pop",
+    "typography": {
+      "fontFamily": "'JetBrains Mono', monospace",
+      "fontName": "JetBrains Mono",
+      "fontGoogleUrl": "JetBrains+Mono:wght@400;500;700",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#140A06",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#2E170E",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#7C2D12",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#EA580C",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#2E170E",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#EA580C",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#FFF7ED",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#FDBA74",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#2E170E",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#7C2D12",
+              "position": 0
+            },
+            {
+              "color": "#EA580C",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#EA580C",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#EA580C",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#FFEDD5",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#EA580C",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#7C2D12",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#2E170E",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
+    }
+  },
+  {
+    "id": "theme-100",
+    "version": 2,
+    "name": "Solaris UNIX Workstation",
+    "category": "Retro & Vintage",
+    "personality": "Sun Microsystems CDE desktop blue-grey precision workstation classic",
+    "typography": {
+      "fontFamily": "'JetBrains Mono', monospace",
+      "fontName": "JetBrains Mono",
+      "fontGoogleUrl": "JetBrains+Mono:wght@400;500;700",
+      "baseFontSize": 16,
+      "lineHeight": 1.5,
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      }
+    },
+    "colors": {
+      "bg": {
+        "hex": "#0D131A",
+        "gradient": null
+      },
+      "primary": {
+        "hex": "#1C2836",
+        "gradient": null
+      },
+      "secondary": {
+        "hex": "#3A506B",
+        "gradient": null
+      },
+      "accent": {
+        "hex": "#48CAE4",
+        "gradient": null
+      },
+      "surface": {
+        "hex": "#1C2836",
+        "gradient": null
+      },
+      "surfaceBorder": {
+        "hex": "#48CAE4",
+        "gradient": null
+      },
+      "text": {
+        "hex": "#F0F8FF",
+        "gradient": null
+      },
+      "textMuted": {
+        "hex": "#90E0EF",
+        "gradient": null
+      },
+      "cta": {
+        "hex": "#1C2836",
+        "gradient": {
+          "type": "linear",
+          "angle": 135,
+          "stops": [
+            {
+              "color": "#0077B6",
+              "position": 0
+            },
+            {
+              "color": "#48CAE4",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "badge": {
+        "bg": {
+          "hex": "#48CAE4",
+          "gradient": null
+        },
+        "border": {
+          "hex": "#48CAE4",
+          "gradient": null
+        },
+        "text": {
+          "hex": "#ADE8F4",
+          "gradient": null
+        }
+      },
+      "glow": {
+        "primary": {
+          "hex": "#48CAE4",
+          "gradient": null
+        },
+        "secondary": {
+          "hex": "#0077B6",
+          "gradient": null
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#10B981",
+          "gradient": null
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "gradient": null
+        },
+        "error": {
+          "hex": "#EF4444",
+          "gradient": null
+        },
+        "info": {
+          "hex": "#1C2836",
+          "gradient": null
+        }
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "borderRadius": {
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "pill": "9999px"
+      }
+    },
+    "motion": {
+      "enableAnimations": true,
+      "transitionDuration": "0.3s",
+      "transitionEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "enableGlowOrbs": true,
+      "enableBadgePulse": true,
+      "enableHoverLift": true
     }
   }
 ];
