@@ -1,26 +1,30 @@
 import React, { useState, useEffect } from "react";
 import { X, Copy, Download, Check, Code, FileText } from "lucide-react";
-import type { ThemeConfig } from "../lib/themes-dataset";
-import { generateThemeHtml } from "../lib/html-generator";
-import { generateThemeMarkdown } from "../lib/markdown-generator";
-import { postMessage, onMessage } from "../vscode-bridge";
+import type { ThemeConfigAny } from "../../src/messages";
+import { isThemeV2 } from "../../src/messages";
+import { v2ToV1 } from "../lib/theme-migrator";
+import { generateThemeHtml } from "../lib/html-generator.js";
+import { generateThemeMarkdown } from "../lib/markdown-generator.js";
+import { postMessage, onMessage } from "../vscode-bridge.js";
 
 interface ExportModalProps {
   isOpen: boolean;
   initialTab?: "html" | "markdown";
-  activeTheme: ThemeConfig;
+  activeTheme: ThemeConfigAny;
   onClose: () => void;
 }
 
 export const ExportModal: React.FC<ExportModalProps> = ({
   isOpen,
   initialTab = "html",
-  activeTheme,
+  activeTheme: rawTheme,
   onClose,
 }) => {
   const [activeTab, setActiveTab] = useState<"html" | "markdown">(initialTab);
   const [copied, setCopied] = useState<boolean>(false);
   const [exporting, setExporting] = useState<boolean>(false);
+
+  const activeTheme = isThemeV2(rawTheme) ? v2ToV1(rawTheme) : rawTheme;
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -96,6 +100,7 @@ export const ExportModal: React.FC<ExportModalProps> = ({
             </p>
           </div>
           <button
+            type="button"
             onClick={onClose}
             aria-label="Close export modal"
             className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500"
@@ -108,6 +113,7 @@ export const ExportModal: React.FC<ExportModalProps> = ({
         <div className="flex items-center justify-between px-4 py-2.5 bg-slate-900 border-b border-slate-800">
           <div className="flex items-center gap-2" role="tablist">
             <button
+              type="button"
               role="tab"
               aria-selected={activeTab === "html"}
               onClick={() => {
@@ -124,6 +130,7 @@ export const ExportModal: React.FC<ExportModalProps> = ({
               <span>Standalone HTML Page (.html)</span>
             </button>
             <button
+              type="button"
               role="tab"
               aria-selected={activeTab === "markdown"}
               onClick={() => {
@@ -143,6 +150,7 @@ export const ExportModal: React.FC<ExportModalProps> = ({
 
           <div className="flex items-center gap-2">
             <button
+              type="button"
               onClick={handleCopy}
               aria-label="Copy output to clipboard"
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
@@ -156,6 +164,7 @@ export const ExportModal: React.FC<ExportModalProps> = ({
             </button>
 
             <button
+              type="button"
               onClick={handleDownload}
               disabled={exporting}
               aria-label="Save exported theme file"

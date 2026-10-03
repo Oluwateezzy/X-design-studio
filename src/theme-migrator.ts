@@ -1,7 +1,7 @@
 import type { ThemeConfig } from './messages.js';
 import type { ThemeConfigV2 } from './types/theme-config-v2.js';
 import type { GradientConfig, GradientStop } from './types/color-token.js';
-import { createFlatToken, createGradientToken } from './types/color-token.js';
+import { createFlatToken, createGradientToken, colorTokenToCss } from './types/color-token.js';
 
 /**
  * Converts an RGBA/RGB/Hex string to a 6-character hex string (#RRGGBB).
@@ -273,6 +273,42 @@ export function migrateV1ToV2(v1: ThemeConfig): ThemeConfigV2 {
       enableGlowOrbs: true,
       enableBadgePulse: true,
       enableHoverLift: true,
+    },
+  };
+}
+
+/**
+ * Converts a ThemeConfigV2 back to a V1 ThemeConfig for backward-compatible rendering.
+ */
+export function v2ToV1(v2: ThemeConfigV2): ThemeConfig {
+  const numId = parseInt(v2.id.replace(/\D/g, ''), 10);
+  return {
+    id: v2.id,
+    number: isNaN(numId) ? 1 : numId,
+    name: v2.name,
+    category: v2.category,
+    personality: v2.personality,
+    fontFamily: v2.typography.fontFamily,
+    fontName: v2.typography.fontName,
+    fontGoogleUrl: v2.typography.fontGoogleUrl,
+    colors: {
+      bg: colorTokenToCss(v2.colors.bg),
+      primary: colorTokenToCss(v2.colors.primary),
+      secondary: colorTokenToCss(v2.colors.secondary),
+      accent: colorTokenToCss(v2.colors.accent),
+      cardBg: colorTokenToCss(v2.colors.surface),
+      cardBorder: colorTokenToCss(v2.colors.surfaceBorder),
+      textColor: colorTokenToCss(v2.colors.text),
+      mutedText: colorTokenToCss(v2.colors.textMuted),
+      btnGradient: colorTokenToCss(v2.colors.cta),
+      badgeBg: colorTokenToCss(v2.colors.badge.bg),
+      badgeBorder: colorTokenToCss(v2.colors.badge.border),
+      badgeText: colorTokenToCss(v2.colors.badge.text),
+      heroGlow1: colorTokenToCss(v2.colors.glow.primary),
+      heroGlow2: colorTokenToCss(v2.colors.glow.secondary),
+      success: colorTokenToCss(v2.colors.semantic.success),
+      warning: colorTokenToCss(v2.colors.semantic.warning),
+      error: colorTokenToCss(v2.colors.semantic.error),
     },
   };
 }

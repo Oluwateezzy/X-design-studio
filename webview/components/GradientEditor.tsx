@@ -1,7 +1,7 @@
 import React from 'react';
 import { Layers, Plus, Trash2, Sliders, Palette } from 'lucide-react';
-import type { ColorToken, GradientConfig, GradientStop } from '../lib/types/color-token.js';
-import { colorTokenToCss, isGradient } from '../lib/types/color-token.js';
+import type { ColorToken, GradientConfig, GradientStop } from '../lib/types/color-token';
+import { colorTokenToCss, isGradient } from '../lib/types/color-token';
 
 export interface GradientEditorProps {
   token: ColorToken;

@@ -1,13 +1,16 @@
 import React, { useState } from "react";
-import type { ThemeConfig } from "../lib/themes-dataset";
+import type { ThemeConfigAny } from "../../src/messages";
+import { isThemeV2 } from "../../src/messages";
+import { v2ToV1 } from "../lib/theme-migrator";
 import { Monitor, Smartphone, ShieldCheck, Lock, ArrowUpRight, CheckCircle2, Clock, DollarSign, Sparkles, Layers } from "lucide-react";
 
 interface LivePreviewCanvasProps {
-  theme: ThemeConfig;
+  theme: ThemeConfigAny;
 }
 
-export const LivePreviewCanvas: React.FC<LivePreviewCanvasProps> = ({ theme }) => {
+export const LivePreviewCanvas: React.FC<LivePreviewCanvasProps> = ({ theme: rawTheme }) => {
   const [deviceMode, setDeviceMode] = useState<"desktop" | "mobile">("desktop");
+  const theme = isThemeV2(rawTheme) ? v2ToV1(rawTheme) : rawTheme;
   const { colors, fontFamily, fontName } = theme;
 
   return (
@@ -27,6 +30,7 @@ export const LivePreviewCanvas: React.FC<LivePreviewCanvasProps> = ({ theme }) =
 
         <div className="flex items-center bg-slate-950 p-1 rounded-lg border border-slate-800 gap-1">
           <button
+            type="button"
             onClick={() => setDeviceMode("desktop")}
             className={`p-1 rounded text-xs flex items-center gap-1.5 transition cursor-pointer ${
               deviceMode === "desktop"
@@ -38,6 +42,7 @@ export const LivePreviewCanvas: React.FC<LivePreviewCanvasProps> = ({ theme }) =
             <span className="hidden sm:inline">Desktop</span>
           </button>
           <button
+            type="button"
             onClick={() => setDeviceMode("mobile")}
             className={`p-1 rounded text-xs flex items-center gap-1.5 transition cursor-pointer ${
               deviceMode === "mobile"
@@ -151,6 +156,7 @@ export const LivePreviewCanvas: React.FC<LivePreviewCanvasProps> = ({ theme }) =
 
               <div className="flex flex-wrap items-center gap-3">
                 <button
+                  type="button"
                   className="px-5 py-2.5 rounded-xl font-semibold text-xs text-white shadow-lg transition hover:opacity-90 hover:scale-105 active:scale-95 flex items-center gap-2 cursor-pointer"
                   style={{ background: colors.btnGradient }}
                 >
@@ -158,6 +164,7 @@ export const LivePreviewCanvas: React.FC<LivePreviewCanvasProps> = ({ theme }) =
                   <span>Primary CTA (Gradient)</span>
                 </button>
                 <button
+                  type="button"
                   className="px-4 py-2.5 rounded-xl font-semibold text-xs text-white border transition hover:opacity-90 hover:scale-105 active:scale-95 cursor-pointer shadow-md"
                   style={{
                     backgroundColor: colors.secondary,
@@ -198,12 +205,14 @@ export const LivePreviewCanvas: React.FC<LivePreviewCanvasProps> = ({ theme }) =
 
               <div className="flex items-center gap-2">
                 <button
+                  type="button"
                   className="flex-1 py-2 px-3 rounded-lg text-xs font-semibold text-white shadow transition hover:opacity-95 text-center cursor-pointer hover:scale-102"
                   style={{ backgroundColor: colors.primary }}
                 >
                   Primary Deposit
                 </button>
                 <button
+                  type="button"
                   className="py-2 px-3 rounded-lg text-xs font-semibold text-white transition hover:opacity-95 cursor-pointer"
                   style={{ backgroundColor: colors.secondary }}
                 >

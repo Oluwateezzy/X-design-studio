@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
 import { PRESET_THEMES, type ThemeConfig } from "./lib/themes-dataset";
+import type { ThemeConfigV2 } from "./lib/types/theme-config-v2";
+import type { ColorToken } from "./lib/types/color-token";
+import { migrateV1ToV2 } from "./lib/theme-migrator";
 import { LivePreviewCanvas } from "./components/LivePreviewCanvas";
 import { ExportModal } from "./components/ExportModal";
 import { FontSelectorModal } from "./components/FontSelectorModal";
@@ -14,10 +17,17 @@ declare global {
 }
 
 export function App() {
-  const [activeTheme, setActiveTheme] = useState<ThemeConfig>(() => {
-    const savedWebviewState = getState<ThemeConfig>();
-    return savedWebviewState || PRESET_THEMES[0];
+  const [activeTheme, setActiveTheme] = useState<ThemeConfigV2>(() => {
+    const saved = getState<ThemeConfigV2 | ThemeConfig>();
+    if (saved) {
+      if ('version' in saved && saved.version === 2) {
+        return saved as ThemeConfigV2;
+      }
+      return migrateV1ToV2(saved as ThemeConfig);
+    }
+    return migrateV1ToV2(PRESET_THEMES[0]);
   });
+
   const [isExportOpen, setIsExportOpen] = useState<boolean>(false);
   const [isFontModalOpen, setIsFontModalOpen] = useState<boolean>(false);
   const [exportTab, setExportTab] = useState<"html" | "markdown">("html");
@@ -44,12 +54,12 @@ export function App() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Load Google Font whenever active theme changes
+  // Load Google Font whenever active theme font changes
   useEffect(() => {
-    if (activeTheme?.fontName) {
-      loadGoogleFont(activeTheme.fontName);
+    if (activeTheme?.typography?.fontName) {
+      loadGoogleFont(activeTheme.typography.fontName);
     }
-  }, [activeTheme?.fontName]);
+  }, [activeTheme?.typography?.fontName]);
 
   // Request persisted state from Extension Host on mount
   useEffect(() => {
@@ -57,6 +67,8 @@ export function App() {
 
     const cleanup = onMessage((msg) => {
       if (msg.type === "restoreState" && msg.theme) {
+        setActiveTheme(migrateV1ToV2(msg.theme));
+      } else if (msg.type === "restoreStateV2" && msg.theme) {
         setActiveTheme(msg.theme);
       }
     });
@@ -67,52 +79,27 @@ export function App() {
   // Save active theme state to Extension Host and Webview State API on change
   useEffect(() => {
     if (activeTheme) {
-      postMessage({ type: "saveThemeState", theme: activeTheme });
+      postMessage({ type: "saveThemeStateV2", theme: activeTheme });
       setState(activeTheme);
     }
   }, [activeTheme]);
 
-  const handleSelectTheme = (theme: ThemeConfig) => {
-    setActiveTheme(JSON.parse(JSON.stringify(theme)));
+  const handleSelectTheme = (v1Theme: ThemeConfig) => {
+    setActiveTheme(migrateV1ToV2(v1Theme));
   };
 
-  const handleColorChange = (key: keyof ThemeConfig["colors"], value: string) => {
+  const handleColorChange = (path: string, token: ColorToken) => {
     setActiveTheme((prev) => {
-      let sanitizedVal = value;
-      if (sanitizedVal.startsWith("#") && sanitizedVal.length === 8) {
-        sanitizedVal = sanitizedVal.slice(0, 7);
+      const next = JSON.parse(JSON.stringify(prev)) as ThemeConfigV2;
+      const keys = path.replace(/^colors\./, '').split('.');
+
+      let target: Record<string, unknown> = next.colors as unknown as Record<string, unknown>;
+      for (let i = 0; i < keys.length - 1; i++) {
+        target = target[keys[i]] as Record<string, unknown>;
       }
+      target[keys[keys.length - 1]] = token;
 
-      const updatedColors = {
-        ...prev.colors,
-        [key]: sanitizedVal,
-      };
-
-      if (key === "primary" || key === "secondary") {
-        const prim = updatedColors.primary;
-        const sec = updatedColors.secondary;
-
-        updatedColors.btnGradient = `linear-gradient(135deg, ${prim} 0%, ${sec} 100%)`;
-
-        if (prim.startsWith("#")) {
-          const hexPrim = prim.length > 7 ? prim.slice(0, 7) : prim;
-          updatedColors.heroGlow1 = `${hexPrim}40`;
-          updatedColors.badgeBg = `${hexPrim}20`;
-          updatedColors.badgeBorder = `${hexPrim}50`;
-          updatedColors.badgeText = hexPrim;
-          updatedColors.accent = hexPrim;
-        }
-
-        if (sec.startsWith("#")) {
-          const hexSec = sec.length > 7 ? sec.slice(0, 7) : sec;
-          updatedColors.heroGlow2 = `${hexSec}33`;
-        }
-      }
-
-      return {
-        ...prev,
-        colors: updatedColors,
-      };
+      return next;
     });
   };
 
@@ -120,20 +107,23 @@ export function App() {
     loadGoogleFont(fontName);
     setActiveTheme((prev) => ({
       ...prev,
-      fontName,
-      fontFamily,
-      fontGoogleUrl,
+      typography: {
+        ...prev.typography,
+        fontName,
+        fontFamily,
+        fontGoogleUrl,
+      },
     }));
   };
 
   const handleResetTheme = () => {
     const original = PRESET_THEMES.find((t) => t.id === activeTheme.id) || PRESET_THEMES[0];
-    setActiveTheme(JSON.parse(JSON.stringify(original)));
+    setActiveTheme(migrateV1ToV2(original));
   };
 
   const handleRandomTheme = () => {
     const randomIndex = Math.floor(Math.random() * PRESET_THEMES.length);
-    setActiveTheme(JSON.parse(JSON.stringify(PRESET_THEMES[randomIndex])));
+    setActiveTheme(migrateV1ToV2(PRESET_THEMES[randomIndex]));
   };
 
   const handleOpenExport = (tab: "html" | "markdown") => {
@@ -143,7 +133,6 @@ export function App() {
 
   const handleOpenFullStudio = () => {
     postMessage({ type: "openExternal", url: "command:xDesignSystem.open" });
-    // Also post openFullStudio for Extension Host handler
     window.parent.postMessage({ type: "openFullStudio" }, "*");
   };
 
@@ -190,7 +179,7 @@ export function App() {
       {/* Google Fonts Selector Modal */}
       <FontSelectorModal
         isOpen={isFontModalOpen}
-        activeFontName={activeTheme.fontName}
+        activeFontName={activeTheme.typography.fontName}
         onClose={() => setIsFontModalOpen(false)}
         onSelectFont={handleFontSelect}
       />
