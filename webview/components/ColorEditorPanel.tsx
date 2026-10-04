@@ -110,7 +110,7 @@ export const ColorEditorPanel: React.FC<ColorEditorPanelProps> = ({
   };
 
   return (
-    <div className="flex flex-col h-full bg-[var(--vscode-sidebar-bg)] border-l border-[var(--vscode-border)] w-72 sm:w-80 shrink-0 z-20 overflow-hidden">
+    <div className="flex flex-col h-full w-full bg-[var(--vscode-sidebar-bg)] overflow-hidden">
       {/* Editor Header */}
       <div className="p-3.5 border-b border-slate-800/80 flex items-center justify-between shrink-0">
         <div className="flex items-center gap-2">

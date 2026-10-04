@@ -1,22 +1,39 @@
-import type { ThemeConfig } from "./themes-dataset";
+import type { ThemeConfigV2 } from "./types/theme-config-v2";
+import { colorTokenToCss } from "./types/color-token";
 import { hexToHsl, checkWcag } from "./color-utils";
 
-export function generateThemeMarkdown(theme: ThemeConfig): string {
-  const { colors, name, category, personality, number, fontFamily, fontName, fontGoogleUrl } = theme;
+export function generateThemeMarkdown(theme: ThemeConfigV2): string {
+  const { colors, name, category, personality, typography } = theme;
+  const number = parseInt(theme.id.replace(/\D/g, ""), 10) || 1;
 
-  const bgHsl = hexToHsl(colors.bg);
-  const primaryHsl = hexToHsl(colors.primary);
-  const accentHsl = hexToHsl(colors.accent);
+  const bgCss = colorTokenToCss(colors.bg);
+  const primaryCss = colorTokenToCss(colors.primary);
+  const secondaryCss = colorTokenToCss(colors.secondary);
+  const accentCss = colorTokenToCss(colors.accent);
+  const surfaceCss = colorTokenToCss(colors.surface);
+  const surfaceBorderCss = colorTokenToCss(colors.surfaceBorder);
+  const textCss = colorTokenToCss(colors.text);
+  const textMutedCss = colorTokenToCss(colors.textMuted);
+  const ctaCss = colorTokenToCss(colors.cta);
+  const badgeBgCss = colorTokenToCss(colors.badge.bg);
+  const badgeBorderCss = colorTokenToCss(colors.badge.border);
+  const badgeTextCss = colorTokenToCss(colors.badge.text);
+  const glow1Css = colorTokenToCss(colors.glow.primary);
+  const glow2Css = colorTokenToCss(colors.glow.secondary);
 
-  const textContrast = checkWcag(colors.textColor, colors.bg);
-  const mutedContrast = checkWcag(colors.mutedText, colors.bg);
-  const accentContrast = checkWcag(colors.accent, colors.bg);
+  const bgHsl = hexToHsl(colors.bg.hex);
+  const primaryHsl = hexToHsl(colors.primary.hex);
+  const accentHsl = hexToHsl(colors.accent.hex);
+
+  const textContrast = checkWcag(colors.text.hex, colors.bg.hex);
+  const mutedContrast = checkWcag(colors.textMuted.hex, colors.bg.hex);
+  const accentContrast = checkWcag(colors.accent.hex, colors.bg.hex);
 
   return `# Theme Specification: ${name} (Theme #${number})
 
 **Category**: ${category}  
 **Brand Personality**: ${personality}  
-**Typography**: Google Font **${fontName}** (\`font-family: ${fontFamily}\`)  
+**Typography**: Google Font **${typography.fontName}** (\`font-family: ${typography.fontFamily}\`)  
 
 ---
 
@@ -27,25 +44,25 @@ Include this Google Fonts link in your \`<head>\` or \`index.html\`:
 \`\`\`html
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=${fontGoogleUrl}&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=${typography.fontGoogleUrl}&display=swap" rel="stylesheet">
 \`\`\`
 
 ---
 
-## 2. Color Palette Tokens
+## 2. Color Palette Tokens (V2 System)
 
 | Token Name | Hex Value | HSL Value | Target Usage |
 | :--- | :--- | :--- | :--- |
-| **Background (\`--theme-bg\`)** | \`${colors.bg}\` | \`hsl(${bgHsl.h}, ${bgHsl.s}%, ${bgHsl.l}%)\` | Main app background, body, dark canvas |
-| **Primary (\`--theme-primary\`)** | \`${colors.primary}\` | \`hsl(${primaryHsl.h}, ${primaryHsl.s}%, ${primaryHsl.l}%)\` | Primary brand background, header fill, solid cards |
-| **Secondary (\`--theme-secondary\`)** | \`${colors.secondary}\` | - | Secondary actions, hover fills, subtle highlights |
-| **Accent (\`--theme-accent\`)** | \`${colors.accent}\` | \`hsl(${accentHsl.h}, ${accentHsl.s}%, ${accentHsl.l}%)\` | Hero text highlight, focus rings, key indicators |
-| **Card Surface (\`--theme-card-bg\`)** | \`${colors.cardBg}\` | Glass / Translucent | Card containers, modal popups, tables |
-| **Card Border (\`--theme-card-border\`)** | \`${colors.cardBorder}\` | Semi-transparent | Card edges, subtle grid dividers |
-| **Text Primary (\`--theme-text-color\`)** | \`${colors.textColor}\` | High Contrast | Headings, primary body copy, numbers |
-| **Text Muted (\`--theme-muted-text\`)** | \`${colors.mutedText}\` | Medium Contrast | Subtitles, table headers, captions |
-| **Badge BG (\`--theme-badge-bg\`)** | \`${colors.badgeBg}\` | Translucent Accent | Pill tags, status pill backgrounds |
-| **Badge Text (\`--theme-badge-text\`)** | \`${colors.badgeText}\` | Vibrant | Pill tag text, badge labels |
+| **Background (\`--theme-bg\`)** | \`${colors.bg.hex}\` | \`hsl(${bgHsl.h}, ${bgHsl.s}%, ${bgHsl.l}%)\` | Main app background, body, dark canvas |
+| **Primary (\`--theme-primary\`)** | \`${colors.primary.hex}\` | \`hsl(${primaryHsl.h}, ${primaryHsl.s}%, ${primaryHsl.l}%)\` | Primary brand background, header fill, solid cards |
+| **Secondary (\`--theme-secondary\`)** | \`${colors.secondary.hex}\` | - | Secondary actions, hover fills, subtle highlights |
+| **Accent (\`--theme-accent\`)** | \`${colors.accent.hex}\` | \`hsl(${accentHsl.h}, ${accentHsl.s}%, ${accentHsl.l}%)\` | Hero text highlight, focus rings, key indicators |
+| **Card Surface (\`--theme-card-bg\`)** | \`${colors.surface.hex}\` | Glass / Translucent | Card containers, modal popups, tables |
+| **Card Border (\`--theme-card-border\`)** | \`${colors.surfaceBorder.hex}\` | Semi-transparent | Card edges, subtle grid dividers |
+| **Text Primary (\`--theme-text-color\`)** | \`${colors.text.hex}\` | High Contrast | Headings, primary body copy, numbers |
+| **Text Muted (\`--theme-muted-text\`)** | \`${colors.textMuted.hex}\` | Medium Contrast | Subtitles, table headers, captions |
+| **Badge BG (\`--theme-badge-bg\`)** | \`${colors.badge.bg.hex}\` | Translucent Accent | Pill tags, status pill backgrounds |
+| **Badge Text (\`--theme-badge-text\`)** | \`${colors.badge.text.hex}\` | Vibrant | Pill tag text, badge labels |
 
 ---
 
@@ -63,24 +80,21 @@ Add these variables and keyframe animations to your global CSS:
 
 \`\`\`css
 :root {
-  --theme-font: ${fontFamily};
-  --theme-bg: ${colors.bg};
-  --theme-primary: ${colors.primary};
-  --theme-secondary: ${colors.secondary};
-  --theme-accent: ${colors.accent};
-  --theme-card-bg: ${colors.cardBg};
-  --theme-card-border: ${colors.cardBorder};
-  --theme-text-color: ${colors.textColor};
-  --theme-muted-text: ${colors.mutedText};
-  --theme-btn-gradient: ${colors.btnGradient};
-  --theme-badge-bg: ${colors.badgeBg};
-  --theme-badge-border: ${colors.badgeBorder};
-  --theme-badge-text: ${colors.badgeText};
-  --theme-hero-glow-1: ${colors.heroGlow1};
-  --theme-hero-glow-2: ${colors.heroGlow2};
-  --theme-success: ${colors.success};
-  --theme-warning: ${colors.warning};
-  --theme-error: ${colors.error};
+  --theme-font: ${typography.fontFamily};
+  --theme-bg: ${bgCss};
+  --theme-primary: ${primaryCss};
+  --theme-secondary: ${secondaryCss};
+  --theme-accent: ${accentCss};
+  --theme-card-bg: ${surfaceCss};
+  --theme-card-border: ${surfaceBorderCss};
+  --theme-text-color: ${textCss};
+  --theme-muted-text: ${textMutedCss};
+  --theme-btn-gradient: ${ctaCss};
+  --theme-badge-bg: ${badgeBgCss};
+  --theme-badge-border: ${badgeBorderCss};
+  --theme-badge-text: ${badgeTextCss};
+  --theme-hero-glow-1: ${glow1Css};
+  --theme-hero-glow-2: ${glow2Css};
 }
 
 /* Fluid Web Motion & Glow Animations */
@@ -113,36 +127,37 @@ You are an expert UI engineer building a web application with the "${name}" desi
 - **Theme Name**: ${name} (#${number})
 - **Category**: ${category}
 - **Brand Personality**: ${personality}
-- **Typography Font Family**: Use Google Font "${fontName}" (\`font-family: ${fontFamily}\`).
+- **Typography Font Family**: Use Google Font "${typography.fontName}" (\`font-family: ${typography.fontFamily}\`).
 
 ### Google Fonts Setup
 Add the font link to head:
-\`<link href="https://fonts.googleapis.com/css2?family=${fontGoogleUrl}&display=swap" rel="stylesheet">\`
+\`<link href="https://fonts.googleapis.com/css2?family=${typography.fontGoogleUrl}&display=swap" rel="stylesheet">\`
 
 ### Design System Tokens
 Apply these CSS custom variables across all UI components:
-- Application Font: ${fontFamily}
-- Application Background: ${colors.bg}
-- Primary Brand Color: ${colors.primary}
-- Accent Color: ${colors.accent}
-- Surface / Card Background: ${colors.cardBg}
-- Card Border: ${colors.cardBorder}
-- Text Color: ${colors.textColor}
-- Muted Text Color: ${colors.mutedText}
-- Button Gradient: ${colors.btnGradient}
-- Badge Background: ${colors.badgeBg}
-- Badge Text: ${colors.badgeText}
-- Hero Glow Primary: ${colors.heroGlow1}
-- Hero Glow Secondary: ${colors.heroGlow2}
+- Application Font: ${typography.fontFamily}
+- Application Background: ${bgCss}
+- Primary Brand Color: ${primaryCss}
+- Accent Color: ${accentCss}
+- Surface / Card Background: ${surfaceCss}
+- Card Border: ${surfaceBorderCss}
+- Text Color: ${textCss}
+- Muted Text Color: ${textMutedCss}
+- Button / CTA Style: ${ctaCss}
+- Badge Background: ${badgeBgCss}
+- Badge Text: ${badgeTextCss}
+- Hero Glow Primary: ${glow1Css}
+- Hero Glow Secondary: ${glow2Css}
 
 ### Component Styling & Animation Directives
-1. **Typography & Layout**: Set \`font-family: ${fontFamily}\`, \`background-color: ${colors.bg}\`, and body copy text color to \`${colors.textColor}\`.
-2. **Cards & Glassmorphic Surfaces**: Use \`background: ${colors.cardBg}\`, \`border: 1px solid ${colors.cardBorder}\`, and \`backdrop-filter: blur(12px)\`. Add smooth card hover lifts (\`transform: translateY(-3px)\`).
-3. **Buttons & CTAs**: Primary buttons use \`background: ${colors.btnGradient}\` with \`box-shadow: 0 6px 20px ${colors.heroGlow1}\`. Secondary buttons use transparent background with border \`${colors.cardBorder}\`. Add active scale micro-interactions.
-4. **Status Badges & Chips**: Use \`background: ${colors.badgeBg}\`, \`border: 1px solid ${colors.badgeBorder}\`, and text color \`${colors.badgeText}\` with subtle \`pulseBadge\` animations.
-5. **Ambient Fluid Motion**: Add floating blurred radial ambient glows using \`@keyframes floatOrb1\` and \`floatOrb2\` with \`${colors.heroGlow1}\` and \`${colors.heroGlow2}\`.
+1. **Typography & Layout**: Set \`font-family: ${typography.fontFamily}\`, \`background-color: ${bgCss}\`, and body copy text color to \`${textCss}\`.
+2. **Cards & Glassmorphic Surfaces**: Use \`background: ${surfaceCss}\`, \`border: 1px solid ${surfaceBorderCss}\`, and \`backdrop-filter: blur(12px)\`. Add smooth card hover lifts (\`transform: translateY(-3px)\`).
+3. **Buttons & CTAs**: Primary buttons use \`background: ${ctaCss}\` with \`box-shadow: 0 6px 20px ${glow1Css}\`. Secondary buttons use transparent background with border \`${surfaceBorderCss}\`. Add active scale micro-interactions.
+4. **Status Badges & Chips**: Use \`background: ${badgeBgCss}\`, \`border: 1px solid ${badgeBorderCss}\`, and text color \`${badgeTextCss}\` with subtle \`pulseBadge\` animations.
+5. **Ambient Fluid Motion**: Add floating blurred radial ambient glows using \`@keyframes floatOrb1\` and \`floatOrb2\` with \`${glow1Css}\` and \`${glow2Css}\`.
 
 Follow these tokens and animation rules strictly. Do NOT create a static, generic, motionless app.
 \`\`\`
 `;
 }
+

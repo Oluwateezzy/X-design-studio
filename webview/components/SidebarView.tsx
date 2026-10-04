@@ -1,9 +1,9 @@
 import React, { useState, useMemo } from "react";
-import { Search, Check, Shuffle, ExternalLink, Sparkles, RefreshCw, SlidersHorizontal, Code, Download, Type } from "lucide-react";
+import { Search, Check, Shuffle, ExternalLink, Sparkles, Code, Download } from "lucide-react";
 import { PRESET_THEMES, THEME_CATEGORIES, type ThemeConfigV2 } from "../lib/themes-dataset";
 import type { ColorToken } from "../lib/types/color-token";
 import { colorTokenToCss } from "../lib/types/color-token";
-import { FALLBACK_GOOGLE_FONTS, loadGoogleFont, getFontFamilyCss, getFontGoogleUrlParam } from "../lib/google-fonts-api";
+import { ColorEditorPanel } from "./ColorEditorPanel";
 
 interface SidebarViewProps {
   activeTheme: ThemeConfigV2;
@@ -44,24 +44,6 @@ export const SidebarView: React.FC<SidebarViewProps> = ({
       return matchesCategory && matchesSearch;
     });
   }, [selectedCategory, searchQuery]);
-
-  const handleFontSelect = (fontFamilyName: string) => {
-    const fontObj = FALLBACK_GOOGLE_FONTS.find((f) => f.family === fontFamilyName);
-    const category = fontObj ? fontObj.category : "sans-serif";
-    loadGoogleFont(fontFamilyName);
-    const cssVal = getFontFamilyCss(fontFamilyName, category);
-    const urlParam = getFontGoogleUrlParam(fontFamilyName);
-    onFontChange(fontFamilyName, cssVal, urlParam);
-  };
-
-  const quickTunerFields: Array<{ path: string; label: string; token: ColorToken }> = [
-    { path: "colors.bg", label: "Background", token: activeTheme.colors.bg },
-    { path: "colors.surface", label: "Card / Panel Surface", token: activeTheme.colors.surface },
-    { path: "colors.primary", label: "Primary Color", token: activeTheme.colors.primary },
-    { path: "colors.secondary", label: "Secondary Color", token: activeTheme.colors.secondary },
-    { path: "colors.text", label: "Text Color", token: activeTheme.colors.text },
-    { path: "colors.textMuted", label: "Muted Text", token: activeTheme.colors.textMuted },
-  ];
 
   return (
     <div className="flex flex-col h-screen w-full bg-[var(--vscode-sidebar-bg)] text-[var(--vscode-fg)] overflow-hidden font-sans border-r border-[var(--vscode-border)]">
@@ -232,22 +214,22 @@ export const SidebarView: React.FC<SidebarViewProps> = ({
                     <div className="flex items-center gap-1">
                       <div
                         className="w-4 h-4 rounded border border-white/20"
-                        style={{ backgroundColor: bgCss }}
+                        style={{ background: bgCss }}
                         title={`BG: ${bgCss}`}
                       />
                       <div
                         className="w-4 h-4 rounded border border-white/20"
-                        style={{ backgroundColor: primaryCss }}
+                        style={{ background: primaryCss }}
                         title={`Primary: ${primaryCss}`}
                       />
                       <div
                         className="w-4 h-4 rounded border border-white/20"
-                        style={{ backgroundColor: secondaryCss }}
+                        style={{ background: secondaryCss }}
                         title={`Secondary: ${secondaryCss}`}
                       />
                       <div
                         className="w-4 h-4 rounded border border-white/20"
-                        style={{ backgroundColor: accentCss }}
+                        style={{ background: accentCss }}
                         title={`Accent: ${accentCss}`}
                       />
                       <div
@@ -263,77 +245,15 @@ export const SidebarView: React.FC<SidebarViewProps> = ({
           </div>
         </>
       ) : (
-        /* Tuner / Color Swatches & Dynamic Typography Controls */
-        <div className="flex-1 overflow-y-auto p-3 space-y-4">
-          {/* Dynamic Typography Section */}
-          <div className="p-2.5 rounded-lg bg-[var(--vscode-input-bg)] border border-[var(--vscode-border)] space-y-2">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-1.5 text-xs font-bold text-indigo-400">
-                <Type className="w-3.5 h-3.5" />
-                <span>Dynamic Google Font</span>
-              </div>
-              <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-[var(--vscode-bg)] text-[var(--vscode-fg)] border border-[var(--vscode-border)]">
-                {activeTheme.typography.fontName}
-              </span>
-            </div>
-
-            <select
-              value={activeTheme.typography.fontName}
-              onChange={(e) => handleFontSelect(e.target.value)}
-              className="w-full py-1.5 px-2 text-xs bg-[var(--vscode-bg)] border border-[var(--vscode-border)] rounded text-[var(--vscode-fg)] focus:outline-none focus:ring-1 focus:ring-indigo-500 cursor-pointer"
-            >
-              {FALLBACK_GOOGLE_FONTS.map((font) => (
-                <option key={font.family} value={font.family}>
-                  {font.family} ({font.category})
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div className="flex items-center justify-between pb-2 border-b border-[var(--vscode-border)]">
-            <div className="flex items-center gap-1.5">
-              <SlidersHorizontal className="w-3.5 h-3.5 text-indigo-400" />
-              <span className="text-xs font-bold">Quick Color Tuner</span>
-            </div>
-            <button
-              type="button"
-              onClick={onResetTheme}
-              className="text-[10px] text-slate-400 hover:text-slate-200 flex items-center gap-1 cursor-pointer"
-            >
-              <RefreshCw className="w-2.5 h-2.5" />
-              Reset
-            </button>
-          </div>
-
-          <div className="space-y-3">
-            {quickTunerFields.map(({ path, label, token }) => (
-              <div key={path} className="flex items-center justify-between gap-2 p-2 rounded bg-[var(--vscode-input-bg)] border border-[var(--vscode-border)]">
-                <span className="text-[11px] font-medium">{label}</span>
-                <div className="flex items-center gap-2">
-                  <input
-                    type="color"
-                    value={token.hex.startsWith("#") ? token.hex.slice(0, 7) : "#ffffff"}
-                    onChange={(e) => onColorChange(path, { ...token, hex: e.target.value })}
-                    className="w-6 h-6 rounded cursor-pointer border-0 p-0 bg-transparent"
-                  />
-                  <span
-                    className="w-4 h-4 rounded border border-white/20 shrink-0"
-                    style={{ background: colorTokenToCss(token) }}
-                    title={colorTokenToCss(token)}
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <button
-            type="button"
-            onClick={onOpenFullStudio}
-            className="w-full py-2 px-3 rounded-md bg-[var(--vscode-button-bg)] text-[var(--vscode-button-fg)] text-xs font-semibold hover:opacity-90 transition flex items-center justify-center gap-2 cursor-pointer shadow mt-4"
-          >
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Open Interactive Studio Canvas</span>
-          </button>
+        /* Tuner / Full Color & Gradient Token Tuner Panel */
+        <div className="flex-1 overflow-hidden">
+          <ColorEditorPanel
+            activeTheme={activeTheme}
+            onColorChange={onColorChange}
+            onFontChange={onFontChange}
+            onOpenFontModal={() => {}}
+            onResetTheme={onResetTheme}
+          />
         </div>
       )}
     </div>

@@ -1,7 +1,6 @@
-import type { ThemeConfig, ThemeConfigV2 } from '../../src/messages';
+import type { ThemeConfigV2 } from './types/theme-config-v2';
 
-export type { ThemeConfig, ThemeConfigV2 };
-
+export type { ThemeConfigV2 };
 
 export interface FontOption {
   name: string;
@@ -143,20 +142,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#1E3A8A",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#1E3A8A",
-              "position": 0
-            },
-            {
-              "color": "#3B82F6",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -275,20 +261,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#1C2541",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#00B4D8",
-              "position": 0
-            },
-            {
-              "color": "#00F5D4",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -407,20 +380,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#D4AF37",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#D4AF37",
-              "position": 0
-            },
-            {
-              "color": "#AA7C11",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -539,20 +499,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#0D5C46",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#0D5C46",
-              "position": 0
-            },
-            {
-              "color": "#14B8A6",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -671,20 +618,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#334155",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#0284C7",
-              "position": 0
-            },
-            {
-              "color": "#38BDF8",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -803,20 +737,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#1D4ED8",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#1D4ED8",
-              "position": 0
-            },
-            {
-              "color": "#3B82F6",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -935,20 +856,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#374151",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#0891B2",
-              "position": 0
-            },
-            {
-              "color": "#06B6D4",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -1067,20 +975,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#1C2541",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#3A506B",
-              "position": 0
-            },
-            {
-              "color": "#5BC0BE",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -1199,20 +1094,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#064E3B",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#047857",
-              "position": 0
-            },
-            {
-              "color": "#10B981",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -1331,20 +1213,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#0E3A47",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#0891B2",
-              "position": 0
-            },
-            {
-              "color": "#22D3EE",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -1463,20 +1332,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#7C3AED",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#7C3AED",
-              "position": 0
-            },
-            {
-              "color": "#EC4899",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -1595,20 +1451,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#052E16",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#15803D",
-              "position": 0
-            },
-            {
-              "color": "#22C55E",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -1727,20 +1570,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#881337",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#9F1239",
-              "position": 0
-            },
-            {
-              "color": "#F43F5E",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -1859,20 +1689,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#581C87",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#A855F7",
-              "position": 0
-            },
-            {
-              "color": "#EC4899",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -1991,20 +1808,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#0C4A6E",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#0284C7",
-              "position": 0
-            },
-            {
-              "color": "#38BDF8",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -2123,20 +1927,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#311B92",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#FF6D00",
-              "position": 0
-            },
-            {
-              "color": "#FF9100",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -2255,20 +2046,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#2E0854",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#7C3AED",
-              "position": 0
-            },
-            {
-              "color": "#C084FC",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -2387,20 +2165,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#7C2D12",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#C2410C",
-              "position": 0
-            },
-            {
-              "color": "#F97316",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -2519,20 +2284,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#1E1B4B",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#4F46E5",
-              "position": 0
-            },
-            {
-              "color": "#06B6D4",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -2651,20 +2403,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#042F2E",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#0F766E",
-              "position": 0
-            },
-            {
-              "color": "#2DD4BF",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -2783,20 +2522,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#26201A",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#8C7355",
-              "position": 0
-            },
-            {
-              "color": "#E6C594",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -2915,20 +2641,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#2D1B22",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#9E5A73",
-              "position": 0
-            },
-            {
-              "color": "#F4B8C7",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -3047,20 +2760,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#171717",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#404040",
-              "position": 0
-            },
-            {
-              "color": "#737373",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -3179,20 +2879,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#261438",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#6B21A8",
-              "position": 0
-            },
-            {
-              "color": "#A855F7",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -3311,20 +2998,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#2B1A12",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#78350F",
-              "position": 0
-            },
-            {
-              "color": "#D97706",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -3443,20 +3117,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#1E293B",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#334155",
-              "position": 0
-            },
-            {
-              "color": "#64748B",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -3575,20 +3236,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#2A1F18",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#6E472D",
-              "position": 0
-            },
-            {
-              "color": "#D48B54",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -3707,20 +3355,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#1B1724",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#4C3B5C",
-              "position": 0
-            },
-            {
-              "color": "#7E6396",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -3839,20 +3474,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#281B14",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#7C3F26",
-              "position": 0
-            },
-            {
-              "color": "#E07A5F",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -3971,20 +3593,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#310A14",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#80132A",
-              "position": 0
-            },
-            {
-              "color": "#C9184A",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -4103,20 +3712,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#4C1D95",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#7C3AED",
-              "position": 0
-            },
-            {
-              "color": "#F43F5E",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -4235,20 +3831,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#1A3A07",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#4D7C0F",
-              "position": 0
-            },
-            {
-              "color": "#84CC16",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -4367,20 +3950,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#3B0764",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#F43F5E",
-              "position": 0
-            },
-            {
-              "color": "#2DD4BF",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -4499,20 +4069,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#451A03",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#B45309",
-              "position": 0
-            },
-            {
-              "color": "#FBBF24",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -4631,20 +4188,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#3B1578",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#8B5CF6",
-              "position": 0
-            },
-            {
-              "color": "#38BDF8",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -4763,20 +4307,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#075985",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#0369A1",
-              "position": 0
-            },
-            {
-              "color": "#38BDF8",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -4895,20 +4426,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#701A75",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#A21CAF",
-              "position": 0
-            },
-            {
-              "color": "#E879F9",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -5027,20 +4545,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#064E3B",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#047857",
-              "position": 0
-            },
-            {
-              "color": "#34D399",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -5159,20 +4664,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#7F1D1D",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#B91C1C",
-              "position": 0
-            },
-            {
-              "color": "#EF4444",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -5291,20 +4783,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#3B0764",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#6B21A8",
-              "position": 0
-            },
-            {
-              "color": "#06B6D4",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -5423,20 +4902,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#262626",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#CA8A04",
-              "position": 0
-            },
-            {
-              "color": "#FACC15",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -5555,20 +5021,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#292524",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#EA580C",
-              "position": 0
-            },
-            {
-              "color": "#FB923C",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -5687,20 +5140,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#1E293B",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#1D4ED8",
-              "position": 0
-            },
-            {
-              "color": "#3B82F6",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -5819,20 +5259,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#262626",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#525252",
-              "position": 0
-            },
-            {
-              "color": "#A3A3A3",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -5951,20 +5378,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#2C1217",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#991B1B",
-              "position": 0
-            },
-            {
-              "color": "#EF4444",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -6083,20 +5497,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#0B2E22",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#047857",
-              "position": 0
-            },
-            {
-              "color": "#10B981",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -6215,20 +5616,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#1D2636",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#1D4ED8",
-              "position": 0
-            },
-            {
-              "color": "#FACC15",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -6347,20 +5735,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#1F2937",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#374151",
-              "position": 0
-            },
-            {
-              "color": "#6B7280",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -6479,20 +5854,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#330C2D",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#A21CAF",
-              "position": 0
-            },
-            {
-              "color": "#E879F9",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -6611,20 +5973,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#2E2707",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#B45309",
-              "position": 0
-            },
-            {
-              "color": "#FBBF24",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -6743,20 +6092,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#2A2622",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#786C5E",
-              "position": 0
-            },
-            {
-              "color": "#D4C5B9",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -6875,20 +6211,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#2C1E18",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#794A3A",
-              "position": 0
-            },
-            {
-              "color": "#DDA15E",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -7007,20 +6330,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#38201A",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#9A4832",
-              "position": 0
-            },
-            {
-              "color": "#E27D60",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -7139,20 +6449,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#212F29",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#52796F",
-              "position": 0
-            },
-            {
-              "color": "#84A98C",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -7271,20 +6568,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#33251E",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#8B4513",
-              "position": 0
-            },
-            {
-              "color": "#D2691E",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -7403,20 +6687,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#282828",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#5C5C5C",
-              "position": 0
-            },
-            {
-              "color": "#8C8C8C",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -7535,20 +6806,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#2D221A",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#735741",
-              "position": 0
-            },
-            {
-              "color": "#C2A68C",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -7667,20 +6925,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#2E2622",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#8C5E47",
-              "position": 0
-            },
-            {
-              "color": "#D98A6C",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -7799,20 +7044,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#262E1F",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#5B6B46",
-              "position": 0
-            },
-            {
-              "color": "#9BB07B",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -7931,20 +7163,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#331219",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#851D31",
-              "position": 0
-            },
-            {
-              "color": "#D97706",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -8063,20 +7282,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#0D3825",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#1B7B50",
-              "position": 0
-            },
-            {
-              "color": "#34D399",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -8195,20 +7401,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#332214",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#A05E2B",
-              "position": 0
-            },
-            {
-              "color": "#F59E0B",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -8327,20 +7520,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#2B1611",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#6E2D1E",
-              "position": 0
-            },
-            {
-              "color": "#10B981",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -8459,20 +7639,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#162B33",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#2E5B6D",
-              "position": 0
-            },
-            {
-              "color": "#38BDF8",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -8591,20 +7758,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#261916",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#7C2D12",
-              "position": 0
-            },
-            {
-              "color": "#F97316",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -8723,20 +7877,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#1C2A1C",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#3E5C3E",
-              "position": 0
-            },
-            {
-              "color": "#76A076",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -8855,20 +7996,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#33200A",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#8C5411",
-              "position": 0
-            },
-            {
-              "color": "#E09F3E",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -8987,20 +8115,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#261B36",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#6B3A7D",
-              "position": 0
-            },
-            {
-              "color": "#E07A5F",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -9119,20 +8234,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#0B2A38",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#175B7A",
-              "position": 0
-            },
-            {
-              "color": "#06B6D4",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -9251,20 +8353,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#381B15",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#8B3A2B",
-              "position": 0
-            },
-            {
-              "color": "#D96B43",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -9383,20 +8472,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#1E1E1E",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#3A3A3A",
-              "position": 0
-            },
-            {
-              "color": "#5A5A5A",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -9515,20 +8591,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#1E293B",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#334155",
-              "position": 0
-            },
-            {
-              "color": "#475569",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -9647,20 +8710,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#18181B",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#27272A",
-              "position": 0
-            },
-            {
-              "color": "#3F3F46",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -9779,20 +8829,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#19222D",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#2D3D50",
-              "position": 0
-            },
-            {
-              "color": "#465A73",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -9911,20 +8948,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#262422",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#44403C",
-              "position": 0
-            },
-            {
-              "color": "#57534E",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -10043,20 +9067,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#111111",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#222222",
-              "position": 0
-            },
-            {
-              "color": "#444444",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -10175,20 +9186,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#161B22",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#21262D",
-              "position": 0
-            },
-            {
-              "color": "#30363D",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -10307,20 +9305,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#1A1D20",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#343A40",
-              "position": 0
-            },
-            {
-              "color": "#495057",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -10439,20 +9424,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#211F24",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#423E47",
-              "position": 0
-            },
-            {
-              "color": "#5C5763",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -10571,20 +9543,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#16181C",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#2C3038",
-              "position": 0
-            },
-            {
-              "color": "#404652",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -10703,20 +9662,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#2E0A4E",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#7E22CE",
-              "position": 0
-            },
-            {
-              "color": "#EC4899",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -10835,20 +9781,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#3B0764",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#9333EA",
-              "position": 0
-            },
-            {
-              "color": "#FBBF24",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -10967,20 +9900,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#1C140A",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#9A3412",
-              "position": 0
-            },
-            {
-              "color": "#F97316",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -11099,20 +10019,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#0C2340",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#1E40AF",
-              "position": 0
-            },
-            {
-              "color": "#38BDF8",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -11231,20 +10138,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#0A2540",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#0091EA",
-              "position": 0
-            },
-            {
-              "color": "#00D4FF",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -11363,20 +10257,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#111827",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#374151",
-              "position": 0
-            },
-            {
-              "color": "#9CA3AF",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -11495,20 +10376,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#064E3B",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#047857",
-              "position": 0
-            },
-            {
-              "color": "#34D399",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -11627,20 +10495,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#1A1A1A",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#404040",
-              "position": 0
-            },
-            {
-              "color": "#E5E7EB",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -11759,20 +10614,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#170E2B",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#4C1D95",
-              "position": 0
-            },
-            {
-              "color": "#818CF8",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -11891,20 +10733,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#142238",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#059669",
-              "position": 0
-            },
-            {
-              "color": "#E879F9",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -12023,20 +10852,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#2E1F00",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#784A00",
-              "position": 0
-            },
-            {
-              "color": "#FFB703",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -12155,20 +10971,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#062910",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#0F5C24",
-              "position": 0
-            },
-            {
-              "color": "#39FF14",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -12287,20 +11090,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#0F1E3D",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#1D4ED8",
-              "position": 0
-            },
-            {
-              "color": "#60A5FA",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -12419,20 +11209,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#222226",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#4A4D57",
-              "position": 0
-            },
-            {
-              "color": "#767B8C",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -12551,20 +11328,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#14254A",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#0055AA",
-              "position": 0
-            },
-            {
-              "color": "#FF5500",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -12683,20 +11447,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#203060",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#4060C0",
-              "position": 0
-            },
-            {
-              "color": "#7090E0",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -12815,20 +11566,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#1C1C24",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#E11D48",
-              "position": 0
-            },
-            {
-              "color": "#06B6D4",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -12947,20 +11685,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#40084A",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#9333EA",
-              "position": 0
-            },
-            {
-              "color": "#F43F5E",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -13079,20 +11804,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#2E170E",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#7C2D12",
-              "position": 0
-            },
-            {
-              "color": "#EA580C",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {
@@ -13211,20 +11923,7 @@ export const PRESET_THEMES: ThemeConfigV2[] = [
       },
       "cta": {
         "hex": "#1C2836",
-        "gradient": {
-          "type": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#0077B6",
-              "position": 0
-            },
-            {
-              "color": "#48CAE4",
-              "position": 100
-            }
-          ]
-        }
+        "gradient": null
       },
       "badge": {
         "bg": {

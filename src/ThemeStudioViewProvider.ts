@@ -2,21 +2,33 @@ import * as vscode from 'vscode';
 import * as fs from 'fs';
 import * as path from 'path';
 import { ThemeStudioPanel } from './ThemeStudioPanel';
-import type { ThemeConfig, WebviewToExtensionMessage } from './messages';
+import type { ThemeConfig, ThemeConfigV2, WebviewToExtensionMessage, ExtensionToWebviewMessage } from './messages';
 
 export class ThemeStudioViewProvider implements vscode.WebviewViewProvider {
   public static readonly viewType = 'xDesignSystemSidebarView';
+  public static currentView: ThemeStudioViewProvider | undefined;
+  private _view?: vscode.WebviewView;
 
   constructor(
     private readonly _extensionUri: vscode.Uri,
     private readonly _globalState: vscode.Memento
-  ) {}
+  ) {
+    ThemeStudioViewProvider.currentView = this;
+  }
+
+  public static postMessageToSidebar(message: ExtensionToWebviewMessage): void {
+    if (ThemeStudioViewProvider.currentView?._view) {
+      ThemeStudioViewProvider.currentView._view.webview.postMessage(message);
+    }
+  }
 
   public resolveWebviewView(
     webviewView: vscode.WebviewView,
     _context: vscode.WebviewViewResolveContext,
     _token: vscode.CancellationToken
   ): void {
+    this._view = webviewView;
+
     webviewView.webview.options = {
       enableScripts: true,
       localResourceRoots: [
@@ -27,7 +39,7 @@ export class ThemeStudioViewProvider implements vscode.WebviewViewProvider {
 
     webviewView.webview.html = this._getHtmlForWebview(webviewView.webview);
 
-    webviewView.webview.onDidReceiveMessage(async (message: WebviewToExtensionMessage | { type: string; url?: string; theme?: ThemeConfig }) => {
+    webviewView.webview.onDidReceiveMessage(async (message: WebviewToExtensionMessage) => {
       switch (message.type) {
         case 'openFullStudio':
           ThemeStudioPanel.createOrShow(this._extensionUri, this._globalState);
@@ -39,10 +51,21 @@ export class ThemeStudioViewProvider implements vscode.WebviewViewProvider {
             await vscode.env.openExternal(vscode.Uri.parse(message.url));
           }
           break;
+        case 'saveThemeStateV2':
+          if ('theme' in message && message.theme) {
+            await this._globalState.update('activeThemeV2', message.theme);
+            // Sync live with main canvas panel if active
+            if (ThemeStudioPanel.currentPanel) {
+              ThemeStudioPanel.currentPanel.postMessage({
+                type: 'restoreStateV2',
+                theme: message.theme
+              });
+            }
+          }
+          break;
         case 'saveThemeState':
-          if (message.theme) {
+          if ('theme' in message && message.theme) {
             await this._globalState.update('activeTheme', message.theme);
-            // Sync live with open main panel if active
             if (ThemeStudioPanel.currentPanel) {
               ThemeStudioPanel.currentPanel.postMessage({
                 type: 'restoreState',
@@ -51,13 +74,22 @@ export class ThemeStudioViewProvider implements vscode.WebviewViewProvider {
             }
           }
           break;
-        case 'getPersistedState':
-          const savedTheme = this._globalState.get<ThemeConfig>('activeTheme');
-          webviewView.webview.postMessage({
-            type: 'restoreState',
-            theme: savedTheme
-          });
+        case 'getPersistedState': {
+          const savedThemeV2 = this._globalState.get<ThemeConfigV2>('activeThemeV2');
+          const savedThemeV1 = this._globalState.get<ThemeConfig>('activeTheme');
+          if (savedThemeV2) {
+            webviewView.webview.postMessage({
+              type: 'restoreStateV2',
+              theme: savedThemeV2
+            });
+          } else if (savedThemeV1) {
+            webviewView.webview.postMessage({
+              type: 'restoreState',
+              theme: savedThemeV1
+            });
+          }
           break;
+        }
         case 'copyToClipboard':
           if ('text' in message && message.text) {
             await vscode.env.clipboard.writeText(message.text);

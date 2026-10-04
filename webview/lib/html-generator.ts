@@ -1,7 +1,27 @@
-import type { ThemeConfig } from "./themes-dataset";
+import type { ThemeConfigV2 } from "./types/theme-config-v2";
+import { colorTokenToCss } from "./types/color-token";
 
-export function generateThemeHtml(theme: ThemeConfig): string {
-  const { colors, name, category, personality, number, fontFamily, fontName, fontGoogleUrl } = theme;
+export function generateThemeHtml(theme: ThemeConfigV2): string {
+  const { colors, name, category, personality, typography } = theme;
+  const number = parseInt(theme.id.replace(/\D/g, ""), 10) || 1;
+
+  const bgCss = colorTokenToCss(colors.bg);
+  const primaryCss = colorTokenToCss(colors.primary);
+  const secondaryCss = colorTokenToCss(colors.secondary);
+  const accentCss = colorTokenToCss(colors.accent);
+  const surfaceCss = colorTokenToCss(colors.surface);
+  const surfaceBorderCss = colorTokenToCss(colors.surfaceBorder);
+  const textCss = colorTokenToCss(colors.text);
+  const textMutedCss = colorTokenToCss(colors.textMuted);
+  const ctaCss = colorTokenToCss(colors.cta);
+  const badgeBgCss = colorTokenToCss(colors.badge.bg);
+  const badgeBorderCss = colorTokenToCss(colors.badge.border);
+  const badgeTextCss = colorTokenToCss(colors.badge.text);
+  const glow1Css = colorTokenToCss(colors.glow.primary);
+  const glow2Css = colorTokenToCss(colors.glow.secondary);
+  const successCss = colorTokenToCss(colors.semantic.success);
+  const warningCss = colorTokenToCss(colors.semantic.warning);
+  const errorCss = colorTokenToCss(colors.semantic.error);
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -11,27 +31,27 @@ export function generateThemeHtml(theme: ThemeConfig): string {
   <title>X Design System Theme Showcase - ${name}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=${fontGoogleUrl}&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=${typography.fontGoogleUrl}&display=swap" rel="stylesheet">
   <style>
     :root {
-      --theme-font: ${fontFamily};
-      --theme-bg: ${colors.bg};
-      --theme-primary: ${colors.primary};
-      --theme-secondary: ${colors.secondary};
-      --theme-accent: ${colors.accent};
-      --theme-card-bg: ${colors.cardBg};
-      --theme-card-border: ${colors.cardBorder};
-      --theme-text-color: ${colors.textColor};
-      --theme-muted-text: ${colors.mutedText};
-      --theme-btn-gradient: ${colors.btnGradient};
-      --theme-badge-bg: ${colors.badgeBg};
-      --theme-badge-border: ${colors.badgeBorder};
-      --theme-badge-text: ${colors.badgeText};
-      --theme-hero-glow1: ${colors.heroGlow1};
-      --theme-hero-glow2: ${colors.heroGlow2};
-      --theme-success: ${colors.success};
-      --theme-warning: ${colors.warning};
-      --theme-error: ${colors.error};
+      --theme-font: ${typography.fontFamily};
+      --theme-bg: ${bgCss};
+      --theme-primary: ${primaryCss};
+      --theme-secondary: ${secondaryCss};
+      --theme-accent: ${accentCss};
+      --theme-card-bg: ${surfaceCss};
+      --theme-card-border: ${surfaceBorderCss};
+      --theme-text-color: ${textCss};
+      --theme-muted-text: ${textMutedCss};
+      --theme-btn-gradient: ${ctaCss};
+      --theme-badge-bg: ${badgeBgCss};
+      --theme-badge-border: ${badgeBorderCss};
+      --theme-badge-text: ${badgeTextCss};
+      --theme-hero-glow1: ${glow1Css};
+      --theme-hero-glow2: ${glow2Css};
+      --theme-success: ${successCss};
+      --theme-warning: ${warningCss};
+      --theme-error: ${errorCss};
     }
 
     * {
@@ -361,7 +381,7 @@ export function generateThemeHtml(theme: ThemeConfig): string {
         <div class="brand-logo">X</div>
         <div>
           <div class="brand-title">X Design System Showcase</div>
-          <div style="font-size: 0.75rem; color: var(--theme-muted-text);">Theme #${number} • ${category} • Font: ${fontName}</div>
+          <div style="font-size: 0.75rem; color: var(--theme-muted-text);">Theme #${number} • ${category} • Font: ${typography.fontName}</div>
         </div>
       </div>
       <div class="badge">
@@ -402,28 +422,28 @@ export function generateThemeHtml(theme: ThemeConfig): string {
       <div class="card">
         <div class="card-header">
           <span class="card-title">Typography & Palette</span>
-          <span style="font-size: 0.75rem; color: var(--theme-muted-text); font-family: monospace;">Font: ${fontName}</span>
+          <span style="font-size: 0.75rem; color: var(--theme-muted-text); font-family: monospace;">Font: ${typography.fontName}</span>
         </div>
         <div class="swatch-grid">
           <div class="swatch-item">
-            <div class="swatch-color" style="background: ${colors.bg};"></div>
+            <div class="swatch-color" style="background: ${bgCss};"></div>
             <div class="swatch-name">Background</div>
-            <div class="swatch-val">${colors.bg}</div>
+            <div class="swatch-val">${colors.bg.hex}</div>
           </div>
           <div class="swatch-item">
-            <div class="swatch-color" style="background: ${colors.primary};"></div>
+            <div class="swatch-color" style="background: ${primaryCss};"></div>
             <div class="swatch-name">Primary</div>
-            <div class="swatch-val">${colors.primary}</div>
+            <div class="swatch-val">${colors.primary.hex}</div>
           </div>
           <div class="swatch-item">
-            <div class="swatch-color" style="background: ${colors.accent};"></div>
+            <div class="swatch-color" style="background: ${accentCss};"></div>
             <div class="swatch-name">Accent</div>
-            <div class="swatch-val">${colors.accent}</div>
+            <div class="swatch-val">${colors.accent.hex}</div>
           </div>
           <div class="swatch-item">
-            <div class="swatch-color" style="background: ${colors.cardBg};"></div>
+            <div class="swatch-color" style="background: ${surfaceCss};"></div>
             <div class="swatch-name">Surface</div>
-            <div class="swatch-val">Translucent</div>
+            <div class="swatch-val">${colors.surface.hex}</div>
           </div>
         </div>
       </div>
@@ -451,15 +471,15 @@ export function generateThemeHtml(theme: ThemeConfig): string {
               <td style="font-family: monospace; font-weight: 600;">X-9042-881</td>
               <td>Apex Global Capital</td>
               <td style="font-weight: 700;">$450,000.00</td>
-              <td><span class="badge" style="background: ${colors.badgeBg}; border-color: ${colors.badgeBorder}; color: ${colors.badgeText};">In Escrow</span></td>
-              <td><span style="color: ${colors.success}; font-weight: 600;">Hardware Multisig</span></td>
+              <td><span class="badge" style="background: ${badgeBgCss}; border-color: ${badgeBorderCss}; color: ${badgeTextCss};">In Escrow</span></td>
+              <td><span style="color: ${successCss}; font-weight: 600;">Hardware Multisig</span></td>
             </tr>
             <tr>
               <td style="font-family: monospace; font-weight: 600;">X-8821-104</td>
               <td>Aether Robotics Labs</td>
               <td style="font-weight: 700;">$125,000.00</td>
-              <td><span class="badge" style="background: ${colors.badgeBg}; border-color: ${colors.badgeBorder}; color: ${colors.badgeText};">Released</span></td>
-              <td><span style="color: ${colors.success}; font-weight: 600;">Time-locked Vault</span></td>
+              <td><span class="badge" style="background: ${badgeBgCss}; border-color: ${badgeBorderCss}; color: ${badgeTextCss};">Released</span></td>
+              <td><span style="color: ${successCss}; font-weight: 600;">Time-locked Vault</span></td>
             </tr>
           </tbody>
         </table>
@@ -467,9 +487,10 @@ export function generateThemeHtml(theme: ThemeConfig): string {
     </div>
 
     <footer>
-      Generated with X Design System • Theme #${number}: ${name} (${category}) • Google Font: ${fontName}
+      Generated with X Design System • Theme #${number}: ${name} (${category}) • Google Font: ${typography.fontName}
     </footer>
   </div>
 </body>
 </html>`;
 }
+

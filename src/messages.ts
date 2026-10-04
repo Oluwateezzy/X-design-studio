@@ -52,8 +52,10 @@ export type WebviewToExtensionMessage =
   | { type: 'fetchGoogleFonts'; apiKey?: string }
   | { type: 'showInfoMessage'; message: string }
   | { type: 'openExternal'; url: string }
+  | { type: 'openFullStudio' }
   | { type: 'getPersistedState' }
   | { type: 'saveFavorites'; themeIds: string[] }
+
   // V2 Project & System Messages
   | { type: 'createProject'; name: string; description: string; source?: { type: 'scratch' | 'codebase' | 'url' | 'designMd'; source?: string } }
   | { type: 'openProject'; projectPath: string }

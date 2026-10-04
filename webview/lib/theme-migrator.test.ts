@@ -14,11 +14,11 @@ for (const theme of PRESET_THEMES) {
   assertEqual(theme.version, 2, `theme ${theme.id} version`);
   assertEqual(typeof theme.id, 'string', `theme ${theme.id} id`);
   assertEqual(typeof theme.colors.primary.hex, 'string', `theme ${theme.id} primary hex`);
-  assertEqual(theme.colors.cta.gradient !== null, true, `theme ${theme.id} cta gradient present`);
+  assertEqual(theme.colors.cta.gradient, null, `theme ${theme.id} cta flat color default`);
 
-  // Verify CTA gradient CSS rendering works cleanly
+  // Verify CTA flat CSS rendering works cleanly
   const css = colorTokenToCss(theme.colors.cta);
-  assertEqual(css.startsWith('linear-gradient'), true, `theme ${theme.id} cta CSS gradient string`);
+  assertEqual(css.startsWith('#'), true, `theme ${theme.id} cta flat hex CSS string`);
   validationCount++;
 }
 

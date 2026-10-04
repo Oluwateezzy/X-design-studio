@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { X, Copy, Download, Check, Code, FileText } from "lucide-react";
-import type { ThemeConfigAny } from "../../src/messages";
-import { isThemeV2 } from "../../src/messages";
-import { v2ToV1 } from "../lib/theme-migrator";
+import type { ThemeConfigV2 } from "../lib/types/theme-config-v2";
 import { generateThemeHtml } from "../lib/html-generator.js";
 import { generateThemeMarkdown } from "../lib/markdown-generator.js";
 import { postMessage, onMessage } from "../vscode-bridge.js";
@@ -10,21 +8,21 @@ import { postMessage, onMessage } from "../vscode-bridge.js";
 interface ExportModalProps {
   isOpen: boolean;
   initialTab?: "html" | "markdown";
-  activeTheme: ThemeConfigAny;
+  activeTheme: ThemeConfigV2;
   onClose: () => void;
 }
 
 export const ExportModal: React.FC<ExportModalProps> = ({
   isOpen,
   initialTab = "html",
-  activeTheme: rawTheme,
+  activeTheme,
   onClose,
 }) => {
   const [activeTab, setActiveTab] = useState<"html" | "markdown">(initialTab);
   const [copied, setCopied] = useState<boolean>(false);
   const [exporting, setExporting] = useState<boolean>(false);
 
-  const activeTheme = isThemeV2(rawTheme) ? v2ToV1(rawTheme) : rawTheme;
+  const themeNum = parseInt(activeTheme.id.replace(/\D/g, ""), 10) || 1;
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -59,8 +57,8 @@ export const ExportModal: React.FC<ExportModalProps> = ({
   const currentContent = activeTab === "html" ? htmlContent : markdownContent;
   const fileName =
     activeTab === "html"
-      ? `x-theme-${activeTheme.number}-${activeTheme.name.toLowerCase().replace(/\s+/g, "-")}.html`
-      : `THEME_SPEC_${activeTheme.number}.md`;
+      ? `x-theme-${themeNum}-${activeTheme.name.toLowerCase().replace(/\s+/g, "-")}.html`
+      : `THEME_SPEC_${themeNum}.md`;
 
   const handleCopy = () => {
     postMessage({ type: "copyToClipboard", text: currentContent });
@@ -92,7 +90,7 @@ export const ExportModal: React.FC<ExportModalProps> = ({
             <h2 id="export-modal-title" className="text-base font-bold text-slate-100 flex items-center gap-2">
               Export Theme Output
               <span className="text-xs px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 font-mono">
-                Theme #{activeTheme.number}: {activeTheme.name}
+                Theme #{themeNum}: {activeTheme.name}
               </span>
             </h2>
             <p className="text-xs text-slate-400 mt-0.5">

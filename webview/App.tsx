@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
-import { PRESET_THEMES, type ThemeConfig, type ThemeConfigV2 } from "./lib/themes-dataset";
+import { useState, useEffect, useRef } from "react";
+import { PRESET_THEMES, type ThemeConfigV2 } from "./lib/themes-dataset";
+import type { ThemeConfig } from "../src/messages";
 import type { ColorToken } from "./lib/types/color-token";
 import { migrateV1ToV2 } from "./lib/theme-migrator";
 import { LivePreviewCanvas } from "./components/LivePreviewCanvas";
@@ -16,6 +17,8 @@ declare global {
 }
 
 export function App() {
+  const isIncomingUpdate = useRef<boolean>(true);
+
   const [activeTheme, setActiveTheme] = useState<ThemeConfigV2>(() => {
     const saved = getState<ThemeConfigV2 | ThemeConfig>();
     if (saved) {
@@ -67,8 +70,10 @@ export function App() {
 
     const cleanup = onMessage((msg) => {
       if (msg.type === "restoreState" && msg.theme) {
+        isIncomingUpdate.current = true;
         setActiveTheme(migrateV1ToV2(msg.theme));
       } else if (msg.type === "restoreStateV2" && msg.theme) {
+        isIncomingUpdate.current = true;
         setActiveTheme(msg.theme);
       }
     });
@@ -78,10 +83,16 @@ export function App() {
 
   // Save active theme state to Extension Host and Webview State API on change
   useEffect(() => {
-    if (activeTheme) {
-      postMessage({ type: "saveThemeStateV2", theme: activeTheme });
+    if (!activeTheme) return;
+
+    if (isIncomingUpdate.current) {
+      isIncomingUpdate.current = false;
       setState(activeTheme);
+      return;
     }
+
+    postMessage({ type: "saveThemeStateV2", theme: activeTheme });
+    setState(activeTheme);
   }, [activeTheme]);
 
   const handleSelectTheme = (v2Theme: ThemeConfigV2) => {

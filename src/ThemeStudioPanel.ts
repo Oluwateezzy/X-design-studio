@@ -4,8 +4,10 @@ import * as path from 'path';
 import type {
   WebviewToExtensionMessage,
   ExtensionToWebviewMessage,
-  ThemeConfig
+  ThemeConfig,
+  ThemeConfigV2
 } from './messages';
+import { ThemeStudioViewProvider } from './ThemeStudioViewProvider';
 import { fetchGoogleFontsCatalog } from './google-fonts-service';
 
 export class ThemeStudioPanel {
@@ -60,7 +62,6 @@ export class ThemeStudioPanel {
     this._update();
 
     // Listen for when the panel is disposed
-    // This happens when the user closes the panel or when the panel is closed programmatically
     this._panel.onDidDispose(() => this.dispose(), null, this._disposables);
 
     // Update the content based on view state changes
@@ -152,8 +153,23 @@ export class ThemeStudioPanel {
             await vscode.env.clipboard.writeText(message.text);
             vscode.window.showInformationMessage('Copied to clipboard!');
             break;
+          case 'saveThemeStateV2':
+            if ('theme' in message && message.theme) {
+              await this._globalState.update('activeThemeV2', message.theme);
+              ThemeStudioViewProvider.postMessageToSidebar({
+                type: 'restoreStateV2',
+                theme: message.theme
+              });
+            }
+            break;
           case 'saveThemeState':
-            await this._globalState.update('activeTheme', message.theme);
+            if ('theme' in message && message.theme) {
+              await this._globalState.update('activeTheme', message.theme);
+              ThemeStudioViewProvider.postMessageToSidebar({
+                type: 'restoreState',
+                theme: message.theme
+              });
+            }
             break;
           case 'fetchGoogleFonts':
             await this._handleFetchGoogleFonts(message.apiKey);
@@ -230,13 +246,23 @@ export class ThemeStudioPanel {
   }
 
   private _handleGetPersistedState(): void {
-    const theme = this._globalState.get<ThemeConfig>('activeTheme');
+    const themeV2 = this._globalState.get<ThemeConfigV2>('activeThemeV2');
+    const themeV1 = this._globalState.get<ThemeConfig>('activeTheme');
     const favorites = this._globalState.get<string[]>('favorites');
-    this.postMessage({
-      type: 'restoreState',
-      theme,
-      favorites
-    });
+
+    if (themeV2) {
+      this.postMessage({
+        type: 'restoreStateV2',
+        theme: themeV2,
+        favorites
+      });
+    } else {
+      this.postMessage({
+        type: 'restoreState',
+        theme: themeV1,
+        favorites
+      });
+    }
   }
 
   private _registerSettingsListener(): void {
