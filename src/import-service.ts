@@ -76,45 +76,131 @@ export class ImportService {
   }
 
   /**
-   * Imports theme tokens from a web URL by fetching HTML and stylesheet assets.
+   * Imports theme tokens from a web URL by fetching HTML and parsing CSS custom properties, Google Fonts, title metadata, and color frequency heuristics.
    */
-  async importFromUrl(url: string): Promise<ImportResult> {
+  async importFromUrl(url: string, timeoutMs: number = 10000): Promise<ImportResult> {
     const warnings: string[] = [];
     const errors: string[] = [];
 
-    try {
-      if (!url.startsWith('http://') && !url.startsWith('https://')) {
-        url = 'https://' + url;
-      }
+    let normalizedUrl = url ? url.trim() : '';
+    if (!normalizedUrl) {
+      return {
+        success: false,
+        theme: null,
+        warnings: [],
+        errors: ['Invalid URL provided: URL cannot be empty.'],
+      };
+    }
 
-      const res = await fetch(url);
+    if (!normalizedUrl.startsWith('http://') && !normalizedUrl.startsWith('https://')) {
+      normalizedUrl = 'https://' + normalizedUrl;
+    }
+
+    let parsedUrl: URL;
+    try {
+      parsedUrl = new URL(normalizedUrl);
+    } catch {
+      return {
+        success: false,
+        theme: null,
+        warnings: [],
+        errors: [`Invalid URL format: '${url}' is not a valid web URL.`],
+      };
+    }
+
+    // Set up 10-second timeout controller
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+
+    try {
+      const res = await fetch(parsedUrl.toString(), {
+        signal: controller.signal,
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (VS Code Extension; X-Design-System-Studio)',
+        },
+      });
+
+      clearTimeout(timeoutId);
+
       if (!res.ok) {
-        throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+        throw new Error(`HTTP error ${res.status}: ${res.statusText}`);
       }
 
       const htmlText = await res.text();
       const baseTheme: ThemeConfigV2 = JSON.parse(JSON.stringify(PRESET_THEMES[0]));
-      baseTheme.name = `Imported from ${new URL(url).hostname}`;
       baseTheme.id = `url-import-${Date.now()}`;
+
+      // 1. Extract <title> or <meta og:title> for project / theme naming
+      const titleMatch = htmlText.match(/<title[^>]*>([^<]+)<\/title>/i) ||
+                         htmlText.match(/<meta\s+property=["']og:title["']\s+content=["']([^"']+)["']/i);
+      if (titleMatch && titleMatch[1].trim()) {
+        baseTheme.name = `Imported: ${titleMatch[1].trim()}`;
+      } else {
+        baseTheme.name = `Imported from ${parsedUrl.hostname}`;
+      }
 
       const extractedColors: Record<string, string> = {};
 
-      // Extract inline <style> CSS variables
+      // 2. Extract <style> blocks and parse CSS custom properties
+      const styleRegex = /<style[^>]*>([\s\S]*?)<\/style>/gi;
+      let styleMatch: RegExpExecArray | null;
+      while ((styleMatch = styleRegex.exec(htmlText)) !== null) {
+        this.extractCssVariables(styleMatch[1], extractedColors, warnings);
+      }
+
+      // Also parse any root/body CSS custom properties in the main HTML text
       this.extractCssVariables(htmlText, extractedColors, warnings);
 
-      // Extract Google Font <link>
+      // 3. Extract Google Font <link> tags
       const fontMatch = htmlText.match(/href=["'](https:\/\/fonts\.googleapis\.com\/css2\?[^"']+)["']/i);
       if (fontMatch) {
         const fontUrl = fontMatch[1];
         baseTheme.typography.fontGoogleUrl = fontUrl;
-        const familyParam = new URL(fontUrl).searchParams.get('family');
-        if (familyParam) {
-          const fontName = familyParam.split(':')[0].replace(/\+/g, ' ');
-          baseTheme.typography.fontName = fontName;
-          baseTheme.typography.fontFamily = `'${fontName}', sans-serif`;
+        try {
+          const familyParam = new URL(fontUrl).searchParams.get('family');
+          if (familyParam) {
+            const fontName = familyParam.split(':')[0].replace(/\+/g, ' ');
+            baseTheme.typography.fontName = fontName;
+            baseTheme.typography.fontFamily = `'${fontName}', sans-serif`;
+          }
+        } catch {
+          // Ignore URL searchParams error
         }
       }
 
+      // 4. Color Frequency Heuristics for inline style="" and attributes
+      const hexCounts = new Map<string, number>();
+      const hexRegex = /#(?:[0-9a-fA-F]{3}){1,2}\b/g;
+      let colorMatch: RegExpExecArray | null;
+
+      while ((colorMatch = hexRegex.exec(htmlText)) !== null) {
+        const hex = this.normalizeHex(colorMatch[0]);
+        if (hex) {
+          hexCounts.set(hex, (hexCounts.get(hex) || 0) + 1);
+        }
+      }
+
+      // Rank colors by frequency if named CSS variables were sparse
+      if (Object.keys(extractedColors).length < 2 && hexCounts.size > 0) {
+        const sortedColors = Array.from(hexCounts.entries())
+          .sort((a, b) => b[1] - a[1])
+          .map(([hex]) => hex);
+
+        if (sortedColors[0] && !extractedColors['bg']) {
+          extractedColors['bg'] = sortedColors[0];
+        }
+        if (sortedColors[1] && !extractedColors['primary']) {
+          extractedColors['primary'] = sortedColors[1];
+        }
+        if (sortedColors[2] && !extractedColors['secondary']) {
+          extractedColors['secondary'] = sortedColors[2];
+        }
+        if (sortedColors[3] && !extractedColors['accent']) {
+          extractedColors['accent'] = sortedColors[3];
+        }
+      }
+
+      // Map colors onto baseTheme
       this.mapColorsToTheme(baseTheme, extractedColors, warnings);
 
       return {
@@ -124,7 +210,13 @@ export class ImportService {
         errors,
       };
     } catch (err: any) {
-      errors.push(`Failed to import from URL ${url}: ${err?.message || String(err)}`);
+      clearTimeout(timeoutId);
+      const isAbort = err?.name === 'AbortError' || String(err).includes('aborted');
+      const errorMsg = isAbort
+        ? `Request timed out after ${timeoutMs / 1000} seconds when fetching ${normalizedUrl}`
+        : `Failed to import from URL ${normalizedUrl}: ${err?.message || String(err)}`;
+
+      errors.push(errorMsg);
       return {
         success: false,
         theme: null,
@@ -133,6 +225,7 @@ export class ImportService {
       };
     }
   }
+
 
   /**
    * Imports theme tokens from a design-MD file.

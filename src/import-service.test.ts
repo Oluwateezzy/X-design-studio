@@ -183,12 +183,25 @@ async function runImportServiceTests() {
   assertEqual(parsedColors['primary'], '#0066CC', 'Extracted --color-primary');
   assertEqual(parsedColors['background'], '#121212', 'Extracted --color-background');
   assertEqual(parsedColors['card-bg'], '#1E1E1E', 'Extracted --card-bg');
-  console.log('✔ Real-world CSS file parser executed without crashing');
+  // Task 3.4 URL Importer Tests
+  console.log('Testing ImportService URL Parser (Task 3.4)...');
 
-  console.log('\nAll Task 3.3 ImportService unit tests passed successfully!');
+  // Test 1: Invalid URL handling
+  const invalidUrlResult = await importer.importFromUrl('not-a-valid-url-format:::');
+  assertEqual(invalidUrlResult.success, false, 'Invalid URL returns success: false');
+  assertEqual(invalidUrlResult.errors.length > 0, true, 'Invalid URL returns descriptive error');
+  console.log('✔ Invalid URL returns descriptive error message');
+
+  // Test 2: Empty URL handling
+  const emptyUrlResult = await importer.importFromUrl('');
+  assertEqual(emptyUrlResult.success, false, 'Empty URL returns success: false');
+  console.log('✔ Empty URL returns error message');
+
+  console.log('\nAll Task 3.3 & 3.4 ImportService unit tests passed successfully!');
 }
 
 runImportServiceTests().catch((err) => {
   console.error('Test failed:', err);
   process.exit(1);
 });
+
