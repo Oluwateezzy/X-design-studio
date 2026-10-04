@@ -196,8 +196,17 @@ async function runProjectManagerTests() {
   assertEqual(inMemoryFs.has(`${projectDirStr}/global/global.preview.html`), true, 'global/global.preview.html written');
   assertEqual(inMemoryFs.has(`${projectDirStr}/pages/landing/page.json`), true, 'pages/landing/page.json written');
 
-  // Verify default components created (hero, card, button, badge, table, nav)
-  const expectedComponentSlugs = ['hero-section', 'feature-card', 'action-button', 'status-badge', 'data-table', 'navbar'];
+  // Verify default components created (all 8 default components)
+  const expectedComponentSlugs = [
+    'hero-section',
+    'feature-card',
+    'action-button',
+    'status-badge',
+    'navbar',
+    'data-table',
+    'input-field',
+    'dialog-modal',
+  ];
   for (const slug of expectedComponentSlugs) {
     assertEqual(inMemoryFs.has(`${projectDirStr}/components/${slug}/component.json`), true, `components/${slug}/component.json created`);
     assertEqual(inMemoryFs.has(`${projectDirStr}/components/${slug}/component.html`), true, `components/${slug}/component.html created`);
@@ -211,8 +220,9 @@ async function runProjectManagerTests() {
   assertEqual(loaded.globalTheme.version, 2, 'Loaded global theme is V2');
   assertEqual(loaded.pages.length, 1, 'Loaded 1 default page');
   assertEqual(loaded.pages[0].slug, 'landing', 'Landing page slug matches');
-  assertEqual(loaded.components.length, 6, 'Loaded 6 default components');
+  assertEqual(loaded.components.length, 8, 'Loaded 8 default components');
   console.log('✔ openProject() loads manifest, theme, pages, and components');
+
 
   // Test 3: getActiveProject() & setActiveProject()
   const activeProject = await pm.getActiveProject();
