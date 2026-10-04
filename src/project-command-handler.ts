@@ -3,6 +3,9 @@ import { FileSystemStorage } from './storage/file-system-storage.js';
 import { ProjectManager } from './project-manager.js';
 import { ImportService } from './import-service.js';
 import { PRESET_THEMES } from './themes-dataset.js';
+import { ThemeStudioPanel } from './ThemeStudioPanel.js';
+import { ThemeStudioViewProvider } from './ThemeStudioViewProvider.js';
+import { ThemeGenerator } from './generators/theme-generator.js';
 import type {
   WebviewToExtensionMessage,
   ExtensionToWebviewMessage,
@@ -25,6 +28,24 @@ export class ProjectCommandHandler {
   }
 
   /**
+   * Helper to broadcast a message to both sidebar and main panel webviews.
+   */
+  private broadcastMessage(
+    msg: ExtensionToWebviewMessage,
+    postMessage?: (m: ExtensionToWebviewMessage) => void
+  ): void {
+    if (postMessage) {
+      postMessage(msg);
+    }
+    if (ThemeStudioViewProvider.currentView) {
+      ThemeStudioViewProvider.postMessageToSidebar(msg);
+    }
+    if (ThemeStudioPanel.currentPanel) {
+      ThemeStudioPanel.currentPanel.postMessage(msg);
+    }
+  }
+
+  /**
    * Main message router for V2 Project Management messages.
    * Returns true if message was handled, false if unhandled.
    */
@@ -33,6 +54,58 @@ export class ProjectCommandHandler {
     postMessage: (msg: ExtensionToWebviewMessage) => void
   ): Promise<boolean> {
     switch (message.type) {
+      case 'getPersistedState': {
+        const activeProj = await this.projectManager.getActiveProject();
+        const themeV2 = this.globalState.get<ThemeConfigV2>('activeThemeV2') || activeProj?.globalTheme;
+
+        postMessage({
+          type: 'restoreStateV2',
+          theme: themeV2 || PRESET_THEMES[0],
+        });
+
+        if (activeProj) {
+          postMessage({
+            type: 'projectLoaded',
+            manifest: activeProj.manifest,
+            theme: activeProj.globalTheme,
+            pages: activeProj.pages,
+            components: activeProj.components,
+          });
+        }
+        await this.sendProjectList(postMessage);
+        return true;
+      }
+
+      case 'saveThemeStateV2': {
+        if ('theme' in message && message.theme) {
+          const themeV2 = message.theme as ThemeConfigV2;
+          await this.globalState.update('activeThemeV2', themeV2);
+
+          try {
+            const activeProj = await this.projectManager.getActiveProject();
+            if (activeProj) {
+              await this.storage.writeGlobalTheme(activeProj.projectDir, themeV2);
+              const globalDir = vscode.Uri.joinPath(activeProj.projectDir, 'global');
+              const designMd = ThemeGenerator.generateGlobalDesignMd(activeProj.manifest, themeV2);
+              const previewHtml = ThemeGenerator.generateGlobalPreviewHtml(activeProj.manifest, themeV2);
+              await this.storage.writeDesignMd(globalDir, 'global.design.md', designMd);
+              await this.storage.writePreviewHtml(globalDir, 'global.preview.html', previewHtml);
+            }
+          } catch (err) {
+            console.warn('[ProjectCommandHandler] Error auto-saving theme to disk:', err);
+          }
+
+          this.broadcastMessage(
+            {
+              type: 'restoreStateV2',
+              theme: themeV2,
+            },
+            postMessage
+          );
+        }
+        return true;
+      }
+
       case 'listProjects': {
         await this.sendProjectList(postMessage);
         return true;
@@ -54,14 +127,18 @@ export class ProjectCommandHandler {
           const workspaceRoot = vscode.workspace.workspaceFolders?.[0]?.uri || this.extensionUri;
           const projectUri = vscode.Uri.joinPath(workspaceRoot, '.x-design-system', 'projects', manifest.slug);
           const loaded = await this.projectManager.openProject(projectUri);
+          await this.globalState.update('activeThemeV2', loaded.globalTheme);
 
-          postMessage({
-            type: 'projectLoaded',
-            manifest: loaded.manifest,
-            theme: loaded.globalTheme,
-            pages: loaded.pages,
-            components: loaded.components,
-          });
+          this.broadcastMessage(
+            {
+              type: 'projectLoaded',
+              manifest: loaded.manifest,
+              theme: loaded.globalTheme,
+              pages: loaded.pages,
+              components: loaded.components,
+            },
+            postMessage
+          );
 
           await this.sendProjectList(postMessage);
           vscode.window.showInformationMessage(`Project '${manifest.name}' created successfully!`);
@@ -80,13 +157,18 @@ export class ProjectCommandHandler {
           }
 
           const loaded = await this.projectManager.openProject(projectUri);
-          postMessage({
-            type: 'projectLoaded',
-            manifest: loaded.manifest,
-            theme: loaded.globalTheme,
-            pages: loaded.pages,
-            components: loaded.components,
-          });
+          await this.globalState.update('activeThemeV2', loaded.globalTheme);
+
+          this.broadcastMessage(
+            {
+              type: 'projectLoaded',
+              manifest: loaded.manifest,
+              theme: loaded.globalTheme,
+              pages: loaded.pages,
+              components: loaded.components,
+            },
+            postMessage
+          );
 
           await this.sendProjectList(postMessage);
           vscode.window.showInformationMessage(`Opened project '${loaded.manifest.name}'`);
@@ -115,7 +197,7 @@ export class ProjectCommandHandler {
       case 'importFromSource': {
         try {
           let importRes;
-          const { sourceType, source, name, description, presetThemeId } = message;
+          const { sourceType, source, name, description } = message;
 
           if (sourceType === 'codebase') {
             const folderUri = source ? vscode.Uri.file(source) : (vscode.workspace.workspaceFolders?.[0]?.uri || this.extensionUri);
@@ -141,42 +223,52 @@ export class ProjectCommandHandler {
               baseTheme: importedTheme,
             });
 
-            postMessage({
-              type: 'importResult',
-              success: true,
-              theme: importedTheme,
-              warnings: importRes.warnings,
-            });
+            if (postMessage) {
+              postMessage({
+                type: 'importResult',
+                success: true,
+                theme: importedTheme,
+                warnings: importRes.warnings,
+              });
+            }
 
             const workspaceRoot = vscode.workspace.workspaceFolders?.[0]?.uri || this.extensionUri;
             const projectUri = vscode.Uri.joinPath(workspaceRoot, '.x-design-system', 'projects', manifest.slug);
             const loaded = await this.projectManager.openProject(projectUri);
+            await this.globalState.update('activeThemeV2', loaded.globalTheme);
 
-            postMessage({
-              type: 'projectLoaded',
-              manifest: loaded.manifest,
-              theme: loaded.globalTheme,
-              pages: loaded.pages,
-              components: loaded.components,
-            });
+            this.broadcastMessage(
+              {
+                type: 'projectLoaded',
+                manifest: loaded.manifest,
+                theme: loaded.globalTheme,
+                pages: loaded.pages,
+                components: loaded.components,
+              },
+              postMessage
+            );
 
             await this.sendProjectList(postMessage);
             vscode.window.showInformationMessage(`Imported design system theme '${projectName}' successfully!`);
           } else {
-            postMessage({
-              type: 'importResult',
-              success: false,
-              errors: importRes.errors || ['Import failed.'],
-              warnings: importRes.warnings,
-            });
+            if (postMessage) {
+              postMessage({
+                type: 'importResult',
+                success: false,
+                errors: importRes.errors || ['Import failed.'],
+                warnings: importRes.warnings,
+              });
+            }
           }
         } catch (err: any) {
           console.error('[ProjectCommandHandler] Import error:', err);
-          postMessage({
-            type: 'importResult',
-            success: false,
-            errors: [err?.message || String(err)],
-          });
+          if (postMessage) {
+            postMessage({
+              type: 'importResult',
+              success: false,
+              errors: [err?.message || String(err)],
+            });
+          }
         }
         return true;
       }
@@ -188,7 +280,7 @@ export class ProjectCommandHandler {
           canSelectMany: false,
           title: 'Select Folder for Codebase Import',
         });
-        if (selected && selected[0]) {
+        if (selected && selected[0] && postMessage) {
           postMessage({
             type: 'folderSelected',
             path: selected[0].fsPath,
@@ -208,7 +300,7 @@ export class ProjectCommandHandler {
             'All Files': ['*'],
           },
         });
-        if (selected && selected[0]) {
+        if (selected && selected[0] && postMessage) {
           postMessage({
             type: 'fileSelected',
             path: selected[0].fsPath,
@@ -222,22 +314,37 @@ export class ProjectCommandHandler {
     }
   }
 
-  public async sendProjectList(postMessage: (msg: ExtensionToWebviewMessage) => void): Promise<void> {
+  public async sendProjectList(postMessage?: (msg: ExtensionToWebviewMessage) => void): Promise<void> {
     try {
       const summaries = await this.projectManager.listProjects();
       const activeProject = await this.projectManager.getActiveProject();
 
-      postMessage({
+      const msg: ExtensionToWebviewMessage = {
         type: 'projectList',
         projects: summaries.map((s) => s.manifest),
         activeProjectSlug: activeProject?.manifest.slug,
-      });
+      };
+
+      if (postMessage) {
+        postMessage(msg);
+      }
+
+      // Sync with both sidebar and main editor panel
+      if (ThemeStudioViewProvider.currentView) {
+        ThemeStudioViewProvider.postMessageToSidebar(msg);
+      }
+      if (ThemeStudioPanel.currentPanel) {
+        ThemeStudioPanel.currentPanel.postMessage(msg);
+      }
     } catch (err) {
       console.error('[ProjectCommandHandler] Failed to list projects:', err);
-      postMessage({
+      const fallbackMsg: ExtensionToWebviewMessage = {
         type: 'projectList',
         projects: [],
-      });
+      };
+      if (postMessage) {
+        postMessage(fallbackMsg);
+      }
     }
   }
 

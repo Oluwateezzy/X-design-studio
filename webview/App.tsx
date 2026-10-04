@@ -7,8 +7,10 @@ import { LivePreviewCanvas } from "./components/LivePreviewCanvas";
 import { ExportModal } from "./components/ExportModal";
 import { FontSelectorModal } from "./components/FontSelectorModal";
 import { SidebarView } from "./components/SidebarView";
-import { Navbar } from "./components/Navbar";
+import { Navbar, type StudioTab } from "./components/Navbar";
 import { ColorEditorPanel } from "./components/ColorEditorPanel";
+import { GlobalThemeEditor } from "./components/GlobalThemeEditor";
+import { ProjectPanel } from "./components/ProjectPanel";
 import { postMessage, onMessage, getState, setState } from "./vscode-bridge";
 import { loadGoogleFont } from "./lib/google-fonts-api";
 
@@ -36,6 +38,7 @@ export function App() {
   const [activeProjectSlug, setActiveProjectSlug] = useState<string | null>(null);
   const [activeProjectName, setActiveProjectName] = useState<string | undefined>(undefined);
   const [showRightPanel, setShowRightPanel] = useState<boolean>(false);
+  const [activeStudioTab, setActiveStudioTab] = useState<StudioTab>("canvas");
 
   const [isExportOpen, setIsExportOpen] = useState<boolean>(false);
   const [isFontModalOpen, setIsFontModalOpen] = useState<boolean>(false);
@@ -179,9 +182,6 @@ export function App() {
           activeProjectSlug={activeProjectSlug}
           onSelectTheme={handleSelectTheme}
           onRandomTheme={handleRandomTheme}
-          onColorChange={handleColorChange}
-          onFontChange={handleFontSelect}
-          onResetTheme={handleResetTheme}
           onOpenFullStudio={handleOpenFullStudio}
         />
 
@@ -202,32 +202,48 @@ export function App() {
       <Navbar
         activeTheme={activeTheme}
         activeProjectName={activeProjectName}
+        activeTab={activeStudioTab}
+        onSelectTab={(tab) => setActiveStudioTab(tab)}
         showRightPanel={showRightPanel}
         onToggleRightPanel={() => setShowRightPanel(!showRightPanel)}
         onOpenExport={handleOpenExport}
         onRandomTheme={handleRandomTheme}
       />
 
-      {/* Pure Live Preview Canvas for Currently Active Project/Theme */}
-      <div className="flex-1 w-full h-full overflow-hidden">
-        <div className="flex h-full w-full overflow-hidden">
-          <div className="flex-1 h-full overflow-hidden">
-            <LivePreviewCanvas theme={activeTheme} />
-          </div>
-
-          {showRightPanel && (
-            <div className="w-80 h-full border-l border-[var(--vscode-border)] overflow-y-auto shrink-0 bg-[var(--vscode-input-bg)]/30">
-              <ColorEditorPanel
-                activeTheme={activeTheme}
-                onColorChange={handleColorChange}
-                onFontChange={handleFontSelect}
-                onOpenFontModal={() => setIsFontModalOpen(true)}
-                onResetTheme={handleResetTheme}
-              />
+      {/* Main View Area */}
+      {activeStudioTab === "canvas" ? (
+        <div className="flex-1 w-full h-full overflow-hidden">
+          <div className="flex h-full w-full overflow-hidden">
+            <div className="flex-1 h-full overflow-hidden">
+              <LivePreviewCanvas theme={activeTheme} />
             </div>
-          )}
+
+            {showRightPanel && (
+              <div className="w-80 h-full border-l border-[var(--vscode-border)] overflow-y-auto shrink-0 bg-[var(--vscode-input-bg)]/30">
+                <ColorEditorPanel
+                  activeTheme={activeTheme}
+                  onColorChange={handleColorChange}
+                  onFontChange={handleFontSelect}
+                  onOpenFontModal={() => setIsFontModalOpen(true)}
+                  onResetTheme={handleResetTheme}
+                />
+              </div>
+            )}
+          </div>
         </div>
-      </div>
+      ) : activeStudioTab === "theme" ? (
+        <div className="flex-1 w-full h-full overflow-hidden">
+          <GlobalThemeEditor
+            theme={activeTheme}
+            onChangeTheme={(next) => setActiveTheme(next)}
+            onOpenFontModal={() => setIsFontModalOpen(true)}
+          />
+        </div>
+      ) : (
+        <div className="flex-1 w-full h-full overflow-y-auto p-4 sm:p-6 bg-[var(--vscode-editor-background)]">
+          <ProjectPanel activeProjectSlug={activeProjectSlug} />
+        </div>
+      )}
 
       {/* Export Modal */}
       <ExportModal

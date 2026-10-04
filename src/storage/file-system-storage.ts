@@ -208,16 +208,53 @@ export class FileSystemStorage {
   // ─── Discovery Operations ─────────────────────────────────────────────────
 
   async findProjects(): Promise<vscode.Uri[]> {
+    const projectDirs: vscode.Uri[] = [];
+    const seenPaths = new Set<string>();
+
+    const addIfProjectExists = async (dirUri: vscode.Uri) => {
+      const fsPath = dirUri.fsPath;
+      if (seenPaths.has(fsPath)) return;
+      if (await this.projectExists(dirUri)) {
+        seenPaths.add(fsPath);
+        projectDirs.push(dirUri);
+      }
+    };
+
+    if (this.workspaceRoot) {
+      // 1. Direct scan of .x-design-system/projects directory
+      const projectsFolderUri = vscode.Uri.joinPath(this.workspaceRoot, '.x-design-system', 'projects');
+      try {
+        const entries = await vscode.workspace.fs.readDirectory(projectsFolderUri);
+        for (const [name, type] of entries) {
+          if (type === vscode.FileType.Directory) {
+            const subDirUri = vscode.Uri.joinPath(projectsFolderUri, name);
+            await addIfProjectExists(subDirUri);
+          }
+        }
+      } catch {
+        // Directory may not exist yet if no projects created
+      }
+
+      // 2. Direct check of .x-design-system directory itself
+      const rootXDir = vscode.Uri.joinPath(this.workspaceRoot, '.x-design-system');
+      await addIfProjectExists(rootXDir);
+    }
+
+    // 3. Search using findFiles as fallback for non-standard project locations
     try {
       const manifests = await vscode.workspace.findFiles(
         '**/.x-design-system/project.json',
         '**/node_modules/**'
       );
-      return manifests.map((manifestUri) => vscode.Uri.joinPath(manifestUri, '..'));
+      for (const manifestUri of manifests) {
+        const parentDir = vscode.Uri.joinPath(manifestUri, '..');
+        await addIfProjectExists(parentDir);
+      }
     } catch (err) {
-      console.warn('[FileSystemStorage] Error finding projects:', err);
-      return [];
+      console.warn('[FileSystemStorage] findFiles fallback error:', err);
     }
+
+    return projectDirs;
   }
 
   async projectExists(projectDir: vscode.Uri): Promise<boolean> {

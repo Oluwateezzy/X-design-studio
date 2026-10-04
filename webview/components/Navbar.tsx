@@ -1,10 +1,14 @@
 import React from "react";
-import { Sparkles, Code, Download, Shuffle, PanelRight } from "lucide-react";
+import { Sparkles, Code, Download, Shuffle, PanelRight, Monitor, Palette, FolderPlus } from "lucide-react";
 import type { ThemeConfigV2 } from "../lib/types/theme-config-v2";
+
+export type StudioTab = "canvas" | "theme" | "projects";
 
 interface NavbarProps {
   activeTheme: ThemeConfigV2;
   activeProjectName?: string;
+  activeTab: StudioTab;
+  onSelectTab: (tab: StudioTab) => void;
   showRightPanel: boolean;
   onToggleRightPanel: () => void;
   onOpenExport: (tab: "html" | "markdown") => void;
@@ -14,6 +18,8 @@ interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({
   activeTheme,
   activeProjectName,
+  activeTab,
+  onSelectTab,
   showRightPanel,
   onToggleRightPanel,
   onOpenExport,
@@ -47,6 +53,48 @@ export const Navbar: React.FC<NavbarProps> = ({
               </p>
             </div>
           </div>
+        </div>
+
+        {/* View Tabs Switcher: Live Canvas | Global Theme | Projects */}
+        <div className="flex items-center p-0.5 rounded-lg bg-[var(--vscode-input-bg)] border border-[var(--vscode-border)] text-xs font-medium">
+          <button
+            type="button"
+            onClick={() => onSelectTab("canvas")}
+            className={`px-3 py-1.5 rounded-md transition cursor-pointer flex items-center gap-1.5 ${
+              activeTab === "canvas"
+                ? "bg-indigo-600 text-white font-semibold shadow-xs"
+                : "text-[var(--vscode-fg)] opacity-70 hover:opacity-100"
+            }`}
+          >
+            <Monitor className="w-3.5 h-3.5" />
+            <span>Live Canvas</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => onSelectTab("theme")}
+            className={`px-3 py-1.5 rounded-md transition cursor-pointer flex items-center gap-1.5 ${
+              activeTab === "theme"
+                ? "bg-indigo-600 text-white font-semibold shadow-xs"
+                : "text-[var(--vscode-fg)] opacity-70 hover:opacity-100"
+            }`}
+          >
+            <Palette className="w-3.5 h-3.5" />
+            <span>Global Theme</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => onSelectTab("projects")}
+            className={`px-3 py-1.5 rounded-md transition cursor-pointer flex items-center gap-1.5 ${
+              activeTab === "projects"
+                ? "bg-indigo-600 text-white font-semibold shadow-xs"
+                : "text-[var(--vscode-fg)] opacity-70 hover:opacity-100"
+            }`}
+          >
+            <FolderPlus className="w-3.5 h-3.5" />
+            <span>Projects</span>
+          </button>
         </div>
 
         {/* Action Controls */}

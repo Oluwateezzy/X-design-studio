@@ -1,9 +1,7 @@
 import React, { useState, useMemo } from "react";
 import { Search, Check, Shuffle, ExternalLink, Sparkles } from "lucide-react";
 import { PRESET_THEMES, THEME_CATEGORIES, type ThemeConfigV2 } from "../lib/themes-dataset";
-import type { ColorToken } from "../lib/types/color-token";
 import { colorTokenToCss } from "../lib/types/color-token";
-import { ColorEditorPanel } from "./ColorEditorPanel";
 import { ProjectPanel } from "./ProjectPanel";
 
 interface SidebarViewProps {
@@ -11,9 +9,6 @@ interface SidebarViewProps {
   activeProjectSlug?: string | null;
   onSelectTheme: (theme: ThemeConfigV2) => void;
   onRandomTheme: () => void;
-  onColorChange: (path: string, token: ColorToken) => void;
-  onFontChange: (fontName: string, fontFamily: string, fontGoogleUrl: string) => void;
-  onResetTheme: () => void;
   onOpenFullStudio: () => void;
 }
 
@@ -22,14 +17,11 @@ export const SidebarView: React.FC<SidebarViewProps> = ({
   activeProjectSlug,
   onSelectTheme,
   onRandomTheme,
-  onColorChange,
-  onFontChange,
-  onResetTheme,
   onOpenFullStudio,
 }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const [activeTab, setActiveTab] = useState<"presets" | "projects" | "customizer">("presets");
+  const [activeTab, setActiveTab] = useState<"presets" | "projects">("presets");
 
   const filteredThemes = useMemo(() => {
     return PRESET_THEMES.filter((theme) => {
@@ -69,7 +61,7 @@ export const SidebarView: React.FC<SidebarViewProps> = ({
           </button>
         </div>
 
-        {/* View Mode Tabs (100 Themes | Projects | Tuner) */}
+        {/* View Mode Tabs (100 Themes | Projects) */}
         <div className="flex rounded-md bg-[var(--vscode-input-bg)] p-0.5 text-[11px] font-medium border border-[var(--vscode-border)]">
           <button
             type="button"
@@ -92,17 +84,6 @@ export const SidebarView: React.FC<SidebarViewProps> = ({
             }`}
           >
             Projects
-          </button>
-          <button
-            type="button"
-            onClick={() => setActiveTab("customizer")}
-            className={`flex-1 py-1 text-center rounded transition cursor-pointer ${
-              activeTab === "customizer"
-                ? "bg-[var(--vscode-bg)] text-[var(--vscode-fg)] font-semibold shadow-xs"
-                : "text-[var(--vscode-sidebar-fg)] opacity-70 hover:opacity-100"
-            }`}
-          >
-            Tuner
           </button>
         </div>
       </div>
@@ -234,22 +215,11 @@ export const SidebarView: React.FC<SidebarViewProps> = ({
             )}
           </div>
         </>
-      ) : activeTab === "projects" ? (
+      ) : (
         <div className="flex-1 overflow-y-auto">
           <ProjectPanel
             activeProjectSlug={activeProjectSlug}
             onProjectOpened={() => onOpenFullStudio()}
-          />
-        </div>
-      ) : (
-        /* Tuner / Full Color & Gradient Token Tuner Panel */
-        <div className="flex-1 overflow-hidden">
-          <ColorEditorPanel
-            activeTheme={activeTheme}
-            onColorChange={onColorChange}
-            onFontChange={onFontChange}
-            onOpenFontModal={() => {}}
-            onResetTheme={onResetTheme}
           />
         </div>
       )}
