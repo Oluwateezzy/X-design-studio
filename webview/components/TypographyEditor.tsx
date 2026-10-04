@@ -5,8 +5,6 @@ import {
   Sliders,
   Sparkles,
   Heading,
-  CheckCircle2,
-  ChevronRight,
 } from "lucide-react";
 import type { ThemeConfigV2 } from "../lib/types/theme-config-v2";
 import { AVAILABLE_FONTS } from "../lib/themes-dataset";

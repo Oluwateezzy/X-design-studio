@@ -18,7 +18,7 @@ import {
 } from "lucide-react";
 import type { ThemeConfigV2 } from "../lib/types/theme-config-v2";
 import type { ColorToken } from "../lib/types/color-token";
-import { PRESET_THEMES, AVAILABLE_FONTS, THEME_CATEGORIES } from "../lib/themes-dataset";
+import { PRESET_THEMES, THEME_CATEGORIES } from "../lib/themes-dataset";
 import { GradientEditor } from "./GradientEditor";
 import { LivePreviewCanvas } from "./LivePreviewCanvas";
 import { TypographyEditor } from "./TypographyEditor";
