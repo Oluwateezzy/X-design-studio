@@ -15,8 +15,9 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["webview/**/*", "src/messages.ts", "src/types/**/*.ts", "src/utils/**/*.ts", "src/theme-migrator.ts", "src/token-resolver.ts", "src/themes-dataset.ts"]
+  "include": ["webview/**/*", "src/messages.ts", "src/types/**/*.ts", "src/utils/**/*.ts", "src/templates/**/*.ts", "src/theme-migrator.ts", "src/token-resolver.ts", "src/themes-dataset.ts", "src/import-service.ts"]
 }
+
 
 
 
