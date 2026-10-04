@@ -228,72 +228,188 @@ export class ImportService {
 
 
   /**
-   * Imports theme tokens from a design-MD file.
+   * Imports theme tokens from a design-MD file (X Design System spec or generic Markdown).
    */
   async importFromDesignMd(fileUri: vscode.Uri): Promise<ImportResult> {
     const warnings: string[] = [];
     const errors: string[] = [];
 
+    if (!fileUri || !fileUri.fsPath) {
+      return {
+        success: false,
+        theme: null,
+        warnings: [],
+        errors: ['Invalid file URI provided.'],
+      };
+    }
+
+    const lowerPath = fileUri.fsPath.toLowerCase();
+    // Validate file extension for non-markdown binary files
+    if (
+      lowerPath.endsWith('.png') ||
+      lowerPath.endsWith('.jpg') ||
+      lowerPath.endsWith('.jpeg') ||
+      lowerPath.endsWith('.gif') ||
+      lowerPath.endsWith('.exe') ||
+      lowerPath.endsWith('.zip') ||
+      lowerPath.endsWith('.pdf') ||
+      lowerPath.endsWith('.bin')
+    ) {
+      return {
+        success: false,
+        theme: null,
+        warnings: [],
+        errors: [`Invalid file type: File '${fileUri.fsPath}' is not a Markdown (.md) document.`],
+      };
+    }
+
+    let text: string;
     try {
       const data = await vscode.workspace.fs.readFile(fileUri);
-      const text = new TextDecoder().decode(data);
+      text = new TextDecoder().decode(data);
+    } catch (err: any) {
+      return {
+        success: false,
+        theme: null,
+        warnings: [],
+        errors: [`Failed to read design-MD file: ${err?.message || String(err)}`],
+      };
+    }
 
-      const baseTheme: ThemeConfigV2 = JSON.parse(JSON.stringify(PRESET_THEMES[0]));
-      baseTheme.name = 'Imported Design Spec';
-      baseTheme.id = `design-md-${Date.now()}`;
+    if (!text || text.trim().length === 0) {
+      return {
+        success: false,
+        theme: null,
+        warnings: [],
+        errors: ['Design-MD file is empty.'],
+      };
+    }
 
-      // Extract hex color codes from markdown file
-      const hexMatches = text.match(/#([0-9a-fA-F]{3,8})\b/g) || [];
-      const extractedColors: Record<string, string> = {};
+    const baseTheme: ThemeConfigV2 = JSON.parse(JSON.stringify(PRESET_THEMES[0]));
+    baseTheme.id = `design-md-${Date.now()}`;
+    baseTheme.name = 'Imported Design Spec';
 
-      // Parse markdown table rows or lines containing --var or color names
-      const lines = text.split('\n');
-      for (const line of lines) {
-        const varMatch = line.match(/(?:--|`)([a-zA-Z0-9_-]+)(?:`|\s*:)\s*.*?(#[0-9a-fA-F]{3,8})/);
+    // 1. Detect Theme Title / Name
+    const specTitleMatch = text.match(/# Theme Specification:\s*([^\n#\(\)]+)/i) ||
+                           text.match(/# ([^\n#]+)/) ||
+                           text.match(/\*\*Theme Name\*\*:\s*([^\n\*]+)/i);
+    if (specTitleMatch && specTitleMatch[1].trim()) {
+      baseTheme.name = specTitleMatch[1].trim();
+    }
+
+    // 2. Detect Category & Personality
+    const categoryMatch = text.match(/\*\*Category\*\*:\s*([^\n\*]+)/i);
+    if (categoryMatch && categoryMatch[1].trim()) {
+      baseTheme.category = categoryMatch[1].trim();
+    }
+
+    const personalityMatch = text.match(/\*\*Brand Personality\*\*:\s*([^\n\*]+)/i);
+    if (personalityMatch && personalityMatch[1].trim()) {
+      baseTheme.personality = personalityMatch[1].trim();
+    }
+
+    // 3. Extract Typography & Google Fonts
+    const fontNameMatch = text.match(/Google Font \*\*([^\*]+)\*\*/i) ||
+                          text.match(/Typography\*?\*?:\s*(?:Google Font\s*)?[\*`]?([A-Za-z0-9\s]+)[\*`]?/i);
+    if (fontNameMatch && fontNameMatch[1].trim()) {
+      const fontName = fontNameMatch[1].trim();
+      baseTheme.typography.fontName = fontName;
+      baseTheme.typography.fontFamily = `'${fontName}', sans-serif`;
+    }
+
+    const fontFamilyMatch = text.match(/font-family:\s*['"]?([^"';]+)['"]?/i) ||
+                            text.match(/--theme-font:\s*['"]?([^"';]+)['"]?/i);
+    if (fontFamilyMatch && fontFamilyMatch[1].trim()) {
+      baseTheme.typography.fontFamily = fontFamilyMatch[1].trim();
+    }
+
+    const fontLinkMatch = text.match(/href=["'](https:\/\/fonts\.googleapis\.com\/css2\?[^"']+)["']/i);
+    if (fontLinkMatch) {
+      const fontUrl = fontLinkMatch[1];
+      baseTheme.typography.fontGoogleUrl = fontUrl;
+      try {
+        const familyParam = new URL(fontUrl).searchParams.get('family');
+        if (familyParam) {
+          const fontName = familyParam.split(':')[0].replace(/\+/g, ' ');
+          baseTheme.typography.fontName = fontName;
+          if (!baseTheme.typography.fontFamily || baseTheme.typography.fontFamily.includes('Inter')) {
+            baseTheme.typography.fontFamily = `'${fontName}', sans-serif`;
+          }
+        }
+      } catch {
+        // Ignore URL parse errors
+      }
+    }
+
+    const extractedColors: Record<string, string> = {};
+
+    // 4. Parse CSS Custom Properties in code blocks / `:root`
+    this.extractCssVariables(text, extractedColors, warnings);
+
+    // 5. Parse Markdown Table rows for Token Name & Hex Value
+    const lines = text.split('\n');
+    for (const line of lines) {
+      if (line.includes('|')) {
+        const cells = line.split('|').map((c) => c.trim()).filter((c) => c.length > 0);
+        if (cells.length >= 2) {
+          // Look for token name in cell 0 or cell 1
+          const tokenMatch = cells[0].match(/`?(--[a-zA-Z0-9_-]+|[a-zA-Z0-9_.-]+)`?/) ||
+                             cells[0].match(/\*\*([^\*]+)\*\*/);
+          const hexMatch = (cells[1] + ' ' + (cells[2] || '')).match(/#([0-9a-fA-F]{3,8})\b/);
+
+          if (tokenMatch && hexMatch) {
+            const rawToken = tokenMatch[1].replace(/[\(\)`]/g, '').trim();
+            const hex = this.normalizeHex(hexMatch[0]);
+            if (hex) {
+              extractedColors[rawToken] = hex;
+            }
+          }
+        }
+      } else {
+        // Parse key-value lines like `Primary: #3B82F6` or `- **Accent**: #F59E0B`
+        const varMatch = line.match(/(?:--|`|\*\*|^)([a-zA-Z0-9_-]+)(?:`|\*\*|\s*:)\s*.*?(#[0-9a-fA-F]{3,8})/);
         if (varMatch) {
-          const varName = varMatch[1];
+          const varName = varMatch[1].trim();
           const hex = this.normalizeHex(varMatch[2]);
           if (hex) {
             extractedColors[varName] = hex;
           }
         }
       }
+    }
 
-      // If no named variables matched, map raw hexes to primary/bg/secondary
-      if (Object.keys(extractedColors).length === 0 && hexMatches.length > 0) {
-        const uniqueHexes = Array.from(new Set(hexMatches.map((h: string) => this.normalizeHex(h)).filter(Boolean))) as string[];
-        if (uniqueHexes[0]) baseTheme.colors.bg.hex = uniqueHexes[0];
-        if (uniqueHexes[1]) baseTheme.colors.primary.hex = uniqueHexes[1];
-        if (uniqueHexes[2]) baseTheme.colors.secondary.hex = uniqueHexes[2];
-        if (uniqueHexes[3]) baseTheme.colors.accent.hex = uniqueHexes[3];
-      } else {
-        this.mapColorsToTheme(baseTheme, extractedColors, warnings);
-      }
+    // 6. Check if any tokens/colors/fonts were recognized
+    const hexMatches = text.match(/#([0-9a-fA-F]{3,8})\b/g) || [];
+    const hasTokens = Object.keys(extractedColors).length > 0 ||
+                      hexMatches.length > 0 ||
+                      Boolean(fontNameMatch || fontLinkMatch || fontLinkMatch);
 
-
-      // Extract typography if present
-      const fontMatch = text.match(/Typography\*?\*?:\s*(?:Google Font\s*)?[\*`]?([A-Za-z0-9\s]+)[\*`]?/i);
-      if (fontMatch && fontMatch[1]) {
-        const fontName = fontMatch[1].trim();
-        baseTheme.typography.fontName = fontName;
-        baseTheme.typography.fontFamily = `'${fontName}', sans-serif`;
-      }
-
-      return {
-        success: true,
-        theme: baseTheme,
-        warnings,
-        errors,
-      };
-    } catch (err: any) {
-      errors.push(`Failed to read design-MD file: ${err?.message || String(err)}`);
+    if (!hasTokens) {
       return {
         success: false,
         theme: null,
-        warnings,
-        errors,
+        warnings: [],
+        errors: ['No recognizable CSS variables, color tables, or theme tokens found in the Markdown file.'],
       };
     }
+
+    // Map extracted colors onto theme
+    if (Object.keys(extractedColors).length > 0) {
+      this.mapColorsToTheme(baseTheme, extractedColors, warnings);
+    } else if (hexMatches.length > 0) {
+      const uniqueHexes = Array.from(new Set(hexMatches.map((h) => this.normalizeHex(h)).filter(Boolean))) as string[];
+      if (uniqueHexes[0]) baseTheme.colors.bg.hex = uniqueHexes[0];
+      if (uniqueHexes[1]) baseTheme.colors.primary.hex = uniqueHexes[1];
+      if (uniqueHexes[2]) baseTheme.colors.secondary.hex = uniqueHexes[2];
+      if (uniqueHexes[3]) baseTheme.colors.accent.hex = uniqueHexes[3];
+    }
+
+    return {
+      success: true,
+      theme: baseTheme,
+      warnings,
+      errors,
+    };
   }
 
   // ─── Helper Methods ────────────────────────────────────────────────────────
@@ -340,7 +456,6 @@ export class ImportService {
   }
 
   public extractCssVariables(content: string, extractedColors: Record<string, string>, _warnings: string[]): void {
-
     // Regex matching CSS custom properties e.g. --primary: #3B82F6; or --theme-bg: #0B0F19;
     const varRegex = /--(?:theme-|color-)?([a-zA-Z0-9_-]+)\s*:\s*([^;}\n]+);?/g;
     let match: RegExpExecArray | null;
@@ -399,7 +514,11 @@ export class ImportService {
     const mappedVars = new Set<string>();
 
     for (const [key, hex] of Object.entries(extractedColors)) {
-      const normKey = key.toLowerCase();
+      const normKey = key
+        .toLowerCase()
+        .replace(/^--/, '')
+        .replace(/^theme-/, '')
+        .replace(/^color-/, '');
 
       if (normKey === 'primary' || normKey === 'main' || normKey === 'brand') {
         theme.colors.primary.hex = hex;
@@ -425,7 +544,7 @@ export class ImportService {
       } else if (normKey === 'muted' || normKey === 'mutedtext' || normKey === 'textmuted' || normKey === 'text-muted' || normKey === 'muted-text') {
         theme.colors.textMuted.hex = hex;
         mappedVars.add(key);
-      } else if (normKey === 'cta' || normKey === 'button' || normKey === 'btn') {
+      } else if (normKey === 'cta' || normKey === 'button' || normKey === 'btn' || normKey === 'btn-gradient') {
         theme.colors.cta.hex = hex;
         mappedVars.add(key);
       } else if (normKey === 'badge-bg' || normKey === 'badgebg') {
@@ -436,6 +555,12 @@ export class ImportService {
         mappedVars.add(key);
       } else if (normKey === 'badge-border' || normKey === 'badgeborder') {
         theme.colors.badge.border.hex = hex;
+        mappedVars.add(key);
+      } else if (normKey === 'hero-glow-1' || normKey === 'glow-1' || normKey === 'glow1' || normKey === 'glow-primary') {
+        theme.colors.glow.primary.hex = hex;
+        mappedVars.add(key);
+      } else if (normKey === 'hero-glow-2' || normKey === 'glow-2' || normKey === 'glow2' || normKey === 'glow-secondary') {
+        theme.colors.glow.secondary.hex = hex;
         mappedVars.add(key);
       } else if (normKey === 'success') {
         theme.colors.semantic.success.hex = hex;
@@ -469,3 +594,4 @@ export class ImportService {
     return null;
   }
 }
+

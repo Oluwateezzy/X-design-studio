@@ -197,11 +197,125 @@ async function runImportServiceTests() {
   assertEqual(emptyUrlResult.success, false, 'Empty URL returns success: false');
   console.log('✔ Empty URL returns error message');
 
-  console.log('\nAll Task 3.3 & 3.4 ImportService unit tests passed successfully!');
+  // Task 3.5 Design-MD Parser Tests
+  console.log('\nTesting ImportService Design-MD Parser (Task 3.5)...');
+
+  // Test 1: X Design System generated .design.md file reproduction
+  inMemoryFs.set(
+    '/projects/my-app/system.design.md',
+    `# Theme Specification: Cyberpunk Neon (Theme #4)
+
+**Category**: Cyberpunk  
+**Brand Personality**: High contrast neon cyberpunk design system  
+**Typography**: Google Font **Outfit** (\`font-family: 'Outfit', sans-serif\`)  
+
+---
+
+## 1. Typography & Google Fonts Setup
+
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+---
+
+## 2. Color Palette Tokens (V2 System)
+
+| Token Name | Hex Value | HSL Value | Target Usage |
+| :--- | :--- | :--- | :--- |
+| **Background (\`--theme-bg\`)** | \`#0B0F19\` | \`hsl(222, 38%, 7%)\` | Main app background |
+| **Primary (\`--theme-primary\`)** | \`#00F0FF\` | \`hsl(184, 100%, 50%)\` | Primary brand background |
+| **Secondary (\`--theme-secondary\`)** | \`#7000FF\` | - | Secondary actions |
+| **Accent (\`--theme-accent\`)** | \`#FF007A\` | \`hsl(331, 100%, 50%)\` | Hero text highlight |
+
+---
+
+## 4. CSS Custom Variables & Keyframe Motion Directives
+
+\`\`\`css
+:root {
+  --theme-font: 'Outfit', sans-serif;
+  --theme-bg: #0B0F19;
+  --theme-primary: #00F0FF;
+  --theme-secondary: #7000FF;
+  --theme-accent: #FF007A;
+  --theme-card-bg: #161B26;
+  --theme-card-border: #262F40;
+  --theme-text-color: #F3F4F6;
+  --theme-muted-text: #9CA3AF;
+  --theme-badge-bg: #161B26;
+  --theme-badge-border: #00F0FF;
+  --theme-badge-text: #00F0FF;
+}
+\`\`\`
+`
+  );
+
+  const xDesignMdFileUri = { path: '/projects/my-app/system.design.md', fsPath: '/projects/my-app/system.design.md', scheme: 'file' } as any;
+  const xDesignResult = await importer.importFromDesignMd(xDesignMdFileUri);
+
+  assertEqual(xDesignResult.success, true, 'X Design System MD import succeeds');
+  assertNotNull(xDesignResult.theme, 'Extracted theme is non-null');
+  assertEqual(xDesignResult.theme.name, 'Cyberpunk Neon', 'Theme name reproduced correctly');
+  assertEqual(xDesignResult.theme.category, 'Cyberpunk', 'Theme category reproduced correctly');
+  assertEqual(xDesignResult.theme.typography.fontName, 'Outfit', 'Font name reproduced correctly');
+  assertEqual(xDesignResult.theme.colors.bg.hex, '#0B0F19', 'Background color hex reproduced');
+  assertEqual(xDesignResult.theme.colors.primary.hex, '#00F0FF', 'Primary color hex reproduced');
+  assertEqual(xDesignResult.theme.colors.secondary.hex, '#7000FF', 'Secondary color hex reproduced');
+  assertEqual(xDesignResult.theme.colors.accent.hex, '#FF007A', 'Accent color hex reproduced');
+  console.log('✔ Importing an X Design System-generated .design.md file reproduces the original theme');
+
+  // Test 2: Generic Markdown with CSS Variables
+  inMemoryFs.set(
+    '/projects/my-app/generic-theme.md',
+    `# Simple Theme
+Here are our variables:
+\`\`\`css
+:root {
+  --primary: #10B981;
+  --bg: #18181B;
+}
+\`\`\`
+`
+  );
+
+  const genericMdFileUri = { path: '/projects/my-app/generic-theme.md', fsPath: '/projects/my-app/generic-theme.md', scheme: 'file' } as any;
+  const genericResult = await importer.importFromDesignMd(genericMdFileUri);
+
+  assertEqual(genericResult.success, true, 'Generic MD import succeeds');
+  assertNotNull(genericResult.theme, 'Generic theme is non-null');
+  assertEqual(genericResult.theme.colors.primary.hex, '#10B981', 'Generic primary color extracted');
+  assertEqual(genericResult.theme.colors.bg.hex, '#18181B', 'Generic background color extracted');
+  console.log('✔ Importing generic markdown with CSS variables extracts tokens');
+
+  // Test 3: Markdown without recognizable tokens
+  inMemoryFs.set(
+    '/projects/my-app/notes.md',
+    `# Team Meeting Notes
+- Discussed application flow
+- Decided to review styles later
+`
+  );
+
+  const tokenlessMdFileUri = { path: '/projects/my-app/notes.md', fsPath: '/projects/my-app/notes.md', scheme: 'file' } as any;
+  const tokenlessResult = await importer.importFromDesignMd(tokenlessMdFileUri);
+
+  assertEqual(tokenlessResult.success, false, 'Tokenless MD import returns success: false');
+  assertEqual(tokenlessResult.errors.length > 0, true, 'Tokenless MD import returns error message');
+  console.log('✔ Files without recognisable tokens return success: false with descriptive errors');
+
+  // Test 4: Non-markdown file graceful rejection
+  const nonMdFileUri = { path: '/projects/my-app/hero.png', fsPath: '/projects/my-app/hero.png', scheme: 'file' } as any;
+  const nonMdResult = await importer.importFromDesignMd(nonMdFileUri);
+
+  assertEqual(nonMdResult.success, false, 'Non-MD file import returns success: false');
+  assertEqual(nonMdResult.errors[0].includes('Invalid file type'), true, 'Non-MD file returns descriptive type error');
+  console.log('✔ Non-markdown files are rejected gracefully');
+
+  console.log('\nAll Task 3.3, 3.4, and 3.5 ImportService unit tests passed successfully!');
 }
 
 runImportServiceTests().catch((err) => {
   console.error('Test failed:', err);
   process.exit(1);
 });
+
 
