@@ -89,17 +89,31 @@ const vscodeMock = {
     },
   },
   Uri: {
-    joinPath: (base: any, ...segments: string[]) => ({
-      path: [base.path, ...segments].join('/').replace(/\/+/g, '/'),
-      scheme: 'file',
-      toString: () => [base.path, ...segments].join('/').replace(/\/+/g, '/'),
-    }),
+    joinPath: (base: any, ...segments: string[]) => {
+      const raw = [base.path, ...segments].join('/');
+      const parts: string[] = [];
+      for (const part of raw.split('/')) {
+        if (part === '' || part === '.') continue;
+        if (part === '..') {
+          parts.pop();
+        } else {
+          parts.push(part);
+        }
+      }
+      const joined = '/' + parts.join('/');
+      return {
+        path: joined,
+        scheme: 'file',
+        toString: () => joined,
+      };
+    },
     file: (pathStr: string) => ({
       path: pathStr,
       scheme: 'file',
       toString: () => pathStr,
     }),
   },
+
   FileType: {
     File: 1,
     Directory: 2,
