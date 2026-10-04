@@ -7,6 +7,8 @@ import { LivePreviewCanvas } from "./components/LivePreviewCanvas";
 import { ExportModal } from "./components/ExportModal";
 import { FontSelectorModal } from "./components/FontSelectorModal";
 import { SidebarView } from "./components/SidebarView";
+import { Navbar } from "./components/Navbar";
+import { ColorEditorPanel } from "./components/ColorEditorPanel";
 import { postMessage, onMessage, getState, setState } from "./vscode-bridge";
 import { loadGoogleFont } from "./lib/google-fonts-api";
 
@@ -30,6 +32,10 @@ export function App() {
 
     return PRESET_THEMES[0];
   });
+
+  const [activeProjectSlug, setActiveProjectSlug] = useState<string | null>(null);
+  const [activeProjectName, setActiveProjectName] = useState<string | undefined>(undefined);
+  const [showRightPanel, setShowRightPanel] = useState<boolean>(false);
 
   const [isExportOpen, setIsExportOpen] = useState<boolean>(false);
   const [isFontModalOpen, setIsFontModalOpen] = useState<boolean>(false);
@@ -64,9 +70,10 @@ export function App() {
     }
   }, [activeTheme?.typography?.fontName]);
 
-  // Request persisted state from Extension Host on mount
+  // Request persisted state and project info from Extension Host on mount
   useEffect(() => {
     postMessage({ type: "getPersistedState" });
+    postMessage({ type: "listProjects" });
 
     const cleanup = onMessage((msg) => {
       if (msg.type === "restoreState" && msg.theme) {
@@ -75,6 +82,23 @@ export function App() {
       } else if (msg.type === "restoreStateV2" && msg.theme) {
         isIncomingUpdate.current = true;
         setActiveTheme(msg.theme);
+      } else if (msg.type === "projectLoaded") {
+        isIncomingUpdate.current = true;
+        if (msg.theme) {
+          setActiveTheme(msg.theme);
+        }
+        if (msg.manifest) {
+          setActiveProjectSlug(msg.manifest.slug);
+          setActiveProjectName(msg.manifest.name);
+        }
+      } else if (msg.type === "projectList") {
+        if (msg.activeProjectSlug) {
+          setActiveProjectSlug(msg.activeProjectSlug);
+          const found = msg.projects?.find((p) => p.slug === msg.activeProjectSlug);
+          if (found) {
+            setActiveProjectName(found.name);
+          }
+        }
       }
     });
 
@@ -152,12 +176,12 @@ export function App() {
       <>
         <SidebarView
           activeTheme={activeTheme}
+          activeProjectSlug={activeProjectSlug}
           onSelectTheme={handleSelectTheme}
           onRandomTheme={handleRandomTheme}
           onColorChange={handleColorChange}
           onFontChange={handleFontSelect}
           onResetTheme={handleResetTheme}
-          onOpenExport={handleOpenExport}
           onOpenFullStudio={handleOpenFullStudio}
         />
 
@@ -174,9 +198,35 @@ export function App() {
 
   return (
     <div className="flex flex-col h-screen w-screen bg-[var(--vscode-app-bg)] text-[var(--vscode-app-fg)] overflow-hidden font-sans">
-      {/* 100% Full-Screen Live Interactive Canvas */}
+      {/* Canvas Header Navbar */}
+      <Navbar
+        activeTheme={activeTheme}
+        activeProjectName={activeProjectName}
+        showRightPanel={showRightPanel}
+        onToggleRightPanel={() => setShowRightPanel(!showRightPanel)}
+        onOpenExport={handleOpenExport}
+        onRandomTheme={handleRandomTheme}
+      />
+
+      {/* Pure Live Preview Canvas for Currently Active Project/Theme */}
       <div className="flex-1 w-full h-full overflow-hidden">
-        <LivePreviewCanvas theme={activeTheme} />
+        <div className="flex h-full w-full overflow-hidden">
+          <div className="flex-1 h-full overflow-hidden">
+            <LivePreviewCanvas theme={activeTheme} />
+          </div>
+
+          {showRightPanel && (
+            <div className="w-80 h-full border-l border-[var(--vscode-border)] overflow-y-auto shrink-0 bg-[var(--vscode-input-bg)]/30">
+              <ColorEditorPanel
+                activeTheme={activeTheme}
+                onColorChange={handleColorChange}
+                onFontChange={handleFontSelect}
+                onOpenFontModal={() => setIsFontModalOpen(true)}
+                onResetTheme={handleResetTheme}
+              />
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Export Modal */}

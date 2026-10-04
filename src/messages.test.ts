@@ -18,6 +18,7 @@ console.log('Testing V2 Message Protocol & Type Guards (Task 2.4)...');
 const v2WebviewMsgs: WebviewToExtensionMessageV2[] = [
   { type: 'createProject', name: 'App', description: 'Test App', source: { type: 'scratch' } },
   { type: 'openProject', projectPath: '/path/to/project' },
+  { type: 'deleteProject', projectPath: 'demo-app' },
   { type: 'listProjects' },
   { type: 'saveGlobalTheme', theme: { version: 2, colors: {} } as any },
   { type: 'createPage', name: 'Home', description: 'Landing page' },
@@ -32,6 +33,8 @@ const v2WebviewMsgs: WebviewToExtensionMessageV2[] = [
   { type: 'listComponents' },
   { type: 'regenerateFiles', target: 'global' },
   { type: 'importFromSource', sourceType: 'codebase', source: './src' },
+  { type: 'browseFolder' },
+  { type: 'browseFile', filterName: 'Design Spec' },
 ];
 
 for (const msg of v2WebviewMsgs) {
@@ -39,7 +42,7 @@ for (const msg of v2WebviewMsgs) {
   assertEqual(isV2Message(msg), true, `isV2Message identifies ${msg.type}`);
   assertEqual(isV2ExtensionMessage(msg), false, `isV2ExtensionMessage rejects webview msg ${msg.type}`);
 }
-console.log('✔ All 16 V2 Webview message types validated');
+console.log('✔ All V2 Webview message types validated');
 
 // Test 2: V2 Extension Message Discrimination
 const v2ExtensionMsgs: ExtensionToWebviewMessageV2[] = [
@@ -51,6 +54,8 @@ const v2ExtensionMsgs: ExtensionToWebviewMessageV2[] = [
   { type: 'componentList', components: [] },
   { type: 'importResult', success: true },
   { type: 'filesRegenerated', target: 'global', success: true },
+  { type: 'folderSelected', path: '/path/to/folder' },
+  { type: 'fileSelected', path: '/path/to/file.md' },
 ];
 
 for (const msg of v2ExtensionMsgs) {
@@ -58,7 +63,7 @@ for (const msg of v2ExtensionMsgs) {
   assertEqual(isV2Message(msg), true, `isV2Message identifies ${msg.type}`);
   assertEqual(isV2WebviewMessage(msg), false, `isV2WebviewMessage rejects extension msg ${msg.type}`);
 }
-console.log('✔ All 8 V2 Extension message types validated');
+console.log('✔ All V2 Extension message types validated');
 
 // Test 3: V1 Message rejection by V2 type guards
 const v1Msgs = [
@@ -82,6 +87,7 @@ function handleWebviewV2Message(msg: WebviewToExtensionMessageV2): string {
   switch (msg.type) {
     case 'createProject': return 'createProject';
     case 'openProject': return 'openProject';
+    case 'deleteProject': return 'deleteProject';
     case 'listProjects': return 'listProjects';
     case 'saveGlobalTheme': return 'saveGlobalTheme';
     case 'createPage': return 'createPage';
@@ -96,6 +102,8 @@ function handleWebviewV2Message(msg: WebviewToExtensionMessageV2): string {
     case 'listComponents': return 'listComponents';
     case 'regenerateFiles': return 'regenerateFiles';
     case 'importFromSource': return 'importFromSource';
+    case 'browseFolder': return 'browseFolder';
+    case 'browseFile': return 'browseFile';
   }
 }
 
@@ -115,6 +123,8 @@ function handleExtensionV2Message(msg: ExtensionToWebviewMessageV2): string {
     case 'componentList': return 'componentList';
     case 'importResult': return 'importResult';
     case 'filesRegenerated': return 'filesRegenerated';
+    case 'folderSelected': return 'folderSelected';
+    case 'fileSelected': return 'fileSelected';
   }
 }
 

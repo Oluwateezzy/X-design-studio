@@ -1,12 +1,11 @@
 import React from "react";
-import { Sparkles, Code, Download, Shuffle, PanelLeft, PanelRight } from "lucide-react";
+import { Sparkles, Code, Download, Shuffle, PanelRight } from "lucide-react";
 import type { ThemeConfigV2 } from "../lib/types/theme-config-v2";
 
 interface NavbarProps {
   activeTheme: ThemeConfigV2;
-  showLeftPanel: boolean;
+  activeProjectName?: string;
   showRightPanel: boolean;
-  onToggleLeftPanel: () => void;
   onToggleRightPanel: () => void;
   onOpenExport: (tab: "html" | "markdown") => void;
   onRandomTheme: () => void;
@@ -14,9 +13,8 @@ interface NavbarProps {
 
 export const Navbar: React.FC<NavbarProps> = ({
   activeTheme,
-  showLeftPanel,
+  activeProjectName,
   showRightPanel,
-  onToggleLeftPanel,
   onToggleRightPanel,
   onOpenExport,
   onRandomTheme,
@@ -26,21 +24,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   return (
     <header className="sticky top-0 z-40 bg-[var(--vscode-app-bg)] border-b border-[var(--vscode-border)] px-4 py-2.5">
       <div className="w-full flex flex-wrap items-center justify-between gap-3">
-        {/* Brand & Panel Toggles */}
+        {/* Brand & Active Theme Indicator */}
         <div className="flex items-center gap-3">
-          <button
-            type="button"
-            onClick={onToggleLeftPanel}
-            className={`p-1.5 rounded-lg border transition cursor-pointer ${
-              showLeftPanel
-                ? "bg-[var(--vscode-button-bg)] text-[var(--vscode-button-fg)] border-transparent"
-                : "bg-[var(--vscode-input-bg)] text-[var(--vscode-fg)] border-[var(--vscode-border)] hover:bg-[var(--vscode-border)]"
-            }`}
-            title={showLeftPanel ? "Hide 100 Themes Panel" : "Show 100 Themes Panel"}
-          >
-            <PanelLeft className="w-4 h-4" />
-          </button>
-
           <div className="flex items-center gap-2.5">
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center font-bold text-white text-sm shadow-md">
               <Sparkles className="w-4 h-4" />
@@ -55,7 +40,10 @@ export const Navbar: React.FC<NavbarProps> = ({
                 </span>
               </div>
               <p className="text-[11px] opacity-75">
-                Active: <span className="font-semibold text-[var(--vscode-fg)]">#{themeNum} {activeTheme.name}</span> ({activeTheme.category})
+                Active: <span className="font-semibold text-[var(--vscode-fg)]">#{themeNum} {activeTheme.name}</span>
+                {activeProjectName && (
+                  <span className="ml-2 text-indigo-400 font-semibold">| Project: {activeProjectName}</span>
+                )}
               </p>
             </div>
           </div>

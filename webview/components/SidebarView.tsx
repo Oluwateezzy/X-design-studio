@@ -1,34 +1,35 @@
 import React, { useState, useMemo } from "react";
-import { Search, Check, Shuffle, ExternalLink, Sparkles, Code, Download } from "lucide-react";
+import { Search, Check, Shuffle, ExternalLink, Sparkles } from "lucide-react";
 import { PRESET_THEMES, THEME_CATEGORIES, type ThemeConfigV2 } from "../lib/themes-dataset";
 import type { ColorToken } from "../lib/types/color-token";
 import { colorTokenToCss } from "../lib/types/color-token";
 import { ColorEditorPanel } from "./ColorEditorPanel";
+import { ProjectPanel } from "./ProjectPanel";
 
 interface SidebarViewProps {
   activeTheme: ThemeConfigV2;
+  activeProjectSlug?: string | null;
   onSelectTheme: (theme: ThemeConfigV2) => void;
   onRandomTheme: () => void;
   onColorChange: (path: string, token: ColorToken) => void;
   onFontChange: (fontName: string, fontFamily: string, fontGoogleUrl: string) => void;
   onResetTheme: () => void;
-  onOpenExport: (tab: "html" | "markdown") => void;
   onOpenFullStudio: () => void;
 }
 
 export const SidebarView: React.FC<SidebarViewProps> = ({
   activeTheme,
+  activeProjectSlug,
   onSelectTheme,
   onRandomTheme,
   onColorChange,
   onFontChange,
   onResetTheme,
-  onOpenExport,
   onOpenFullStudio,
 }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const [activeTab, setActiveTab] = useState<"presets" | "customizer">("presets");
+  const [activeTab, setActiveTab] = useState<"presets" | "projects" | "customizer">("presets");
 
   const filteredThemes = useMemo(() => {
     return PRESET_THEMES.filter((theme) => {
@@ -68,29 +69,7 @@ export const SidebarView: React.FC<SidebarViewProps> = ({
           </button>
         </div>
 
-        {/* Export Actions Bar in Sidebar */}
-        <div className="grid grid-cols-2 gap-1.5 mb-2.5">
-          <button
-            type="button"
-            onClick={() => onOpenExport("html")}
-            className="flex items-center justify-center gap-1 py-1.5 px-2 rounded bg-indigo-600 hover:bg-indigo-500 text-white text-[11px] font-semibold transition cursor-pointer shadow-xs"
-            title="Export full single-file HTML landing page"
-          >
-            <Code className="w-3.5 h-3.5" />
-            <span>Export HTML</span>
-          </button>
-          <button
-            type="button"
-            onClick={() => onOpenExport("markdown")}
-            className="flex items-center justify-center gap-1 py-1.5 px-2 rounded bg-emerald-600 hover:bg-emerald-500 text-white text-[11px] font-semibold transition cursor-pointer shadow-xs"
-            title="Export AI Prompt spec (.md)"
-          >
-            <Download className="w-3.5 h-3.5" />
-            <span>Export Prompt (.md)</span>
-          </button>
-        </div>
-
-        {/* View Mode Tabs (100 Themes vs Quick Customize) */}
+        {/* View Mode Tabs (100 Themes | Projects | Tuner) */}
         <div className="flex rounded-md bg-[var(--vscode-input-bg)] p-0.5 text-[11px] font-medium border border-[var(--vscode-border)]">
           <button
             type="button"
@@ -101,7 +80,18 @@ export const SidebarView: React.FC<SidebarViewProps> = ({
                 : "text-[var(--vscode-sidebar-fg)] opacity-70 hover:opacity-100"
             }`}
           >
-            100 Themes ({filteredThemes.length})
+            100 Themes
+          </button>
+          <button
+            type="button"
+            onClick={() => setActiveTab("projects")}
+            className={`flex-1 py-1 text-center rounded transition cursor-pointer ${
+              activeTab === "projects"
+                ? "bg-[var(--vscode-bg)] text-[var(--vscode-fg)] font-semibold shadow-xs"
+                : "text-[var(--vscode-sidebar-fg)] opacity-70 hover:opacity-100"
+            }`}
+          >
+            Projects
           </button>
           <button
             type="button"
@@ -244,6 +234,13 @@ export const SidebarView: React.FC<SidebarViewProps> = ({
             )}
           </div>
         </>
+      ) : activeTab === "projects" ? (
+        <div className="flex-1 overflow-y-auto">
+          <ProjectPanel
+            activeProjectSlug={activeProjectSlug}
+            onProjectOpened={() => onOpenFullStudio()}
+          />
+        </div>
       ) : (
         /* Tuner / Full Color & Gradient Token Tuner Panel */
         <div className="flex-1 overflow-hidden">

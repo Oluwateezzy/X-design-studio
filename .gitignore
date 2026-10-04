@@ -27,3 +27,4 @@ dist-ssr
 *.sw?
 
 docsplan
+.x-design-system

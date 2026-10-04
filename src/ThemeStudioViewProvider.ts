@@ -2,6 +2,7 @@ import * as vscode from 'vscode';
 import * as fs from 'fs';
 import * as path from 'path';
 import { ThemeStudioPanel } from './ThemeStudioPanel';
+import { ProjectCommandHandler } from './project-command-handler.js';
 import type { ThemeConfig, ThemeConfigV2, WebviewToExtensionMessage, ExtensionToWebviewMessage } from './messages';
 
 export class ThemeStudioViewProvider implements vscode.WebviewViewProvider {
@@ -39,7 +40,12 @@ export class ThemeStudioViewProvider implements vscode.WebviewViewProvider {
 
     webviewView.webview.html = this._getHtmlForWebview(webviewView.webview);
 
+    const projectHandler = new ProjectCommandHandler(this._extensionUri, this._globalState);
+
     webviewView.webview.onDidReceiveMessage(async (message: WebviewToExtensionMessage) => {
+      const handled = await projectHandler.handleMessage(message, (msg) => webviewView.webview.postMessage(msg));
+      if (handled) return;
+
       switch (message.type) {
         case 'openFullStudio':
           ThemeStudioPanel.createOrShow(this._extensionUri, this._globalState);

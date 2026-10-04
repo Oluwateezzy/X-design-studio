@@ -77,8 +77,9 @@ export type ExtensionToWebviewMessageV1 =
 
 // V2 Messages — Architecture §4.3
 export type WebviewToExtensionMessageV2 =
-  | { type: 'createProject'; name: string; description: string; source?: ProjectCreationSource }
+  | { type: 'createProject'; name: string; description: string; source?: ProjectCreationSource; presetThemeId?: string }
   | { type: 'openProject'; projectPath: string }
+  | { type: 'deleteProject'; projectPath: string }
   | { type: 'listProjects' }
   | { type: 'saveGlobalTheme'; theme: ThemeConfigV2 }
   | { type: 'createPage'; name: string; description: string; componentSlugs?: string[] }
@@ -92,17 +93,21 @@ export type WebviewToExtensionMessageV2 =
   | { type: 'getComponent'; slug: string }
   | { type: 'listComponents' }
   | { type: 'regenerateFiles'; target: 'global' | 'page' | 'component'; slug?: string }
-  | { type: 'importFromSource'; sourceType: 'codebase' | 'url' | 'designMd'; source: string };
+  | { type: 'importFromSource'; sourceType: 'codebase' | 'url' | 'designMd'; source: string; name?: string; description?: string; presetThemeId?: string }
+  | { type: 'browseFolder' }
+  | { type: 'browseFile'; filterName?: string; extensions?: string[] };
 
 export type ExtensionToWebviewMessageV2 =
-  | { type: 'projectList'; projects: ProjectManifest[] }
+  | { type: 'projectList'; projects: ProjectManifest[]; activeProjectSlug?: string }
   | { type: 'projectLoaded'; manifest: ProjectManifest; theme: ThemeConfigV2; pages: PageConfig[]; components: ComponentConfig[] }
   | { type: 'pageLoaded'; config: PageConfig; resolvedTheme: ThemeConfigV2 }
   | { type: 'componentLoaded'; config: ComponentConfig; html: string }
   | { type: 'pageList'; pages: PageConfig[] }
   | { type: 'componentList'; components: ComponentConfig[] }
-  | { type: 'importResult'; success: boolean; theme?: ThemeConfigV2; errors?: string[] }
-  | { type: 'filesRegenerated'; target: 'global' | 'page' | 'component'; slug?: string; success: boolean };
+  | { type: 'importResult'; success: boolean; theme?: ThemeConfigV2; errors?: string[]; warnings?: string[] }
+  | { type: 'filesRegenerated'; target: 'global' | 'page' | 'component'; slug?: string; success: boolean }
+  | { type: 'folderSelected'; path: string }
+  | { type: 'fileSelected'; path: string };
 
 // Composite Message Types
 export type WebviewToExtensionMessage = WebviewToExtensionMessageV1 | WebviewToExtensionMessageV2;
@@ -112,6 +117,7 @@ export type ExtensionToWebviewMessage = ExtensionToWebviewMessageV1 | ExtensionT
 export const V2_WEBVIEW_MESSAGE_TYPES: ReadonlySet<string> = new Set([
   'createProject',
   'openProject',
+  'deleteProject',
   'listProjects',
   'saveGlobalTheme',
   'createPage',
@@ -126,6 +132,8 @@ export const V2_WEBVIEW_MESSAGE_TYPES: ReadonlySet<string> = new Set([
   'listComponents',
   'regenerateFiles',
   'importFromSource',
+  'browseFolder',
+  'browseFile',
 ]);
 
 export const V2_EXTENSION_MESSAGE_TYPES: ReadonlySet<string> = new Set([
@@ -137,6 +145,8 @@ export const V2_EXTENSION_MESSAGE_TYPES: ReadonlySet<string> = new Set([
   'componentList',
   'importResult',
   'filesRegenerated',
+  'folderSelected',
+  'fileSelected',
 ]);
 
 /**

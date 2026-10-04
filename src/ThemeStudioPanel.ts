@@ -9,6 +9,7 @@ import type {
 } from './messages';
 import { ThemeStudioViewProvider } from './ThemeStudioViewProvider';
 import { fetchGoogleFontsCatalog } from './google-fonts-service';
+import { ProjectCommandHandler } from './project-command-handler.js';
 
 export class ThemeStudioPanel {
   public static currentPanel: ThemeStudioPanel | undefined;
@@ -143,8 +144,14 @@ export class ThemeStudioPanel {
   }
 
   private _setWebviewMessageListener(): void {
+    const projectHandler = new ProjectCommandHandler(this._extensionUri, this._globalState);
+
     this._panel.webview.onDidReceiveMessage(
       async (message: WebviewToExtensionMessage) => {
+        // First try routing to project management handler
+        const handled = await projectHandler.handleMessage(message, (msg) => this.postMessage(msg));
+        if (handled) return;
+
         switch (message.type) {
           case 'exportFile':
             await this._handleExportFile(message.fileName, message.content, message.format);

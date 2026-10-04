@@ -52,13 +52,15 @@ export class ProjectManager {
     const description = opts.description || '';
     const source: ProjectCreationSource = opts.source || { type: 'scratch' };
 
-    // Resolve directory
-    const baseDir = targetDir || this.workspaceRoot;
-    if (!baseDir) {
+    // Resolve directory for the specific project slug
+    const projectDir = targetDir || (this.workspaceRoot
+      ? vscode.Uri.joinPath(this.workspaceRoot, '.x-design-system', 'projects', slug)
+      : undefined);
+
+    if (!projectDir) {
       throw new Error('Cannot create project: No target directory or workspace root provided.');
     }
 
-    const projectDir = this.storage.getProjectUri(baseDir);
     const now = new Date().toISOString();
 
     // Determine theme

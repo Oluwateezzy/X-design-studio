@@ -14,7 +14,7 @@ export class FileSystemStorage {
    */
   public getProjectUri(targetUri: vscode.Uri): vscode.Uri {
     const pathStr = targetUri.path;
-    if (pathStr.endsWith('.x-design-system') || pathStr.endsWith('.x-design-system/')) {
+    if (pathStr.includes('.x-design-system')) {
       return targetUri;
     }
     return vscode.Uri.joinPath(targetUri, '.x-design-system');
